@@ -1,10 +1,24 @@
 :root{
-  --main-color: #8A3FFC;
+  --primary-color: #8A3FFC;
   --secondary-color: #ffffff;
+  --accent-color: #3930D9;
   --small: 12px;
   --medium: 16px;
-  --large: 24px;
+  --large: 21px;
   --xlarge: 30px;
-  --xxlarge: 40px;
+  --xxlarge: 35px;
   --xxxlarge: 50px;
+}
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+li{
+  list-style: none;
 }
