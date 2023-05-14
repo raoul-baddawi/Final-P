@@ -1,13 +1,14 @@
 import React from 'react';
 import { Element } from 'react-scroll';
 import './home.css'
+import Hero from '../../Components/Hero/Hero';
+import About from '../../Components/About/About';
 
 function Home(){
   return (
     <main>
-      <Element name="home">
-        <section id="hero"></section>
-      </Element>
+      <Hero />
+      <About />
 
       <Element name="developers">
         <section id="developers"></section>
@@ -19,10 +20,6 @@ function Home(){
 
       <Element name="projects">
         <section id="projects"></section>
-      </Element>
-
-      <Element name="about">
-        <section id="about"></section>
       </Element>
 
       <Element name="contact">

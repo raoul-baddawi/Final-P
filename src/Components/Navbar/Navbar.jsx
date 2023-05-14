@@ -1,7 +1,7 @@
 import './navbar.css'
 import React, { useState } from 'react'
 import { Link } from 'react-scroll'
-import { FaBars, FaTimes } from 'react-icons/fa'
+import { FaBars, FaTimes, FaAngleDown} from 'react-icons/fa'
 import { useLocation } from 'react-router-dom';
 import logo from '../../Assets/Slice 1.png'
 
@@ -33,26 +33,24 @@ const Navbar = () => {
           <h1>Appreciate</h1>
         </a>
         <ul>
-          <li>
+          <li className='drop'>
             <a href='/' className={location.pathname === '/' ? 'active' : ''}>
               Home
+              <FaAngleDown />
             </a>
-          </li>
-          <li>
+          <div className='down'>
             <Link
-              activeClass="active"
-              to="developers"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-              tabIndex={0}
-            >
-              Developers
-            </Link>
-          </li>
-          <li>
-            <Link
+                activeClass="active"
+                to="developers"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={500}
+                tabIndex={0}
+              >
+                Finals
+              </Link>
+              <Link
               activeClass="active"
               to="skills"
               spy={true}
@@ -63,8 +61,6 @@ const Navbar = () => {
             >
               Skills
             </Link>
-          </li>
-          <li>
             <Link
               activeClass="active"
               to="projects"
@@ -76,11 +72,49 @@ const Navbar = () => {
             >
               Projects
             </Link>
+            <Link
+              activeClass="active"
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
+              tabIndex={0}
+            >
+              About
+            </Link>
+          </div>
           </li>
           <li>
             <Link
               activeClass="active"
-              to="about"
+              to="projects"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
+              tabIndex={0}
+            >
+              Our Team
+            </Link>
+          </li>
+          <li>
+          <Link
+              activeClass="active"
+              to="comunity"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
+              tabIndex={0}
+            >
+              Community
+            </Link>
+          </li>
+          <li>
+            <Link
+              activeClass="active"
+              to="Cvs"
               spy={true}
               smooth={true}
               offset={0}
@@ -100,11 +134,12 @@ const Navbar = () => {
               duration={500}
               tabIndex={0}
             >
-              Contact
+              Contact Us
             </Link>
           </li>
         </ul>
         <Link
+          className='lgn'
           activeClass="active"
           to="login"
           spy={true}
