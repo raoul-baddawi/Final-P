@@ -39,6 +39,17 @@ const Navbar = () => {
               <FaAngleDown />
             </a>
           <div className='down'>
+          <Link
+              activeClass="active"
+              to="about"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
+              tabIndex={0}
+            >
+              About
+            </Link>
             <Link
                 activeClass="active"
                 to="developers"
@@ -71,17 +82,6 @@ const Navbar = () => {
               tabIndex={0}
             >
               Projects
-            </Link>
-            <Link
-              activeClass="active"
-              to="about"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-              tabIndex={0}
-            >
-              About
             </Link>
           </div>
           </li>

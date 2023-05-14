@@ -36,6 +36,11 @@
   color: #9a9a9a;
 }
 
+.about-right p span{
+  color: black;
+  font-weight: bold;
+}
+
 @media all and (max-width: 1600px) {
   .about-right {
     gap: 2.2rem;
