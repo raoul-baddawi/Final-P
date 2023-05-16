@@ -3,16 +3,14 @@ import { Element } from 'react-scroll';
 import './home.css'
 import Hero from '../../Components/Hero/Hero';
 import About from '../../Components/About/About';
+import Finals from '../../Components/finals/Finals';
 
 function Home(){
   return (
     <main>
       <Hero />
       <About />
-
-      <Element name="developers">
-        <section id="developers"></section>
-      </Element>
+      <Finals />
 
       <Element name="skills">
         <section id="skills"></section>
@@ -23,7 +21,9 @@ function Home(){
       </Element>
 
       <Element name="contact">
-        <section id="contact"></section>
+        <section id="contact">
+          
+        </section>
       </Element>
       
       <Element name="login">

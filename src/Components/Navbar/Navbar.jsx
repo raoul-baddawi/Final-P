@@ -52,7 +52,7 @@ const Navbar = () => {
             </Link>
             <Link
                 activeClass="active"
-                to="developers"
+                to="finals"
                 spy={true}
                 smooth={true}
                 offset={0}

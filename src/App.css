@@ -11,6 +11,8 @@
   --larg-heading: 55px;
 }
 
+
+/*#1d2226*/
 *{
   box-sizing: border-box;
   margin: 0;
@@ -23,6 +25,7 @@ html{
 body{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+
 
 #root{
   display: grid;
