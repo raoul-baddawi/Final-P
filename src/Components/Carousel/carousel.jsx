@@ -77,7 +77,7 @@ function Carousel() {
                 </div>
                 <div className="totry">
                   <iframe
-                    src="https://legacy.reactjs.org/"
+                    src=""
                     title={`${dev.name}'s website`}
                   >
                   </iframe>

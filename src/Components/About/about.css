@@ -27,6 +27,7 @@
 }
 .about-right h1 {
   font-size: var(--larg-heading);
+  color: #ff1d50;
 }
 
 .about-right p {
@@ -37,7 +38,7 @@
 }
 
 .about-right p span{
-  color: black;
+  color: rgb(255, 187, 0);
   font-weight: bold;
 }
 

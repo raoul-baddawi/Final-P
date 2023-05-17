@@ -4,6 +4,7 @@ import './home.css'
 import Hero from '../../Components/Hero/Hero';
 import About from '../../Components/About/About';
 import Finals from '../../Components/finals/Finals';
+import Mentors from '../../Components/Mentors/Mentors';
 
 function Home(){
   return (
@@ -11,10 +12,7 @@ function Home(){
       <Hero />
       <About />
       <Finals />
-
-      <Element name="skills">
-        <section id="skills"></section>
-      </Element>
+      <Mentors />
 
       <Element name="projects">
         <section id="projects"></section>

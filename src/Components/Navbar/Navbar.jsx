@@ -63,6 +63,17 @@ const Navbar = () => {
               </Link>
               <Link
               activeClass="active"
+              to="mentors"
+              spy={true}
+              smooth={true}
+              offset={0}
+              duration={500}
+              tabIndex={0}
+            >
+              Mentors
+            </Link>
+            <Link
+              activeClass="active"
               to="skills"
               spy={true}
               smooth={true}
