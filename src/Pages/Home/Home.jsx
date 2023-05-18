@@ -13,10 +13,7 @@ function Home(){
       <About />
       <Finals />
       <Mentors />
-
-      <Element name="projects">
-        <section id="projects"></section>
-      </Element>
+      
 
       <Element name="contact">
         <section id="contact">

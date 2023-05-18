@@ -2,7 +2,7 @@ import './App.css';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Layout from './Maintainer/Layout';
 import Home from './Pages/Home/Home';
-import Mentors from './Components/Mentors/Mentors';
+import OurTeam from './Pages/OurTeam/OurTeam';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/mentors" element={<Mentors />} />
+            <Route path="/ourteam" element={<OurTeam />} />
           </Route>
         </Routes>
       </BrowserRouter>

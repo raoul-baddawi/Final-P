@@ -1,9 +1,9 @@
-import './navbar.css'
-import React, { useState } from 'react'
-import { Link } from 'react-scroll'
-import { FaBars, FaTimes, FaAngleDown} from 'react-icons/fa'
-import { useLocation } from 'react-router-dom';
-import logo from '../../Assets/Slice 1.png'
+import "./navbar.css";
+import React, { useState } from "react";
+import { Link } from "react-scroll";
+import { FaBars, FaTimes, FaAngleDown } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
+import logo from "../../Assets/Slice 1.png";
 
 const Navbar = () => {
   const location = useLocation();
@@ -12,115 +12,106 @@ const Navbar = () => {
 
   function changeColor() {
     if (window.scrollY >= 90) {
-      setColor(true)
+      setColor(true);
     } else {
-      setColor(false)
+      setColor(false);
     }
   }
 
-  window.addEventListener('scroll', changeColor)
+  window.addEventListener("scroll", changeColor);
 
   function handleClick() {
-    setClick(!click)
+    setClick(!click);
   }
 
-
   return (
-    <header className={color ? 'header header-bg' : 'header'}>
+    <header className={color ? "header header-bg" : "header"}>
       <nav>
-        <a href='/' className='logo'>
-          <img src={logo} alt='Logo' />
+        <a href="/" className="logo">
+          <img src={logo} alt="Logo" />
           <h1>Appreciate</h1>
         </a>
         <ul>
-          <li className='drop'>
-            <a href='/' className={location.pathname === '/' ? 'active' : ''}>
+          <li className="drop">
+            <a href="/" className={location.pathname === "/" ? "active" : ""}>
               Home
-              <FaAngleDown />
+              {location.pathname === "/" ? <FaAngleDown /> : null}
             </a>
-          <div className='down'>
-          <Link
-              activeClass="active"
-              to="about"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-              tabIndex={0}
-            >
-              About
-            </Link>
-            <Link
-                activeClass="active"
-                to="finals"
-                spy={true}
-                smooth={true}
-                offset={0}
-                duration={500}
-                tabIndex={0}
-              >
-                Finals
-              </Link>
-              <Link
-              activeClass="active"
-              to="mentors"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-              tabIndex={0}
-            >
-              Mentors
-            </Link>
-            <Link
-              activeClass="active"
-              to="skills"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-              tabIndex={0}
-            >
-              Skills
-            </Link>
-            <Link
-              activeClass="active"
-              to="projects"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-              tabIndex={0}
-            >
-              Projects
-            </Link>
-          </div>
+            {location.pathname !== "/" ? null : (
+              <div className="down">
+                <Link
+                  activeClass="active"
+                  to="about"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={500}
+                  tabIndex={0}
+                >
+                  About
+                </Link>
+                <Link
+                  activeClass="active"
+                  to="finals"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={500}
+                  tabIndex={0}
+                >
+                  Finals
+                </Link>
+                <Link
+                  activeClass="active"
+                  to="mentors"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={500}
+                  tabIndex={0}
+                >
+                  Mentors
+                </Link>
+                <Link
+                  activeClass="active"
+                  to="skills"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={500}
+                  tabIndex={0}
+                >
+                  Skills
+                </Link>
+                <Link
+                  activeClass="active"
+                  to="projects"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={500}
+                  tabIndex={0}
+                >
+                  Projects
+                </Link>
+              </div>
+            )}
           </li>
           <li>
-            <Link
-              activeClass="active"
-              to="projects"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-              tabIndex={0}
+            <a
+              href="/ourteam"
+              className={location.pathname === "/ourteam" ? "active" : ""}
             >
               Our Team
-            </Link>
+            </a>
           </li>
           <li>
-          <Link
-              activeClass="active"
-              to="comunity"
-              spy={true}
-              smooth={true}
-              offset={0}
-              duration={500}
-              tabIndex={0}
+            <a
+              href="/community"
+              className={location.pathname === "/community" ? "active" : ""}
             >
               Community
-            </Link>
+            </a>
           </li>
           <li>
             <Link
@@ -150,7 +141,7 @@ const Navbar = () => {
           </li>
         </ul>
         <Link
-          className='lgn'
+          className="lgn"
           activeClass="active"
           to="login"
           spy={true}
@@ -162,9 +153,9 @@ const Navbar = () => {
           Login
         </Link>
         <div className="burger-menu" onClick={handleClick}>
-          {click ? (<FaTimes size={40}/>) : (<FaBars size={40}/>)}
+          {click ? <FaTimes size={40} /> : <FaBars size={40} />}
         </div>
-        <div className={click ? 'nav-menu active' : "nav-menu"}>
+        <div className={click ? "nav-menu active" : "nav-menu"}>
           <a href="/">Home</a>
           <a href="/developers">Developers</a>
           <a href="/skills">Skills</a>
@@ -175,7 +166,7 @@ const Navbar = () => {
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

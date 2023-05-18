@@ -12,8 +12,8 @@ function Mentors() {
     axios
       .get("http://localhost:8800/profile")
       .then((res) => {
-        setMentor(res.data);
-        console.log(res.data)
+        const mentorData = res.data.filter((profile) => profile.user_type === 'mentor');
+        setMentor(mentorData);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -71,6 +71,10 @@
   filter: grayscale(1);
 }
 
+.container .icon .imgBx:first-of-type img{
+  transform: rotate(calc(-234deg / 7 * var(--i)));
+}
+
 .container .icon .active img {
   filter: grayscale(0);
 }

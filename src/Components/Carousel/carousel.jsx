@@ -16,7 +16,8 @@ function Carousel() {
     axios
       .get("http://localhost:8800/profile")
       .then((res) => {
-        setData(res.data);
+        const devData = res.data.filter((profile) => profile.user_type === 'dev');
+        setData(devData);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -133,6 +133,7 @@
   height: 200px;
   align-self: center;
   padding: 25px;
+  flex-shrink: 0;
 }
 
 .part1-wrapper,
@@ -279,6 +280,7 @@
     display: flex;
     min-height: 70vh;
     align-items: center;
+    justify-content: center;
   }
 
   .finals-header {
