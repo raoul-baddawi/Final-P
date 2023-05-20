@@ -24,14 +24,13 @@ function Mentors() {
 
   return (
     <Element name="mentors">
-      <section id="mentors">
+      <section id="mentors"> 
         <h1>Codi Team</h1>
         <div className="mentors_left">
           <div className="container">
             <div className="icon">
               {mentor &&
                 mentor.map((item, index) => (
-                  <>
                   <React.Fragment key={index}>
                     <div
                       className={`imgBx ${
@@ -42,8 +41,7 @@ function Mentors() {
                     >
                       <img src={lol} alt="lol" />
                     </div>
-                    
-                  </React.Fragment>
+        
                   <div
                       className={`contentBx ${
                         activeItem === index ? "activated" : ""
@@ -94,8 +92,9 @@ function Mentors() {
                       <h1>"{item.description}"</h1>
                       <p>{item.name}</p>
                     </div>
-                  </>
+                  </React.Fragment>
                 ))}
+                
             </div>
           </div>
         </div>
