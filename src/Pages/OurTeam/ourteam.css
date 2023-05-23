@@ -1,5 +1,5 @@
 #team{
-  grid-row-start: 3;
+  grid-row-start: 2;
   min-height: calc(100% + 10vh);
   /* display: flex; */
   margin: 0 auto;

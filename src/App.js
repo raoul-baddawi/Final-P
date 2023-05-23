@@ -5,7 +5,7 @@ import Home from './Pages/Home/Home';
 import OurTeam from './Pages/OurTeam/OurTeam';
 import Messenger from './Components/messenger/Messenger';
 import Auth from './Pages/auth/Auth';
-
+import Profile from './Pages/Profile/Profile';
 function App() {
   return (
     <>
@@ -15,6 +15,7 @@ function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
             <Route path="/ourteam" element={<OurTeam />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/community" element={<Messenger />} />
           </Route>
         </Routes>

@@ -2,10 +2,12 @@ import "./navbar.css";
 import React, { useState } from "react";
 import { Link } from "react-scroll";
 import { FaBars, FaTimes, FaAngleDown } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import logo from "../../Assets/Slice 1.png";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const location = useLocation();
   const [click, setClick] = useState(false);
   const [color, setColor] = useState(false);
@@ -25,7 +27,9 @@ const Navbar = () => {
   }
 
   return (
-    <header className={color ? "header header-bg" : "header"}>
+    <>
+    {location.pathname === "/profile" ? null : ( 
+      <header className={color ? "header header-bg" : "header"}>
       <nav>
         <a href="/" className="logo">
           <img src={logo} alt="Logo" />
@@ -140,23 +144,18 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <Link
+        <a
           className="lgn"
-          activeClass="active"
-          to="login"
-          spy={true}
-          smooth={true}
-          offset={0}
-          duration={500}
-          tabIndex={0}
+          href="/auth"
         >
           Login
-        </Link>
+        </a>
         <div className="burger-menu" onClick={handleClick}>
           {click ? <FaTimes size={40} /> : <FaBars size={40} />}
         </div>
         <div className={click ? "nav-menu active" : "nav-menu"}>
           <a href="/">Home</a>
+          <button onClick={() => navigate("/single", { state: { id: user._id } })}>Details</button>
           <a href="/developers">Developers</a>
           <a href="/skills">Skills</a>
           <a href="/projects">Projects</a>
@@ -166,6 +165,9 @@ const Navbar = () => {
         </div>
       </nav>
     </header>
+    )
+    }
+    </>
   );
 };
 

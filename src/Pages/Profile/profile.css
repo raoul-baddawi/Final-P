@@ -1,0 +1,44 @@
+.profile_wrapper{
+  display: grid;
+  grid-row: 1/-1;
+  width: 100%;
+  grid-template-columns: 40vh auto;
+}
+
+.main{
+  grid-column: 2;
+}
+.profile_nav{
+  position: fixed;
+  top: 0;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  gap: 6dvh;
+}
+
+
+.profile_nav ul {
+  margin: 0 auto;
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.profile_main,
+.cv_main{
+  padding: 30px;
+}
+.cv_main section,
+.profile_main section{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: lightblue;
+  width: 100%;
+  grid-column: 2;
+  padding: 40px;
+  height: 100dvh;
+}
+
+#cv {
+  grid-column: 2!important;
+}
