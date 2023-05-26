@@ -1,0 +1,68 @@
+.hide{
+  height: 0px;
+  overflow: hidden;
+  display: flex;
+}
+
+.animated_add{
+  margin-top: 20px;
+}
+
+.show{
+  transition: .4s all ease;
+  height: 40vh; 
+}
+
+.animated_form{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  border: 1px solid lightgray;
+  /* background-color: rgb(169, 169, 255); */
+}
+
+
+.animated_form input{
+  padding: 7px 14px;
+}
+
+.animated_form button{
+  padding: 7px 3px;
+}
+
+.animated_form button i {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: .2s all ease;
+}
+
+
+.animated_form button:first-of-type i{
+  background-color: rgb(0, 156, 0);
+}
+
+.animated_form :last-of-type i{
+  background-color: red;
+}
+
+
+@media all and (max-width:910px){
+.exp_main section{
+  width: 90%;
+}
+}
+
+
+@media (max-width: 700px){ 
+.exp_main {
+    padding: 0px;
+}
+}

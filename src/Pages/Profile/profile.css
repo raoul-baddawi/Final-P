@@ -5,40 +5,622 @@
   grid-template-columns: 40vh auto;
 }
 
+.profile_main h1{
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile_main h1 span{
+  display: none;
+}
+
+.profile_nav h1{
+  padding: 25px;
+}
 .main{
   grid-column: 2;
+}
+
+.nav_wrapper{
+  background-color: var(--primary-color);
+  border-right: 2px solid lightgray;
+  color: white;
+}
+
+.nav_wrapper a{
+  color: white;
+}
+
+.nav_wrapper button{
+  color: white;
+  margin-left: 25px;
 }
 .profile_nav{
   position: fixed;
   top: 0;
   display: flex;
-  padding: 20px;
   flex-direction: column;
   gap: 6dvh;
+  width: 40vh;
+}
+
+.profile_nav ul li{
+  display: flex;
+  gap: 15px;
+  padding: 25px;
+  font-size:calc(var(--large) - 2px);
+  position: relative;
+}
+
+.profile_nav ul li::before{
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  transition: .2s all ease;
+}
+.profile_nav ul li:hover::before{
+  width: 100%;
+}
+
+.profile_nav .logout_btn{
+  font-size:calc(var(--large) - 2px);
+
 }
 
 
-.profile_nav ul {
-  margin: 0 auto;
-  width: 70%;
-  display: grid;
-  grid-template-columns: 1fr;
+#profile label{
+  color:gray  ;
+}
+
+.input_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+
+.li_wrapper .active{
+  border-left: 5px solid white;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.field_header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.field_header i,
+.exp_main i{
+  cursor: pointer;
+  color: var(--primary-color);
+}
+.exp_main i{
+  font-size: 17px;
+}
+
+.field_header i:hover,
+.exp_main i:hover{
+animation: bounce 1s infinite both;
+} 
+
+.button button{
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.button button i {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  font-size: 20px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  transition: .2s all ease;
+}
+.button button:first-of-type i{
+  background-color: rgb(0, 156, 0);
+}
+
+.button button:first-of-type i:hover{
+  scale: 1.1;
+}
+.button button:last-of-type i{
+  background-color: rgb(255, 0, 0);
+}
+.button button:last-of-type i:hover{
+  scale: 1.1;
+}
+.button button:focus{
+  outline: none;
+  border: none;
+}
+@keyframes bounce { 
+  0%{
+    transform: translateY(0px);
+  }
+
+  25%{
+    transform: rotate(10deg) translateY(-5px);
+  }
+  50%{
+    transform: rotate(0deg) translateY(0px);
+  }
+  75%{
+    transform: rotate(-10deg)translateY(-5px);
+  }
+  100%{
+    transform: rotate(0deg) translateY(0px);
+  }
+}
+.input_wrapper div:nth-of-type(2){
+  display: flex;
+  align-items: center;
+  min-height: 35px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  position: relative;
+  }
+
+
+  .input_wrapper:nth-of-type(3) div:nth-of-type(2){
+    height: 100%;
+  }
+
+
+  .input_wrapper div:nth-of-type(2) p{
+    width: 100%;
+    height: 100%;
+  }
+
+  .input_wrapper div:nth-of-type(2) input{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: var(--primary-color);
+  }
+
+
+  .input_wrapper div:nth-of-type(2) .button{
+    position: absolute;
+    display: flex;
+    gap: 5px;
+    right: -75px;
+  }
+
+  .field_btn_wrapper{
+    display: flex;
+    gap: 5px;
+    position: relative;
+  }
+
+  .lol{
+    position: absolute;
+    top: 0;
+    right: 32px;
+  }
+  .input_wrapper div:nth-of-type(2) input:focus{
+    outline: none;
+    border: none;
+  }
+  .input_wrapper div:nth-child(2)::-webkit-scrollbar{
+    display: none;
+  }
+  .profile_main h1{
+    padding: 40px;
+  }
+
+  .profile_nav ul {
+    height: 70dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+.profile_nav ul div {
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
 }
 .profile_main,
 .cv_main{
-  padding: 30px;
+  padding: 30px;  
 }
 .cv_main section,
 .profile_main section{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: lightblue;
-  width: 100%;
-  grid-column: 2;
+  grid-template-columns: 1fr;
+  grid-column-gap: 20px;
+  width: 85vh;
   padding: 40px;
-  height: 100dvh;
+  grid-row-gap: 10px;
+  min-height: 100dvh;
 }
 
-#cv {
-  grid-column: 2!important;
+.exp_main section{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 20px;
+  width: 85vh;
+  padding: 40px;
+  grid-row-gap: 10px;
 }
+
+
+
+.logout_btn{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 25px;
+  text-align: start;
+}
+
+
+.logout_btn::before{
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 2px;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  transition: .2s all ease;
+}
+
+.logout_btn:hover::before{
+  width: 100%;
+}
+
+.logout_btn:focus{
+  outline: none;
+  border: none;
+}
+
+
+
+.Btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: white;
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: var(--primary-color);
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: var(--primary-color);
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+/* hover effect on button width */
+.Btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+/* hover effect button's text */
+.Btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.Btn:active {
+  transform: translate(2px ,2px);
+}
+
+
+
+.cv_main .h1{
+  padding: 40px;
+  font-size: var(--small-heading);
+}
+
+.fa-xmark{
+  color: white;
+}
+
+.exp_main{
+  position: relative;
+  /* margin-top: 70px; */
+}
+.edc_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exp_main button {
+  background-color: none;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 7px 14px;
+}
+
+.edc_head button{
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+  display: flex;
+  width: 80px;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-color);
+}
+
+.edc_head button:hover{
+  animation: breath 1s infinite both;
+}
+
+.edc_head button:hover > i {
+  animation: bounce 1s infinite both;
+}
+
+@keyframes breath { 
+  0%{
+    transform: scale(1);
+  }
+
+  25%{
+    transform: scale(0.9);
+  }
+  50%{
+    transform: scale(1);
+  }
+  75%{
+    transform: scale(0.9);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+.education_element{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid lightgray;
+}
+
+.education_element label{
+  padding: 10px;
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+}
+
+.education_element .p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.education_element .p button{
+  margin: 0;
+}
+.edc-delete{
+  cursor: pointer;
+    border: 1px solid red!important;
+    display: flex;
+    width: 90px;
+    justify-content: space-between;
+    align-items: center;
+    color: red;
+    align-self: flex-end;
+}
+
+.edc-delete:hover{
+  animation: breath 1s infinite both;
+}
+
+.edc-delete:hover > i {
+  animation: bounce 1s infinite both;
+}
+.edc-delete i {
+  color: red;
+}
+
+
+.rendered-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rendered-wrapper input{
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  font-size: 16px;
+}
+
+.rendered-wrapper .button button{
+  padding: 3px;
+}
+@media all and (max-width:1155px){
+  .cv_main section,
+.profile_main section{
+  width: 60vh;
+ 
+}
+}
+
+@media all and (max-width:990px){
+  .profile_wrapper{
+    grid-template-columns: 30vh auto;
+  }
+
+  .profile_nav ul div {
+    gap: 35px;
+  }
+}
+
+@media all and (max-width:910px){
+  .cv_main section,
+.profile_main section,
+.exp_main section{
+  width: 90%;
+}
+}
+
+
+@media all and (max-width:700px){
+  .profile_wrapper{
+    grid-template-columns: 20vh auto;
+  }
+
+  .profile_nav ul div {
+    gap: 30px;
+  }
+  .profile_nav {
+    position: fixed;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6dvh;
+    width: 20vh;
+}
+
+.profile_main, .cv_main {
+  padding: 0px;
+}
+
+.cv_main{
+  margin-top: 20vh;
+}
+}
+
+
+
+@media all and (max-width:500px){
+  .profile_wrapper{
+    grid-template-columns: 1fr;
+  }
+
+  .profile_nav ul div {
+    gap: 20px;
+  }
+  .profile_nav{
+    position: fixed;
+    transition: .3s all ease;
+    top: 0;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    gap: 6dvh;
+    background-color: rgb(143, 143, 255);
+    width: 100%;
+    z-index: 2;
+}
+
+.profile_nav.visivle{
+  transform: translateX(0);
+}
+
+.profile_nav.hidden{
+  transition: .3s all ease;
+  transform: translateX(-100%);
+
+}
+
+#profile {
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+.cv_main section, .profile_main section, .exp_main section {
+  padding: 20px;
+  width: 100%;
+}
+.nav_wrapper {
+  border-right: none;
+}
+
+.profile_main h1 span{
+  display: block;
+  position: relative;
+  z-index: 10;
+}
+
+
+/* .fa-sharp{
+  position: fixed;
+  right: 23px;
+} */
+
+.input_wrapper div:nth-of-type(2) .button {
+  position: absolute;
+  display: flex;
+  gap: 5px;
+  left: 0;
+  bottom: -40px;
+}
+
+.cv_main section, .profile_main section, .exp_main section {
+  grid-row-gap: 60px;
+}
+
+.profile_wrapper {
+  overflow: hidden;
+}
+
+.profile_main h1 {
+  padding: 20px;
+}
+
+.cv_main .h1{
+  padding: 20px;
+  font-size: var(--small-heading);
+}
+}
+

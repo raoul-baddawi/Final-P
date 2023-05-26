@@ -1,0 +1,78 @@
+.exp_main{
+  padding: 30px;
+}
+
+
+.exp_main section{
+  display: grid;
+    grid-template-columns: 1fr;
+    grid-column-gap: 20px;
+    width: 85vh;
+    padding: 40px;
+    grid-row-gap: 10px;
+}
+
+
+
+.exp_main button {
+  background-color: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+
+.edc_head button {
+  cursor: pointer;
+  border: 1px solid var(--primary-color);
+  display: flex;
+  width: 80px;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-color);
+  padding: 7px 14px;
+}
+
+.p button{
+  padding: 7px 14px;
+  color: var(--primary-color);
+}
+.p button i {
+  font-size: 17px;
+}
+
+.exp_main .education_element .edc-delete{
+  padding: 7px 14px;
+  
+}
+@media (max-width: 1155px){
+
+.exp_main section {
+    width: 60vh;
+}
+
+}
+
+@media (max-width: 910px){
+
+.exp_main section {
+  width: 90%;
+
+}
+
+}
+
+
+@media (max-width: 700px){
+  .exp_main {
+    padding: 0px;
+}
+}
+
+@media (max-width: 500px){
+.exp_main section {
+    padding: 20px;
+    width: 100%;
+  }
+}
+  
