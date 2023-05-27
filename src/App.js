@@ -6,6 +6,7 @@ import OurTeam from './Pages/OurTeam/OurTeam';
 import Messenger from './Components/messenger/Messenger';
 import Auth from './Pages/auth/Auth';
 import Profile from './Pages/Profile/Profile';
+import Cv from './Pages/Cv/Cv';
 function App() {
   const useProfile = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -39,6 +40,7 @@ function App() {
               <Route path="/community" element={<Messenger />} />
             </Route>
           </Route>
+          <Route path="/cv" element={<Cv />} />
         </Routes>
       </BrowserRouter>
     </>

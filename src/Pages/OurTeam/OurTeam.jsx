@@ -68,7 +68,7 @@ console.log(filteredTeam)
                   <p>{card.position}</p>
                   <div className="buttons_wrp">
                   {card.user_type === 'mentor' ? (
-                <button className="personal_button btn-2">View cv</button>
+                <button className="personal_button btn-2" onClick={() => navigate("/cv", { state: { id: card.user_id } })}>View cv</button>
             ) : (
               <>
                 <button className="personal_button btn-1" onClick={() => window.open(card.website_link, '_blank')}>

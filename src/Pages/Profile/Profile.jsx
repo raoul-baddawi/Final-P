@@ -154,7 +154,7 @@ const Profile = () => {
                 }}
               >
                 <li>
-                <i class="fa-solid fa-graduation-cap"></i>
+                <i className="fa-solid fa-graduation-cap"></i>
                   Education
                 </li>
               </Link>
@@ -171,7 +171,7 @@ const Profile = () => {
                 }}
               >
                 <li>
-                <i class="fa-solid fa-briefcase"></i>
+                <i className="fa-solid fa-briefcase"></i>
                   Experience
                 </li>
               </Link>
