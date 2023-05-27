@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NoImage from '../../Assets/noimage.png';
 import Loader from '../../Components/Loader/Loader';
+import { useNavigate } from 'react-router-dom';
 
 const OurTeam = () => {
+  const navigate = useNavigate();
   const [team, setTeam] = useState(null);
   const [filteredTeam, setFilteredTeam] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // Add isLoading state
@@ -38,7 +40,7 @@ const OurTeam = () => {
       setFilteredTeam(team);
     }
   };
-
+console.log(filteredTeam)
   if (isLoading) {
     return <Loader />;
   } else {
@@ -72,7 +74,7 @@ const OurTeam = () => {
                 <button className="personal_button btn-1" onClick={() => window.open(card.website_link, '_blank')}>
                   Website
                 </button>
-                <button className="personal_button btn-2">View cv</button>
+                <button className="personal_button btn-2" onClick={() => navigate("/cv", { state: { id: card.user_id } })}>View cv</button>
               </>
             )}
                   </div>

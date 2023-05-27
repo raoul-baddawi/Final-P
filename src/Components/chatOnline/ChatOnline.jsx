@@ -54,7 +54,7 @@ export default function ChatOnline({ currentId, setCurrentChat, setRefresh, refr
           <div className="chatOnlineImgContainer">
             <img
               className="chatOnlineImg"
-              src={user.profile?.image.length > 3 ? user.profile?.image : NoImage}
+              src={user.profile?.image?.length > 3 ? user.profile?.image : NoImage}
               alt=""
             />
             <div className="chatOnlineBadge"></div>

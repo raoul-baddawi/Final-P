@@ -1,26 +1,26 @@
 import React from "react";
-import './auth.css'
+import "./auth.css";
 // import hash from 'hash-it';
 import { useNavigate } from "react-router";
-import './auth.css'
-import { useState } from "react";
+import "./auth.css";
+import { useState, useEffect } from "react";
 import axios from "axios";
 // import { useContext } from 'react';
 // import { MyContext } from '../../myContext';
 
-function Auth(){
-  // const { text, setText } = useContext(MyContext);
-  const [zih, setZih] = useState(false)
-  let navigate=useNavigate()
+function Auth() {
+  const [zih, setZih] = useState(false);
+  const [message, setMessage] = useState(' ')
+  const [showMessage, setShowMessage] = useState(false)
+  let navigate = useNavigate();
 
-  function activateZih(){
-    setZih(true)
+  function activateZih() {
+    setZih(true);
   }
 
-  function deactivateZih(){
-    setZih(false)
+  function deactivateZih() {
+    setZih(false);
   }
-
 
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
@@ -32,23 +32,23 @@ function Auth(){
           password: event.target.password.value,
         }
       );
-      if(response.data.role==="superAdmin"){      
+      if (response.data.role === "superAdmin") {
         localStorage.setItem("user", JSON.stringify(response.data));
-       navigate('/ourteam')
-      }else{
+        navigate("/ourteam");
+      } else {
         localStorage.setItem("user", JSON.stringify(response.data));
-      navigate("/")
+        navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      setMessage(error.response.data.message)
+      setShowMessage(true)
+      console.log(error.response.data.message);
     }
-
   };
-
 
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
-   
+
     try {
       const response = await axios.post(
         "http://localhost:8800/api/auth/register",
@@ -58,8 +58,8 @@ function Auth(){
           password: event.target.Password.value,
         }
       );
-      if(response.status===201){
-        navigate("/")
+      if (response.status === 201) {
+        navigate("/");
       }
       localStorage.setItem("user", JSON.stringify(response.data));
       // handle successful registration
@@ -67,66 +67,112 @@ function Auth(){
       console.log(error);
     }
   };
-  return(
-    <div className="J-popup-wrapper">
-      <div className="svg-head"> 
-      <div className={zih ? "svg-wrapper-1 svg-wrapper-12" : "svg-wrapper-1"}>    
-        <svg height="250" width="400">
-        <polygon points="160,10 360,120 160,220" stroke="lightblue" fill="lightblue" strokeWidth="1" />
-        </svg>  
-      </div>
 
-      <div className={zih ? "svg-wrapper-1 svg-wrapper-12" : "svg-wrapper-1"}>    
-        <svg height="300" width="400">
-        <polygon points="160,10 360,120 160,220" stroke="lightblue" fill="lightblue" strokeWidth="1" />
-        </svg>  
-      </div>
-    </div>
-      <div className="all-wrapper">
+  useEffect(() => {
+    if (showMessage) {
+      const timeout = setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
 
-        <div className="all-wrapper-child">
-          <div className="ask-login jiji">
-                <h3>Have an account?</h3>
-                <button onClick={deactivateZih}>Login</button>
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
+  }, [showMessage]);
+
+  return (
+    <div className="main_auth-wrp">
+      <div className="area">
+        <ul className="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div className="J-popup-wrapper">
+        <div className="all-wrapper">
+          <div className="all-wrapper-child">
+            <div className="ask-login jiji">
+              <h3>Have an account?</h3>
+              <button onClick={deactivateZih} className="buttonn">
+                <span className="button-content">Login</span>
+              </button>
+            </div>
+            <div className="ask-signup jiji">
+              <h3>Don't have an account?</h3>
+              <button onClick={activateZih} className="buttonn">
+                <span className="button-content">Register</span>
+              </button>
+            </div>
           </div>
-          <div className="ask-signup jiji">
-                <h3>Don't have an account?</h3>
-                <button onClick={activateZih}>Register</button>
+          <div className="main-f-wrapper">
+            <div className={zih ? "J-forms-wrapper-zih" : "J-forms-wrapper"}>
+              <div
+                className={
+                  zih
+                    ? "left-right-wrapper-zih left-right-wrapper"
+                    : "left-right-wrapper"
+                }
+              >
+                <form onSubmit={handleLoginSubmit}>
+                  <h1>Login</h1>
+                  {showMessage && <p>{message}</p>}
+                  <input
+                    id="email"
+                    type="text"
+                    required
+                    placeholder="Your email"
+                  />
+                  <input
+                    id="password"
+                    type="password"
+                    required
+                    placeholder="Your password"
+                  />
+                  <button type="submit" className="buttonn">
+                    <span className="button-content">Login</span>
+                  </button>
+                </form>
+
+                <form onSubmit={handleRegisterSubmit}>
+                  <h1>Register</h1>
+                  {showMessage && <p>{message}</p>}
+                  <input
+                    id="name"
+                    type="text"
+                    required
+                    placeholder="Enter your name"
+                  />
+                  <input
+                    id="Email"
+                    type="text"
+                    required
+                    placeholder="Enter your email"
+                  />
+                  <input
+                    id="Password"
+                    type="password"
+                    required
+                    placeholder="Enter your password"
+                  />
+                  <button type="submit" className="buttonn">
+                    <span className="button-content">Register</span>
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
-          <div className="main-f-wrapper">
-
-              <div className={zih ? "J-forms-wrapper-zih" : "J-forms-wrapper"}>
-
-                <div className={zih ? "left-right-wrapper-zih left-right-wrapper" : "left-right-wrapper"}>
-                  <form onSubmit={handleLoginSubmit}>
-                    <input id="email" type="text" required placeholder="Your email"/>
-                    <input id="password"
-                            type="password"
-                            required placeholder="Your password"/>
-                    <button type="submit">Login</button>
-                  </form>
-
-
-                  <form onSubmit={handleRegisterSubmit}>
-                    <input id="name" type="text" required placeholder="Enter your name"/>
-                    <input id="Email" type="text" required placeholder="Enter your email"/>
-                    <input t id="Password"
-                type="password"
-                required placeholder="Enter your password"/>
-                    <button type="submit">Sign up</button>
-                  </form>
-                </div>
-              </div>
-
-          </div>
-
       </div>
-
-
-
     </div>
-  )
+  );
 }
 
-export default Auth
+export default Auth;

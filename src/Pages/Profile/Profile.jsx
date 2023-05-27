@@ -5,6 +5,7 @@ import "./profile.css";
 import axios from "axios";
 import Education from "../../Components/Education/Education";
 import Experience from "../../Components/Experience/Experience";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
   const [show, setShow] = useState(false);
@@ -13,7 +14,7 @@ const Profile = () => {
   const [cv, setCv] = useState(null);
   const [isEditing, setIsEditing] = useState({});
   const [isCvEditing, setIsCvEditing] = useState({});
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
@@ -92,6 +93,7 @@ const Profile = () => {
 
   function handleLogout() {
     localStorage.clear();
+    navigate('/')
   }
 
   return (
