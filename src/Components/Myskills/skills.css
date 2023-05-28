@@ -1,0 +1,105 @@
+.skills_wrapper{
+  text-align: center;
+  padding: 7vh;
+  display: flex;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.skills_wrapper h1{
+  font-size: var(--larg-heading);
+}
+#skills{
+  width: 100%;
+  display: flex;
+  gap: 4rem;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+}
+
+.skill{
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.25);
+border-radius: 10px;
+  width: 40%;
+  aspect-ratio: 1/0.8;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 30% 70%;
+  overflow: hidden;
+}
+
+
+.skill_header{
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  gap: 10px;
+}
+
+
+.skill_body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.skill_body span {
+  font-size: clamp(0.0625rem, -0.2998rem + 1.8116vw, 1.625rem);
+}
+
+
+/* @media all and (max-width:1500px) {
+  .skill_body span {
+    font-size: var(--large);
+  }
+} */
+
+@media all and (max-width:1100px) {
+  #skills{
+  flex-wrap: wrap;
+  }
+
+
+  .skill{
+  width: 45%;
+}
+
+
+.skill_body span {
+  font-size: clamp(0.625rem, 0.3931rem + 1.1594vw, 1.625rem);
+}
+}
+
+
+@media all and (max-width:750px) {
+  #skills{
+    flex-wrap: nowrap;
+    flex-direction: column;
+  }
+
+
+  .skill{
+    width: 90%;
+    height: 40vh;
+    max-width: 55vh;
+  }
+
+  .skill_body span {
+    font-size: clamp(0.9375rem, 0.7781rem + 0.7971vw, 1.625rem);
+  }
+}
+
+@media all and (max-width:750px) {
+  .skill{
+    width: 100%;
+    height: 35vh;
+  }
+}

@@ -5,6 +5,7 @@ import Hero from '../../Components/Hero/Hero';
 import About from '../../Components/About/About';
 import Finals from '../../Components/finals/Finals';
 import Mentors from '../../Components/Mentors/Mentors';
+import Skills from '../../Components/Myskills/Skills';
 
 function Home(){
   return (
@@ -13,13 +14,8 @@ function Home(){
       <About />
       <Finals />
       <Mentors />
-      
-
-      <Element name="contact">
-        <section id="contact">
-          
-        </section>
-      </Element>
+      <Skills />
+     
       
       <Element name="login">
         <section id="login"></section>

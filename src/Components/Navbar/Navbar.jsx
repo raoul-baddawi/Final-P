@@ -114,7 +114,7 @@ const Navbar = () => {
                       to="skills"
                       spy={true}
                       smooth={true}
-                      offset={0}
+                      offset={-80}
                       duration={500}
                       tabIndex={0}
                     >
