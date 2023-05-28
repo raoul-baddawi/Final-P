@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
@@ -8,6 +8,9 @@ import ig from "../../Assets/instagram.png";
 import lnkin from "../../Assets/linkedin.png";
 import gh from "../../Assets/github.png";
 import "./cv.css";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+
 const Cv = () => {
   let navigate = useNavigate();
   const [cv, setCv] = useState(null);
@@ -15,8 +18,9 @@ const Cv = () => {
   const [educations, setEducations] = useState([]);
   const [experiences, setExperiences] = useState([]);
   const location = useLocation();
+  const captureRef = useRef(null);
 
-   useEffect(() => {
+  useEffect(() => {
     const getItem = async () => {
       try {
         if (location.state && location.state.id) {
@@ -32,12 +36,11 @@ const Cv = () => {
           const edData = await axios.get(
             `http://localhost:8800/education/${location.state.id}`
           );
-          setProfile(prData.data)
+          setProfile(prData.data);
           setCv(cvData.data);
-          setExperiences(exData.data)
+          setExperiences(exData.data);
           setEducations(edData.data);
         } else {
-          // Redirect to 404 page or display an error message
           navigate("/");
         }
       } catch (error) {
@@ -47,14 +50,36 @@ const Cv = () => {
     getItem();
   }, [location.state, navigate]);
 
-  console.log(profile)
+  const downloadPDF = () => {
+    const capture = captureRef.current;
+    const contentHeight = capture.offsetHeight;
+    const contentWidth = capture.offsetWidth;
+
+    html2canvas(capture, { scrollY: -window.scrollY }).then((canvas) => {
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", [contentWidth, contentHeight]);
+      pdf.addImage(imgData, "PNG", 0, 0, contentWidth, contentHeight);
+      pdf.save("cv.pdf");
+    });
+  };
+  console.log(cv)
+
   if (!cv) {
     return <Loader />;
   }
   return (
-    <div className="cv-mainer">
+    <>
+     <button className="Btn-cv" onClick={()=>{navigate('/')}}>
+              <div className="sign">
+                <svg viewBox="0 0 512 512">
+                  <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                </svg>
+              </div>
+              <div className="text">Home</div>
+            </button>
+    <div className="cv-mainer" ref={captureRef}>
       <div id="cv_header">
-        <p>{cv.name}</p>
+        <p>{cv.name.length > 1 ? cv.name : "User Name"}</p>
         <ul className="list-1">
           <li className="left facebook">
             <a href={profile.facebook}>
@@ -81,19 +106,19 @@ const Cv = () => {
       <div id="wrapper">
         <div id="intro">
           <img
-            src={profile ? profile.image : noprofile}
-            alt="good lookin guy"
+            src={profile && profile.image.length > 4 ? profile.image : noprofile}
+            alt="Good lookin Person"
             width="100px"
             height="100px"
           />
           <div className="two">
-            <h1 className="Rb">{cv.name}</h1>
+            <h1 className="Rb">{cv.name.length > 1 ? cv.name : "Cv data is not filled yet by the owner"}</h1>
             <p className="RBP">{cv.position}</p>
             <div className="btn_cvhead">
-              <a href="/" className="btn-1">
+              <button className="btn-1" onClick={downloadPDF}>
                 Download CV
-              </a>
-              <a href="#break" className="btn-2">
+              </button>
+              <a href={`mailto:${cv.email}`} className="btn-2">
                 Hire Me
               </a>
             </div>
@@ -102,9 +127,7 @@ const Cv = () => {
         <div id="About">
           <div>
             <h2>About Me</h2>
-            <p>
-              {cv.about_me}
-            </p>
+            <p>{cv.about_me}</p>
           </div>
           <ul>
             <section>
@@ -119,19 +142,19 @@ const Cv = () => {
             </section>
           </ul>
         </div>
-        
+
         <hr className="hr2"></hr>
         <div id="workxp">
           <h2>Education</h2>
-          {educations && educations.map((education, index) => (
+          {educations &&
+            educations.map((education, index) => (
               <div className="sec-1 works" key={index}>
-              <p>
-                <span>{education.title}</span> | {education.start} - {education.end}
-              </p>
-              <p>
-              {education.description}
-              </p>
-            </div>
+                <p>
+                  <span>{education.title}</span> | {education.start} -{" "}
+                  {education.end}
+                </p>
+                <p>{education.description}</p>
+              </div>
             ))}
         </div>
 
@@ -139,15 +162,15 @@ const Cv = () => {
 
         <div id="Hobbies">
           <h2>Work Experiences</h2>
-          {experiences && experiences.map((experience, index) => (
+          {experiences &&
+            experiences.map((experience, index) => (
               <div className="hobs" key={index}>
-              <p>
-                <span>{experience.title}</span> | {experience.start} - {experience.end}
-              </p>
-              <p>
-              {experience.description}
-              </p>
-            </div>
+                <p>
+                  <span>{experience.title}</span> | {experience.start} -{" "}
+                  {experience.end}
+                </p>
+                <p>{experience.description}</p>
+              </div>
             ))}
         </div>
       </div>
@@ -178,6 +201,7 @@ const Cv = () => {
         <p>You've reached the end!</p>
       </footer>
     </div>
+    </>
   );
 };
 

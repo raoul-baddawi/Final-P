@@ -308,6 +308,8 @@ const Profile = () => {
                   </div>
                 )}
               </div>
+              {profile.user_type === "dev"
+              ?
               <div className="input_wrapper">
                 <div className="field_header">
                   <label>Website Link: </label>
@@ -340,6 +342,8 @@ const Profile = () => {
                   </div>
                 )}
               </div>
+              : null
+              }
               <div className="input_wrapper">
                 <div className="field_header">
                   <label>Facebook: </label>

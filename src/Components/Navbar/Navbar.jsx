@@ -184,8 +184,14 @@ const Navbar = () => {
                 <p className="name_p" onClick={()=>{setDown(!down)}}>{user.username}<FaAngleDown /></p>
                 {down && (<div className="drop_div">
 
-                  {drop !== null ? <a href="/profile">Profile</a> : null}
-                  <p onClick={handleLogout}>Logout</p>
+                  {drop !== null ? <a href="/profile">
+                  <i class="fa-solid fa-user"></i>
+                  {' '}
+                    Profile</a> : null}
+                  <p onClick={handleLogout}>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  {' '}
+                    Logout</p>
                 </div> )}
               </div>
             ) : (
@@ -198,13 +204,53 @@ const Navbar = () => {
               {click ? <FaTimes size={40} /> : <FaBars size={40} />}
             </div>
             <div className={click ? "nav-menu active" : "nav-menu"}>
-              <a href="/">Home</a>
-              {/* <button onClick={() => navigate("/single", { state: { id: user._id } })}>Details</button> */}
-              <a href="/ourteam">Our team</a>
-              <a href="/community">Community</a>
-              <a href="/aboutme">About me</a>
-              <a href="/contactus">Contact Us</a>
-              <a href="/auth">Login</a>
+              <div className="nav-menu_head">
+              {token && token.length > 18 ? (
+              <div className="drp_dwn_phone">
+                <div className="name_img-wrp">
+                <img src={drop == null ? noprofile : drop.image} alt="" />
+                <p className="user_phn_name">{user.username}</p>
+                </div>
+                  {drop !== null ? <a href="/profile">
+                  <i class="fa-solid fa-user"></i>
+                  {' '}
+                    Profile</a> : null}
+                  <p onClick={handleLogout}>
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  {' '}
+                    Logout</p>
+              </div>
+            ) : (
+              <a className="lgn" href="/auth">
+                <i class="fa-regular fa-person-to-portal"></i>
+                Login
+              </a>
+            )}
+              </div>
+              <div className="nav-menu_body">
+              <a href="/">
+              <i className="fa-solid fa-house-chimney-user"></i>
+              {' '}
+                Home</a>
+              {/* <button onClick={() => navigate("/single", { state: { id: user._id } })}>Profile</button> */}
+              <a href="/ourteam">
+              <i class="fa-solid fa-people-group"></i>
+              {' '}
+                Our team</a>
+              <a href="/community">
+              <i class="fa-sharp fa-solid fa-comments"></i>
+              {' '}
+                Community</a>
+              <a href="/aboutme">
+              <i class="fa-solid fa-address-card"></i>
+              {' '}
+              About me</a>
+              <a href="/contactus">
+              <i class="fa-solid fa-envelope"></i>
+              {' '}
+                Contact Us</a>
+              </div>
+             
             </div>
           </nav>
         </header>
