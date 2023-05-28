@@ -185,11 +185,11 @@ const Navbar = () => {
                 {down && (<div className="drop_div">
 
                   {drop !== null ? <a href="/profile">
-                  <i class="fa-solid fa-user"></i>
+                  <i className="fa-solid fa-user"></i>
                   {' '}
                     Profile</a> : null}
                   <p onClick={handleLogout}>
-                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <i className="fa-solid fa-right-from-bracket"></i>
                   {' '}
                     Logout</p>
                 </div> )}
@@ -212,17 +212,17 @@ const Navbar = () => {
                 <p className="user_phn_name">{user.username}</p>
                 </div>
                   {drop !== null ? <a href="/profile">
-                  <i class="fa-solid fa-user"></i>
+                  <i className="fa-solid fa-user"></i>
                   {' '}
                     Profile</a> : null}
                   <p onClick={handleLogout}>
-                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <i className="fa-solid fa-right-from-bracket"></i>
                   {' '}
                     Logout</p>
               </div>
             ) : (
               <a className="lgn" href="/auth">
-                <i class="fa-regular fa-person-to-portal"></i>
+                <i className="fa-regular fa-person-to-portal"></i>
                 Login
               </a>
             )}
@@ -234,19 +234,19 @@ const Navbar = () => {
                 Home</a>
               {/* <button onClick={() => navigate("/single", { state: { id: user._id } })}>Profile</button> */}
               <a href="/ourteam">
-              <i class="fa-solid fa-people-group"></i>
+              <i className="fa-solid fa-people-group"></i>
               {' '}
                 Our team</a>
               <a href="/community">
-              <i class="fa-sharp fa-solid fa-comments"></i>
+              <i className="fa-sharp fa-solid fa-comments"></i>
               {' '}
                 Community</a>
               <a href="/aboutme">
-              <i class="fa-solid fa-address-card"></i>
+              <i className="fa-solid fa-address-card"></i>
               {' '}
               About me</a>
               <a href="/contactus">
-              <i class="fa-solid fa-envelope"></i>
+              <i className="fa-solid fa-envelope"></i>
               {' '}
                 Contact Us</a>
               </div>
