@@ -152,10 +152,11 @@
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     background: url(../../Assets/raoul\(3\).jpeg);
     background-repeat: no-repeat;
     background-position: -130px;
+    margin: 0;
   }
 
   #hero::after {
@@ -179,6 +180,7 @@
     text-align: center;
     align-items: center;
     z-index: 2;
+    margin-top: -20vh;
   }
 
   .left-container {

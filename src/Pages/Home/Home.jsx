@@ -1,11 +1,11 @@
 import React from 'react';
-import { Element } from 'react-scroll';
 import './home.css'
 import Hero from '../../Components/Hero/Hero';
 import About from '../../Components/About/About';
 import Finals from '../../Components/finals/Finals';
 import Mentors from '../../Components/Mentors/Mentors';
 import Skills from '../../Components/Myskills/Skills';
+import Projects from '../../Components/Projects/Projects';
 
 function Home(){
   return (
@@ -15,11 +15,9 @@ function Home(){
       <Finals />
       <Mentors />
       <Skills />
-     
+      <Projects />
       
-      <Element name="login">
-        <section id="login"></section>
-      </Element>
+      
     </main>
   )
 }

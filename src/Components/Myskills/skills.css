@@ -16,7 +16,7 @@
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  height: auto;
+  min-height: 60vh!important;
 }
 
 .skill{
