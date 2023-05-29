@@ -1,0 +1,98 @@
+.contact_me-container h1{
+  color: white;
+}
+
+.contact_me-container{
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+ 
+}
+.contact-form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  
+  gap: 15px;
+}
+
+.contact-form input {
+  background-color: transparent;
+  padding: 15px;
+  border: 1px solid rgb(102, 102, 102);
+  width: 100%;
+  color: white;
+  border-radius: 2px;
+}
+
+.contact-form .message{
+  color: white;
+}
+
+.contact-form input:focus,
+.contact-form .message:focus
+{
+  outline: none;
+  border: 1px solid white;
+}
+
+.contact-form input:focus::placeholder,
+.contact-form .message:focus::placeholder{
+  color: white;
+}
+.contact-form .message {
+  height: 100px;
+  border: 1px solid rgb(102, 102, 102);
+  display: flex;
+  background: transparent;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
+  resize: none;
+}
+
+.form-sbmt {
+  cursor: pointer;
+  width: 30%;
+  padding: 10px 15px;
+  color: white;
+  background-color: #3e3f46;
+  outline: none;
+  border: none;
+  border-radius: 100px;
+  transition: .2s all ease;
+}
+
+.form-sbmt:hover{
+  background-color: var(--primary-color);
+}
+
+.pages-links_container{
+  width: fit-content;
+}
+
+@media all and (max-width:1350px) {
+  .contact-form{
+    width: 300px;
+  }
+  .pages-links_container{
+    width: 200px;
+  }
+}
+
+
+@media all and (max-width:900px) {
+  
+  .contact-form {
+    width: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact_me-container h1{
+  text-align: center;
+}
+.contact-form .message{
+  width: 100%;
+}
+}

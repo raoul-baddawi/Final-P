@@ -444,6 +444,12 @@
   }
 }
 
+
+@media all and (max-width:682px) {
+  #mentors > h1{
+    font-size: var(--small-heading);
+  }
+}
 @media all and (max-width: 543px) {
   .desc_activated {
     width: calc(75% * 2);

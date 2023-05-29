@@ -1,5 +1,5 @@
 .projects {
-  background-color: var(--primary-color);
+  background: linear-gradient(180deg, #3f52fc 0%, #1c214e 53.65%, #10111c 100%);
   padding: 20px;
   text-align: center;
 }
@@ -23,7 +23,6 @@
 
 .project_card {
   width: 30%;
-  /* max-height: 63vh; */
   aspect-ratio: 1/1.5;
   background-color: var(--primary-color);
   background: #ffffff;
@@ -36,12 +35,11 @@
   height: auto;
 }
 
-
-.pr_card-head{
+.pr_card-head {
   background-color: yellow;
 }
 
-.pr_card-body{
+.pr_card-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -52,11 +50,11 @@
   overflow: scroll;
 }
 
-.pr_card-body::-webkit-scrollbar{
+.pr_card-body::-webkit-scrollbar {
   display: none;
 }
 
-.pr_card-body h2{
+.pr_card-body h2 {
   font-weight: 400;
   line-height: 43px;
   font-size: clamp(0.4375rem, 0.1621rem + 1.3768vw, 1.625rem);
@@ -64,18 +62,17 @@
   width: 100%;
 }
 
-
-.pr_card-body p{
+.pr_card-body p {
   color: gray;
   font-size: clamp(0.125rem, -0.1214rem + 1.2319vw, 1.1875rem);
 }
 
-.pr_card-body .technologies{
+.pr_card-body .technologies {
   font-weight: bold;
   color: black;
 }
 
-.demo_wrapper{
+.demo_wrapper {
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -87,24 +84,22 @@
   gap: 10px;
 }
 
-.btns-project a{
+.btns-project a {
   padding: 7px 14px;
   text-decoration: none;
   border-radius: 5px;
 }
 
-.btns-project a:first-of-type{
+.btns-project a:first-of-type {
   background-color: white;
   border: 1px solid gray;
   color: gray;
 }
 
-
-.btns-project a:last-of-type{
+.btns-project a:last-of-type {
   color: white;
   background-color: var(--primary-color);
 }
-
 
 @media all and (max-width: 1330px) {
   .project_card {
@@ -118,9 +113,8 @@
     aspect-ratio: 1/1.5;
   }
 
-
   .pr_card-body p,
-  .btns-project a{
+  .btns-project a {
     font-size: clamp(0.25rem, -0.0543rem + 1.5217vw, 1.5625rem);
   }
 }
@@ -133,8 +127,14 @@
   }
 
   .pr_card-body p,
-  .btns-project a{
+  .btns-project a {
     font-size: clamp(0.5rem, 0.4101rem + 1.4493vw, 1.75rem);
+  }
+}
+
+@media all and (max-width:682px) {
+  .projects > h1{
+    font-size: var(--small-heading);
   }
 }
 
@@ -145,18 +145,18 @@
     min-width: 220px;
   }
 
-  #projects{
+  #projects {
     padding: 0px;
   }
   .pr_card-body p,
-  .btns-project a{
+  .btns-project a {
     font-size: clamp(0.625rem, 0.3062rem + 1.5942vw, 2rem);
   }
 
   .pr_card-body h2 {
     line-height: 29px;
     font-size: clamp(0.4375rem, 0.5621rem + 1.3768vw, 1.625rem);
-}
+  }
 }
 
 @media all and (max-width: 450px) {
@@ -167,29 +167,26 @@
   }
 
   .pr_card-body p,
-  .btns-project a{
+  .btns-project a {
     font-size: clamp(0.625rem, 0.3062rem + 1.5942vw, 2rem);
   }
 }
-
 
 @media all and (max-width: 405px) {
   .project_card {
     aspect-ratio: 1/1.7;
   }
-
 }
 
 @media all and (max-width: 350px) {
-  .projects{
+  .projects {
     padding: 0;
   }
-  #projects{
+  #projects {
     padding: 5px;
   }
   .project_card {
     width: 100%;
     aspect-ratio: 1/1.5;
   }
-
 }

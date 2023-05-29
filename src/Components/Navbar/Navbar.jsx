@@ -166,14 +166,14 @@ const Navbar = () => {
               <li>
                 <Link
                   activeClass="active"
-                  to="contact"
+                  to="footer"
                   spy={true}
                   smooth={true}
                   offset={0}
                   duration={500}
                   tabIndex={0}
                 >
-                  Contact Us
+                  Contact me
                 </Link>
               </li>
             </ul>
@@ -245,10 +245,23 @@ const Navbar = () => {
               <i className="fa-solid fa-address-card"></i>
               {' '}
               About me</a>
-              <a href="/contactus">
-              <i className="fa-solid fa-envelope"></i>
+              <Link
+                  activeClass="active"
+                  to="footer"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={500}
+                  tabIndex={0}
+                  onClick={()=>{setClick(false)}}
+                >
+                   <i className="fa-solid fa-envelope"></i>
               {' '}
-                Contact Us</a>
+                  Contact me
+                </Link>
+              {/* <a href="/contactus">
+             
+                Contact me</a> */}
               </div>
              
             </div>

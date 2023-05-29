@@ -6,6 +6,7 @@ import Finals from '../../Components/finals/Finals';
 import Mentors from '../../Components/Mentors/Mentors';
 import Skills from '../../Components/Myskills/Skills';
 import Projects from '../../Components/Projects/Projects';
+import Footer from '../../Components/Footer/Footer';
 
 function Home(){
   return (
@@ -16,7 +17,7 @@ function Home(){
       <Mentors />
       <Skills />
       <Projects />
-      
+      <Footer />
       
     </main>
   )

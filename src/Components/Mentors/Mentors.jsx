@@ -12,7 +12,9 @@ function Mentors() {
     axios
       .get("http://localhost:8800/profile")
       .then((res) => {
-        const mentorData = res.data.filter((profile) => profile.user_type === 'mentor');
+        const mentorData = res.data.filter(
+          (profile) => profile.user_type === "mentor"
+        );
         setMentor(mentorData);
       })
       .catch((err) => console.log(err));
@@ -21,10 +23,10 @@ function Mentors() {
   const handleItemClick = (index) => {
     setActiveItem(index);
   };
-
+  console.log(mentor);
   return (
     <Element name="mentors">
-      <section id="mentors"> 
+      <section id="mentors">
         <h1>Codi Team</h1>
         <div className="mentors_left">
           <div className="container">
@@ -41,8 +43,8 @@ function Mentors() {
                     >
                       <img src={lol} alt="lol" />
                     </div>
-        
-                  <div
+
+                    <div
                       className={`contentBx ${
                         activeItem === index ? "activated" : ""
                       }`}
@@ -54,29 +56,31 @@ function Mentors() {
                         </div>
                         <div className="textBx">
                           <h2>
-                            {item.user_type}<br></br>
+                            {item.user_type}
+                            <br></br>
                           </h2>
                           <h3>
-                            {item.name}<br></br>
+                            {item.name}
+                            <br></br>
                           </h3>
                           <ul className="sci">
                             <li>
-                              <a href="/lol">
+                              <a href={item.facebook}>
                                 <i className="fa-brands fa-facebook-f"></i>
                               </a>
                             </li>
                             <li>
-                              <a href="/lol">
-                              <i className="fa-brands fa-github"></i>
+                              <a href={item.github}>
+                                <i className="fa-brands fa-github"></i>
                               </a>
                             </li>
                             <li>
-                              <a href="/lol">
+                              <a href={item.instagram}>
                                 <i className="fa-brands fa-instagram"></i>
                               </a>
                             </li>
                             <li>
-                              <a href="/lol">
+                              <a href={item.linkedin}>
                                 <i className="fa-brands fa-linkedin-in"></i>
                               </a>
                             </li>
@@ -94,7 +98,6 @@ function Mentors() {
                     </div>
                   </React.Fragment>
                 ))}
-                
             </div>
           </div>
         </div>

@@ -56,12 +56,6 @@ border-radius: 10px;
 }
 
 
-/* @media all and (max-width:1500px) {
-  .skill_body span {
-    font-size: var(--large);
-  }
-} */
-
 @media all and (max-width:1100px) {
   #skills{
   flex-wrap: wrap;
@@ -101,5 +95,11 @@ border-radius: 10px;
   .skill{
     width: 100%;
     height: 35vh;
+  }
+}
+
+@media all and (max-width:682px) {
+  .skills_wrapper > h1{
+    font-size: var(--small-heading);
   }
 }
