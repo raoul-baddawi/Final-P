@@ -2,6 +2,13 @@ import React from "react";
 import { Element } from "react-scroll";
 
 import "./skills.css";
+import Redux from "../svg-comp/Redux";
+import Tailwind from "../svg-comp/Tailwind";
+import Mongodb from "../svg-comp/Mongodb";
+import Mysql from "../svg-comp/Mysql";
+import Miro from "../svg-comp/Miro";
+import Agile from "../svg-comp/Agile";
+import Vscode from "../svg-comp/Vscode";
 
 const Skills = () => {
   return (
@@ -37,13 +44,27 @@ const Skills = () => {
             <h2>Front End</h2>
           </div>
           <div className="skill_body">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>React</span>
-            <span>Redux</span>
-            <span>TailwindCSS</span>
-            <span>Bootstrap</span>
+            <span>
+              <i className="fa-brands fa-html5"></i> HTML
+            </span>
+            <span>
+              <i className="fa-brands fa-css3-alt"></i> CSS
+            </span>
+            <span>
+              <i className="fa-brands fa-square-js"></i> JavaScript
+            </span>
+            <span>
+              <i className="fa-brands fa-react"></i> React
+            </span>
+            <span>
+              <Redux /> Redux
+            </span>
+            <span>
+              <Tailwind /> TailwindCSS
+            </span>
+            <span>
+              <i class="fa-brands fa-bootstrap"></i> Bootstrap
+            </span>
           </div>
         </div>
         <div className="skill">
@@ -75,13 +96,27 @@ const Skills = () => {
             <h2>Back End</h2>
           </div>
           <div className="skill_body">
-            <span>NodeJS</span>
-            <span>ExpressJS</span>
-            <span>MongoDB</span>
-            <span>Mongoose</span>
-            <span>PHP Laravel</span>
-            <span>MySQL</span>
-            <span>Restful APIs</span>
+            <span>
+              <i className="fa-brands fa-node-js"></i>NodeJS
+            </span>
+            <span>
+              <i className="fa-brands fa-node-js"></i>ExpressJS
+            </span>
+            <span>
+              <Mongodb />MongoDB
+            </span>
+            <span>
+              <Mongodb />Mongoose
+            </span>
+            <span>
+              <i className="fa-brands fa-php"></i>PHP Laravel
+            </span>
+            <span>
+              <Mysql />MySQL
+            </span>
+            <span>
+              <i className="fa-brands fa-connectdevelop"></i>Restful APIs
+            </span>
           </div>
         </div>
         <div className="skill">
@@ -111,13 +146,27 @@ const Skills = () => {
             <h2>Other</h2>
           </div>
           <div className="skill_body">
-            <span>Git</span>
-            <span>Github</span>
-            <span>VS Code</span>
-            <span>Trello</span>
-            <span>Figma</span>
-            <span>Miro.com</span>
-            <span>Agile Methodology</span>
+            <span>
+              <i className="fa-brands fa-git-alt"></i>Git
+            </span>
+            <span>
+              <i className="fa-brands fa-github"></i>Github
+            </span>
+            <span>
+              <Vscode /> VS Code
+            </span>
+            <span>
+              <i className="fa-brands fa-trello"></i>Trello
+            </span>
+            <span>
+              <i className="fa-brands fa-figma"></i>Figma
+            </span>
+            <span>
+              <Miro />Miro.com
+            </span>
+            <span>
+              <Agile />Agile Methodology
+            </span>
           </div>
         </div>
       </section>

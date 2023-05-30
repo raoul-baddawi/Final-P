@@ -23,7 +23,7 @@
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.25);
 border-radius: 10px;
   width: 40%;
-  aspect-ratio: 1/0.8;
+  aspect-ratio: 1/0.9;
   background-color: white;
   display: grid;
   grid-template-columns: 1fr;
@@ -52,9 +52,24 @@ border-radius: 10px;
 }
 
 .skill_body span {
-  font-size: clamp(0.0625rem, -0.2998rem + 1.8116vw, 1.625rem);
+  /* text-align: left; */
+  font-size:clamp(0.0625rem, -0.5998rem + 1.5116vw, 1.625rem);
 }
 
+.skill_body span svg{
+  width: 13%;
+  aspect-ratio: 1/1;
+  font-size: clamp(0.0625rem, -0.5998rem + 1.8116vw, 1.625rem);
+}
+
+.skill span{
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  width: 40%;
+  margin-left: 10%;
+  gap: 20px;
+}
 
 @media all and (max-width:1100px) {
   #skills{
@@ -73,7 +88,7 @@ border-radius: 10px;
 }
 
 
-@media all and (max-width:750px) {
+@media all and (max-width:800px) {
   #skills{
     flex-wrap: nowrap;
     flex-direction: column;
@@ -84,8 +99,11 @@ border-radius: 10px;
     width: 90%;
     height: 40vh;
     max-width: 55vh;
+    aspect-ratio: 1/1;
   }
 
+
+  
   .skill_body span {
     font-size: clamp(0.9375rem, 0.7781rem + 0.7971vw, 1.625rem);
   }
@@ -102,4 +120,24 @@ border-radius: 10px;
   .skills_wrapper > h1{
     font-size: var(--small-heading);
   }
+}
+
+
+
+@media all and (max-width:484px) {
+  .skill span {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    width: 60%;
+    margin-left: 30%;
+}
+}
+
+
+
+@media all and (max-width:370px) {
+  .skill span {
+    margin-left: 14%;
+}
 }
