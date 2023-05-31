@@ -67,6 +67,22 @@ const Dashboard = () => {
     }
   };
 
+
+  const handleAdminPromote = async (userId) => {
+    try {
+      const response = await axios.patch(`http://localhost:8800/api/user/${userId}`, { role: 'admin' });
+  
+      if (response.status === 200) {
+        console.log('User role updated successfully');
+        // You can add any additional logic here after the role is updated
+      }
+    } catch (error) {
+      console.error('Error updating user role:', error);
+      // Handle the error state or display an error message to the user
+    }
+  };
+  
+
   const handleCancelEdit = () => {
     setEditingUserId("");
     setEditedRole("");
@@ -189,6 +205,10 @@ const Dashboard = () => {
                       <h3>{user.username}</h3>
                       <p>{user.email}</p>
                       <span>{user.role}</span>
+                      <button onClick={() => handleAdminPromote(user._id)}>
+                        <span>Promote</span>
+                        <span>Sure ?</span>
+                      </button>
                       <button onClick={() => deleteUser(user._id)}>
                         <span>Delete</span>
                         <span>Sure ?</span>
