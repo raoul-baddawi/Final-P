@@ -3,10 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import { FaBars, FaTimes, FaAngleDown } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
+import { HashLink as Lol } from 'react-router-hash-link';
+
 import logo from "../../Assets/Slice 1.png";
 import axios from "axios";
-import noprofile from '../../Assets/noimage.png'
+import noprofile from "../../Assets/noimage.png";
 const Navbar = () => {
+
+
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const token = user ? user.token : null;
@@ -20,17 +24,19 @@ const Navbar = () => {
     const getProfile = async () => {
       const user = JSON.parse(localStorage.getItem("user"));
       try {
-        const res = await axios.get(`http://localhost:8800/profile/${user._id}`);
-        if(res.data.message === "No"){
+        const res = await axios.get(
+          `http://localhost:8800/profile/${user._id}`
+        );
+        if (res.data.message === "No") {
           setDrop(null);
-        } else{
-          setDrop(res.data)
+        } else {
+          setDrop(res.data);
         }
       } catch (err) {
         console.log("Error occurred while fetching profile:", err.message);
         setDrop(null);
       }
-    };    
+    };
 
     getProfile();
   }, []);
@@ -49,16 +55,16 @@ const Navbar = () => {
     setClick(!click);
   }
 
-
   function handleLogout() {
     localStorage.clear();
-    navigate('/')
+    navigate("/");
   }
-  console.log(user)
+  console.log(user);
 
   return (
     <>
-      {location.pathname === "/profile" ? null : (
+      {location.pathname === "/profile" ||
+      location.pathname === "/dashboard" ? null : (
         <header className={color ? "header header-bg" : "header"}>
           <nav>
             <a href="/" className="logo">
@@ -164,7 +170,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link
+                {/* <Link
                   activeClass="active"
                   to="footer"
                   spy={true}
@@ -174,25 +180,44 @@ const Navbar = () => {
                   tabIndex={0}
                 >
                   Contact me
-                </Link>
+                </Link> */}
+                <Lol to="/#footer">
+                  Contact Me
+                </Lol>
               </li>
             </ul>
 
             {token && token.length > 18 ? (
               <div className="lgd-in-dropdown">
                 <img src={drop == null ? noprofile : drop.image} alt="" />
-                <p className="name_p" onClick={()=>{setDown(!down)}}>{user.username}<FaAngleDown /></p>
-                {down && (<div className="drop_div">
-
-                  {drop !== null ? <a href="/profile">
-                  <i className="fa-solid fa-user"></i>
-                  {' '}
-                    Profile</a> : null}
-                  <p onClick={handleLogout}>
-                  <i className="fa-solid fa-right-from-bracket"></i>
-                  {' '}
-                    Logout</p>
-                </div> )}
+                <p
+                  className="name_p"
+                  onClick={() => {
+                    setDown(!down);
+                  }}
+                >
+                  {user.username}
+                  <FaAngleDown />
+                </p>
+                {down && (
+                  <div className="drop_div">
+                    {drop !== null &&
+                    user.role !== "superAdmin" &&
+                    user.role !== "user" ? (
+                      <a href="/profile" id="for_backgound">
+                        <i className="fa-solid fa-user"></i> Profile
+                      </a>
+                    ) : null}
+                    {user.role === "superAdmin" ? (
+                      <a href="/dashboard" id="for_backgound">
+                        <i class="fa-sharp fa-solid fa-gears"></i> Dashboard
+                      </a>
+                    ) : null}
+                    <p onClick={handleLogout}>
+                      <i className="fa-solid fa-right-from-bracket"></i> Logout
+                    </p>
+                  </div>
+                )}
               </div>
             ) : (
               <a className="lgn" href="/auth">
@@ -205,47 +230,43 @@ const Navbar = () => {
             </div>
             <div className={click ? "nav-menu active" : "nav-menu"}>
               <div className="nav-menu_head">
-              {token && token.length > 18 ? (
-              <div className="drp_dwn_phone">
-                <div className="name_img-wrp">
-                <img src={drop == null ? noprofile : drop.image} alt="" />
-                <p className="user_phn_name">{user.username}</p>
-                </div>
-                  {drop !== null ? <a href="/profile">
-                  <i className="fa-solid fa-user"></i>
-                  {' '}
-                    Profile</a> : null}
-                  <p onClick={handleLogout}>
-                  <i className="fa-solid fa-right-from-bracket"></i>
-                  {' '}
-                    Logout</p>
-              </div>
-            ) : (
-              <a className="lgn" href="/auth">
-                <i className="fa-regular fa-person-to-portal"></i>
-                Login
-              </a>
-            )}
+                {token && token.length > 18 ? (
+                  <div className="drp_dwn_phone">
+                    <div className="name_img-wrp">
+                      <img src={drop == null ? noprofile : drop.image} alt="" />
+                      <p className="user_phn_name">{user.username}</p>
+                    </div>
+                    {drop !== null ? (
+                      <a href="/profile" id="for_backgound">
+                        <i className="fa-solid fa-user"></i> Profile
+                      </a>
+                    ) : null}
+                    <p onClick={handleLogout}>
+                      <i className="fa-solid fa-right-from-bracket"></i> Logout
+                    </p>
+                  </div>
+                ) : (
+                  <a className="lgn" href="/auth">
+                    <i className="fa-regular fa-person-to-portal"></i>
+                    Login
+                  </a>
+                )}
               </div>
               <div className="nav-menu_body">
-              <a href="/">
-              <i className="fa-solid fa-house-chimney-user"></i>
-              {' '}
-                Home</a>
-              {/* <button onClick={() => navigate("/single", { state: { id: user._id } })}>Profile</button> */}
-              <a href="/ourteam">
-              <i className="fa-solid fa-people-group"></i>
-              {' '}
-                Our team</a>
-              <a href="/community">
-              <i className="fa-sharp fa-solid fa-comments"></i>
-              {' '}
-                Community</a>
-              <a href="/aboutme">
-              <i className="fa-solid fa-address-card"></i>
-              {' '}
-              About me</a>
-              <Link
+                <a href="/">
+                  <i className="fa-solid fa-house-chimney-user"></i> Home
+                </a>
+                {/* <button onClick={() => navigate("/single", { state: { id: user._id } })}>Profile</button> */}
+                <a href="/ourteam">
+                  <i className="fa-solid fa-people-group"></i> Our team
+                </a>
+                <a href="/community">
+                  <i className="fa-sharp fa-solid fa-comments"></i> Community
+                </a>
+                <a href="/aboutme">
+                  <i className="fa-solid fa-address-card"></i> About me
+                </a>
+                {/* <Link
                   activeClass="active"
                   to="footer"
                   spy={true}
@@ -253,17 +274,19 @@ const Navbar = () => {
                   offset={0}
                   duration={500}
                   tabIndex={0}
-                  onClick={()=>{setClick(false)}}
+                  onClick={() => {
+                    setClick(false);
+                  }}
                 >
-                   <i className="fa-solid fa-envelope"></i>
-              {' '}
-                  Contact me
-                </Link>
-              {/* <a href="/contactus">
+                  <i className="fa-solid fa-envelope"></i> Contact me
+                </Link> */}
+                <Lol to="/#footer">
+                  Contact Me
+                </Lol>
+                {/* <a href="/contactus">
              
                 Contact me</a> */}
               </div>
-             
             </div>
           </nav>
         </header>

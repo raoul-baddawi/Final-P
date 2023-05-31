@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./mentors.css";
 import { Element } from "react-scroll";
-import lol from "../../Assets/raoul(1).jpeg";
+import noimage from '../../Assets/noimage.png'
 import axios from "axios";
 
 function Mentors() {
@@ -41,7 +41,7 @@ function Mentors() {
                       style={{ "--i": index + 1 }}
                       onClick={() => handleItemClick(index)}
                     >
-                      <img src={lol} alt="lol" />
+                      <img src={item.image.length > 4 ? item.image : noimage} alt={`${item.name}'s pic`} />
                     </div>
 
                     <div
@@ -52,7 +52,7 @@ function Mentors() {
                     >
                       <div className="card">
                         <div className="imgBox">
-                          <img src={lol} alt="hiii" />
+                          <img src={item.image.length > 4 ? item.image : noimage} alt={`${item.name}'s pic`} />
                         </div>
                         <div className="textBx">
                           <h2>

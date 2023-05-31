@@ -7,6 +7,7 @@ import Messenger from './Components/messenger/Messenger';
 import Auth from './Pages/auth/Auth';
 import Profile from './Pages/Profile/Profile';
 import Cv from './Pages/Cv/Cv';
+import Dashboard from './Pages/Dashboard/Dashboard';
 function App() {
   const useProfile = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -25,6 +26,23 @@ function App() {
       return null;
     }
   };
+  
+  const useDashboard = async() => {
+    try{
+      const user = await JSON.parse(localStorage.getItem("user"));
+      if (!user) {
+        return null
+      } else if(user && user.role === "superAdmin"){
+        return user;
+      }
+      else{
+        return null
+      }
+    }catch(error){
+      console.log(error)
+    }
+    
+  };
   return (
     <>
       <BrowserRouter>
@@ -39,7 +57,12 @@ function App() {
             <Route element={useCommunity() ? <Outlet /> : <Navigate to="/auth" />}>
               <Route path="/community" element={<Messenger />} />
             </Route>
+            <Route element={useDashboard() ? <Outlet /> : <Navigate to="/" />}>
+              <Route path="/dashboard" element={<Dashboard />} />
           </Route>
+          </Route>
+
+         
           <Route path="/cv" element={<Cv />} />
         </Routes>
       </BrowserRouter>

@@ -34,7 +34,7 @@ function Auth() {
       );
       if (response.data.role === "superAdmin") {
         localStorage.setItem("user", JSON.stringify(response.data));
-        navigate("/ourteam");
+        navigate("/dashboard");
       } else {
         localStorage.setItem("user", JSON.stringify(response.data));
         navigate("/");
@@ -58,10 +58,13 @@ function Auth() {
           password: event.target.Password.value,
         }
       );
-      if (response.status === 201) {
+      if (response.status === 201 && response.data.role === "superAdmin") {
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate("/dashboard");
+      } else {
+        localStorage.setItem("user", JSON.stringify(response.data));
         navigate("/");
       }
-      localStorage.setItem("user", JSON.stringify(response.data));
       // handle successful registration
     } catch (error) {
       console.log(error);

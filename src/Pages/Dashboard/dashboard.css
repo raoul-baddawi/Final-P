@@ -1,0 +1,397 @@
+#dashboard{
+  display: grid;
+  grid-row: 1/-1;
+  width: 100%;
+  grid-template-columns: 40vh auto;
+}
+
+
+#usersdash,
+#members{
+  max-width: 90%;
+  width: 100%;
+}
+.main {
+  grid-column: 2;
+}
+
+
+
+
+
+.usersdash h1,
+.members_main h1{
+  padding: 40px;
+  font-size: calc(var(--small-heading) + 3px);
+}
+
+.user_row{
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid lightgray;
+  display: grid;
+  grid-template-columns: 50px 1fr 1fr 1fr 1fr;
+  grid-template-rows: 100%;
+  align-items: center;
+  justify-items: center;
+}
+
+.user_row p{
+  text-align: center;
+  word-break: break-all;
+}
+
+.user_row img{
+  border-radius: 50%;
+  width: 44px;
+  height: 45px;
+  object-fit: cover;
+  border: 2px solid gray;
+}
+
+.user_row button {
+  position: relative;
+  outline: 0;
+  border: 2px solid red;
+  background-color: #ffffff;
+  color: #ff0000;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.45rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17;
+}
+
+.user_row button span {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all .4s ease;
+}
+
+.user_row button span:nth-child(2),.btn span:nth-child(3) {
+  position: absolute;
+  top: 40px;
+  color: #fff;
+}
+
+.user_row button span:nth-child(2) {
+  background-color: #ff2727;
+}
+
+.user_row button:hover {
+  box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
+}
+
+.user_row button:hover span:nth-child(2), .btn:focus span:nth-child(3) {
+  top: 0;
+}
+
+.user_row button:focus {
+  box-shadow: none;
+}
+
+.user_row button:focus span:nth-child(2){
+  top: 0;
+}
+
+
+.users_table{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 50vh;
+  overflow: scroll;
+  padding: 20px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+
+}
+
+.users_table::-webkit-scrollbar{
+  display: none;
+}
+
+.member_wrap{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  
+}
+
+.member_card{
+  width: 30%;
+  height: 47vh;
+  /* aspect-ratio: 1/1.3; */
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 32% 68%;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+
+
+.member_card-head{
+  width: 100%;
+  height: 100%;
+}
+
+
+.member_card-head{
+  position: relative;
+  background-color: var(--primary-color);
+}
+
+.member_card-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 80%;
+  align-self: end;
+}
+
+
+.member_card-head img {
+  width: 109px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 5%);
+}
+
+.social_wrap_members {
+  display: flex;
+  gap: 10px;
+}
+
+.social_wrap_members span {
+  width: 40px;
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 50%;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+
+
+.social_wrap_members span a{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  text-decoration: none;
+}
+
+.social_wrap_members span i{
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#usersdash{
+  height: 60vh;
+  min-height: 60vh;
+}
+
+.edit_member{
+  cursor: pointer;
+  border-radius: 100px;
+  width: 80px;
+  height: 30px;
+  padding: 6px 13px;
+  background-color: white;
+  outline: none;
+  border: 2px solid var(--primary-color);
+  overflow: hidden;
+  position: relative;
+}
+
+.edit_member span {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transition: .2s all ease;
+  transform: translate(-50%, -50%);
+}
+.edit_member::before{
+  content: '';
+  width: 200px;
+  height: 200px;
+  background-color: var(--primary-color);
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 20px;
+  border-radius: 50%;
+  transition: .3s all ease;
+}
+
+
+.edit_member:hover::before{
+  transform: rotate(45deg) translateX(-100px);
+}
+
+.edit_member:hover span {
+  color: white;
+}
+
+.edit_member::after{
+  content: '';
+  width: 72px;
+  height: 22px;
+  position: absolute;
+  background-color: transparent;
+  border: 2px solid white;
+  top: 50%;
+  left: 50%;
+transform: translate(-50%, -50%);
+  border-radius: 100px;
+}
+.edit_member:hover{
+  box-shadow: inset 0px 0px 0px 5px rgb(255 255 255);
+}
+
+.member_card-body input{
+  padding: 5px 13px;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid gray;
+}
+
+#dashboard .profile_nav h1{
+  word-break: break-all;
+  font-size: var(--small-heading);
+}
+
+.social_wrap_members span a{
+  color: black;
+}
+.social_wrap_members span a i{
+  fill: black;
+}
+.social_wrap_members span:hover{
+  background-color: var(--clr);
+  
+}
+
+.social_wrap_members span:hover a i{
+  color: white;
+}
+
+
+@media all and (max-width:1415px) {
+  .member_card{
+    width: 40%;
+  }
+
+  .member_card-head img {
+    transform: translate(-50%, -7%);
+}
+  
+}
+
+@media all and (max-width:1300px) {
+  .member_card{
+    height: 45vh;
+  }
+
+  .member_card-head img {
+    width: 79px;
+    height: 80px;
+    transform: translate(-50%, 10%);
+}
+  
+}
+@media (max-width: 1155px){
+
+  .user_row{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 10px;
+    max-width: 250px;
+    width: 90%;
+    gap: 20px;
+    border: 2px solid lightgray;
+  }
+}
+
+
+@media all and (max-width:1100px) {
+  .member_card{
+    height: 50vh;
+    width: 100%;
+  }
+
+}
+@media (max-width: 990px){
+  #dashboard {
+    grid-template-columns: 30vh auto;
+}
+
+#dashboard .profile_nav {
+  width: 30vh;
+}
+}
+
+
+
+@media (max-width: 700px){
+  #dashboard{
+    grid-template-columns: 20vh auto;
+}
+}
+
+
+@media (max-width: 500px){
+  #dashboard {
+    grid-template-columns: 1fr;
+    overflow: hidden;
+}
+.main {
+  grid-column: 1/-1;
+}
+
+.user_row{
+  width: 100%;
+  max-width: 100%;
+}
+
+.user_row img {
+  width: 84px;
+  height: 85px;
+}
+
+#usersdash {
+  max-width: 100%;
+}
+}

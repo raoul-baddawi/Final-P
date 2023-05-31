@@ -106,9 +106,22 @@ header a:is(:hover){
   cursor: pointer;
 }
 
-.lgd-in-dropdown p:hover{
-  color: var(--accent-color);
+.lgd-in-dropdown  .drop_div  p:hover
+{
+  background-color: var(--accent-color);
+  color: white;
 }
+
+#for_backgound:hover{
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.name_p:hover{
+  color: var(--accent-color)!important;
+  color: white;
+}
+
 .lgd-in-dropdown img {
   width: 49px;
   height: 50px;
@@ -117,6 +130,7 @@ header a:is(:hover){
   justify-content: center;
   align-items: center;
   object-fit: cover;
+  border: 2px solid var(--accent-color);
 }
 .drop_div a{
   display: block;
@@ -126,6 +140,7 @@ header a:is(:hover){
 .drop_div a{
   padding: 10px;
 }
+
 
 @media all and (max-width:1000px) {
   .logo {

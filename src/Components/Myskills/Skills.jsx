@@ -63,7 +63,7 @@ const Skills = () => {
               <Tailwind /> TailwindCSS
             </span>
             <span>
-              <i class="fa-brands fa-bootstrap"></i> Bootstrap
+              <i className="fa-brands fa-bootstrap"></i> Bootstrap
             </span>
           </div>
         </div>

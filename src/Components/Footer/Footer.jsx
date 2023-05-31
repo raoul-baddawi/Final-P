@@ -3,7 +3,10 @@ import "./footer.css";
 import { Element } from "react-scroll";
 import ContactMe from "../Contact/ContactMe";
 
+
+
 const Footer = () => {
+
   return (
     <Element name="footer" className="the_end">
       <div id="footer">

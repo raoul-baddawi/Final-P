@@ -8,6 +8,7 @@ import Skills from '../../Components/Myskills/Skills';
 import Projects from '../../Components/Projects/Projects';
 import Footer from '../../Components/Footer/Footer';
 
+
 function Home(){
   return (
     <main>
