@@ -1,24 +1,37 @@
 :root{
-  --primary-color: #8A3FFC;
+  --primary-color: #3f52fc;
   --secondary-color: #ffffff;
-  --accent-color: #3930D9;
+  --accent-color: #3f52fc;
   --small: 12px;
   --medium: 16px;
   --large: 21px;
-  --xlarge: 30px;
-  --xxlarge: 35px;
-  --xxxlarge: 50px;
+  --xlarge: 24px;
+  --small-heading: 30px;
+  --medium-heading: 40px;
+  --larg-heading: 55px;
 }
 
+
+/*#1d2226*/
 *{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+/* 
+html{
+  color-scheme: dark light;
+} */
 body{
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+
+#root{
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 90px minmax(90dvh, auto);
+}
 li{
   list-style: none;
 }

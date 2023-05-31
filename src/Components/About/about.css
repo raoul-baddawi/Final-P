@@ -1,0 +1,150 @@
+#about {
+  display: flex;
+}
+
+.about-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.about-badge {
+  filter: drop-shadow(0px 0px 5px rgba(0, 0, 0, 0.25));
+  width: 60vh;
+  height: 60vh;
+  background: url(../../Assets//badge.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.about-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4rem;
+  width: 50%;
+}
+.about-right h1 {
+  font-size: var(--larg-heading);
+  color: #ff1d50;
+}
+
+.about-right p {
+  width: 90%;
+  line-height: 2.5rem;
+  font-size: var(--xlarge);
+  color: #9a9a9a;
+}
+
+.about-right p span{
+  color: rgb(255, 187, 0);
+  font-weight: bold;
+}
+
+@media all and (max-width: 1600px) {
+  .about-right {
+    gap: 2.2rem;
+  }
+
+  .about-right h1 {
+    font-size: var(--medium-heading);
+  }
+
+  .about-right p {
+    font-size: var(--large);
+    line-height: 2rem;
+  }
+}
+
+@media all and (max-width: 1250px) {
+  .about-right {
+    gap: 1rem;
+  }
+
+  .about-right p {
+    font-size: calc(3px + var(--medium));
+    line-height: 2rem;
+  }
+}
+
+@media all and (max-width: 1050px) {
+  .about-left{
+    width: 50%;
+  }
+
+  .about-right{
+    width: 50%;
+  }
+
+  .about-badge {
+    width: 50vh;
+    height: 50vh;
+  }
+
+  .about-right p {
+    font-size: calc(var(--medium));
+    line-height: 1.8rem;
+  }
+}
+
+
+
+@media all and (max-width: 880px) {
+  .about-right h1 {
+    font-size: var(--small-heading);
+  }
+
+  .about-badge {
+    width: 40vh;
+    height: 40vh;
+  }
+
+  .about-right p {
+    font-size: calc(var(--medium));
+    line-height: 1.8rem;
+  }
+}
+
+
+
+@media all and (max-width: 730px) {
+  #about {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 1.7rem;
+  }
+
+  .about-left{
+    width: 100%;
+  }
+
+  .about-right{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1.7rem;
+  }
+
+  .about-right p {
+    font-size: var(--large);
+    text-align: center;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .about-right{
+    margin-top: -10rem;
+  }
+  .about-right p {
+    font-size: var(--medium);
+    text-align: center;
+    line-height: 1.4rem;
+  }
+
+  .about-badge {
+    width: 30vh;
+    height: 30vh;
+}
+}

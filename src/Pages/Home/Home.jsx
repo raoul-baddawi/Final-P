@@ -1,37 +1,25 @@
 import React from 'react';
-import { Element } from 'react-scroll';
 import './home.css'
+import Hero from '../../Components/Hero/Hero';
+import About from '../../Components/About/About';
+import Finals from '../../Components/finals/Finals';
+import Mentors from '../../Components/Mentors/Mentors';
+import Skills from '../../Components/Myskills/Skills';
+import Projects from '../../Components/Projects/Projects';
+import Footer from '../../Components/Footer/Footer';
+
 
 function Home(){
   return (
     <main>
-      <Element name="home">
-        <section id="hero"></section>
-      </Element>
-
-      <Element name="developers">
-        <section id="developers"></section>
-      </Element>
-
-      <Element name="skills">
-        <section id="skills"></section>
-      </Element>
-
-      <Element name="projects">
-        <section id="projects"></section>
-      </Element>
-
-      <Element name="about">
-        <section id="about"></section>
-      </Element>
-
-      <Element name="contact">
-        <section id="contact"></section>
-      </Element>
+      <Hero />
+      <About />
+      <Finals />
+      <Mentors />
+      <Skills />
+      <Projects />
+      <Footer />
       
-      <Element name="login">
-        <section id="login"></section>
-      </Element>
     </main>
   )
 }
