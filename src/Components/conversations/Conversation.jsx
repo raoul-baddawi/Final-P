@@ -11,7 +11,7 @@ export default function Conversation({ conversation, currentUser }) {
     // console.log(friendId)
     const getUser = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/api/users/" + friendId); 
+        const res = await axios.get("https://appreciate-b.onrender.com/api/users/" + friendId); 
         setUser(res.data);
         // console.log(res.data)
       } catch (err) {

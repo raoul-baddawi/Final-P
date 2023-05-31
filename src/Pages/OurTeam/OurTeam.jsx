@@ -16,7 +16,7 @@ const OurTeam = () => {
     // Simulate a delay of 2 seconds before fetching the data
     
       axios
-        .get('http://localhost:8800/profile')
+        .get('https://appreciate-b.onrender.com/profile')
         .then((res) => {
           setTeam(res.data);
           setFilteredTeam(res.data); // Initialize filteredTeam with all users

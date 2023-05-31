@@ -36,7 +36,7 @@ const Education = () => {
 
     try {
       await axios.post(
-        `http://localhost:8800/education/${user._id}`,
+        `https://appreciate-b.onrender.com/education/${user._id}`,
         educationData
       );
       setShowEducation(false);
@@ -50,7 +50,7 @@ const Education = () => {
   useEffect(() => {
     const fetchEducationData = async () => {
       try {
-        const edresponse = await axios.get(`http://localhost:8800/education/`);
+        const edresponse = await axios.get(`https://appreciate-b.onrender.com/education/`);
         setEducations(edresponse.data);
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -70,7 +70,7 @@ const Education = () => {
     try {
       const updatedField = { [field]: editedValue };
       await axios.patch(
-        `http://localhost:8800/education/${educationId}`,
+        `https://appreciate-b.onrender.com/education/${educationId}`,
         updatedField
       );
 
@@ -84,7 +84,7 @@ const Education = () => {
 
   const deleteEducation = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/education/${id}`);
+      await axios.delete(`https://appreciate-b.onrender.com/education/${id}`);
       window.location.reload();
     } catch (error) {
       console.log(error);

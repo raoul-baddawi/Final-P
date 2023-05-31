@@ -9,17 +9,17 @@ export default function ChatOnline({ currentId, setCurrentChat, setRefresh, refr
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [users, setUsers] = useState([]);
   const createConversation = async (receiverId) => {
-    await axios.post('http://localhost:8800/api/conversations/', {senderId, receiverId });
+    await axios.post('https://appreciate-b.onrender.com/api/conversations/', {senderId, receiverId });
     setRefresh((prev)=>!prev)
   };
 
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/api/conversations/${user._id}`);
+        const response = await axios.get(`https://appreciate-b.onrender.com/api/conversations/${user._id}`);
         const conversations = response.data;
         const members = conversations.map((conversation) => conversation.members).flat();
-        const response2 = await axios.get(`http://localhost:8800/api/users/getall`);
+        const response2 = await axios.get(`https://appreciate-b.onrender.com/api/users/getall`);
         const users = response2.data.filter(users=> users._id !== user._id);
         const filteredUsers = users.filter((user) => !members.includes(user._id) && user._id !== user._Id);
         setUsers(filteredUsers);
@@ -38,7 +38,7 @@ export default function ChatOnline({ currentId, setCurrentChat, setRefresh, refr
   const handleClick = async (user) => {
     try {
       const res = await axios.get(
-        `http://localhost:8800/api/conversations/find/${currentId}/${user._id}`
+        `https://appreciate-b.onrender.com/api/conversations/find/${currentId}/${user._id}`
       );
       setCurrentChat(res.data);
     } catch (err) {

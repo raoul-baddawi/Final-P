@@ -9,7 +9,7 @@ const Projects = () => {
   useEffect(()=>{
     const getProjects = async () => {
         try{
-        const projectsData = await axios.get('http://localhost:8800/project')
+        const projectsData = await axios.get('https://appreciate-b.onrender.com/project')
         setProjects(projectsData.data)
       }
       catch(err){

@@ -36,7 +36,7 @@ const Experience = () => {
 
     try {
       await axios.post(
-        `http://localhost:8800/experience/${user._id}`,
+        `https://appreciate-b.onrender.com/experience/${user._id}`,
         experienceData
       );
       setShowExperience(false);
@@ -50,7 +50,7 @@ const Experience = () => {
   useEffect(() => {
     const fetchExperienceData = async () => {
       try {
-        const exresponse = await axios.get(`http://localhost:8800/experience/`);
+        const exresponse = await axios.get(`https://appreciate-b.onrender.com/experience/`);
         setExperiences(exresponse.data);
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -70,7 +70,7 @@ const Experience = () => {
     try {
       const updatedField = { [field]: editedValue };
       await axios.patch(
-        `http://localhost:8800/experience/${experienceId}`,
+        `https://appreciate-b.onrender.com/experience/${experienceId}`,
         updatedField
       );
 
@@ -84,7 +84,7 @@ const Experience = () => {
 
   const deleteExperience = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/experience/${id}`);
+      await axios.delete(`https://appreciate-b.onrender.com/experience/${id}`);
       window.location.reload();
     } catch (error) {
       console.log(error);

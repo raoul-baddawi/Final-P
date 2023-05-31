@@ -25,16 +25,16 @@ const Cv = () => {
       try {
         if (location.state && location.state.id) {
           const prData = await axios.get(
-            `http://localhost:8800/profile/${location.state.id}`
+            `https://appreciate-b.onrender.com/profile/${location.state.id}`
           );
           const cvData = await axios.get(
-            `http://localhost:8800/cv/${location.state.id}`
+            `https://appreciate-b.onrender.com/cv/${location.state.id}`
           );
           const exData = await axios.get(
-            `http://localhost:8800/experience/${location.state.id}`
+            `https://appreciate-b.onrender.com/experience/${location.state.id}`
           );
           const edData = await axios.get(
-            `http://localhost:8800/education/${location.state.id}`
+            `https://appreciate-b.onrender.com/education/${location.state.id}`
           );
           setProfile(prData.data);
           setCv(cvData.data);

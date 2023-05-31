@@ -25,7 +25,7 @@ const Navbar = () => {
       const user = JSON.parse(localStorage.getItem("user"));
       try {
         const res = await axios.get(
-          `http://localhost:8800/profile/${user._id}`
+          `https://appreciate-b.onrender.com/profile/${user._id}`
         );
         if (res.data.message === "No") {
           setDrop(null);

@@ -26,7 +26,7 @@ function Auth() {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:8800/api/auth/login",
+        "https://appreciate-b.onrender.com/api/auth/login",
         {
           email: event.target.email.value,
           password: event.target.password.value,
@@ -51,7 +51,7 @@ function Auth() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8800/api/auth/register",
+        "https://appreciate-b.onrender.com/api/auth/register",
         {
           username: event.target.name.value,
           email: event.target.Email.value,

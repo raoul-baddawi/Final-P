@@ -10,7 +10,7 @@ function Mentors() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8800/profile")
+      .get("https://appreciate-b.onrender.com/profile")
       .then((res) => {
         const mentorData = res.data.filter(
           (profile) => profile.user_type === "mentor"

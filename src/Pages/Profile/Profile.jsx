@@ -20,10 +20,10 @@ const Profile = () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
         const presponse = await axios.get(
-          `http://localhost:8800/profile/${user._id}`
+          `https://appreciate-b.onrender.com/profile/${user._id}`
         );
         const cresponse = await axios.get(
-          `http://localhost:8800/cv/${user._id}`
+          `https://appreciate-b.onrender.com/cv/${user._id}`
         );
         setProfile(presponse.data);
         setCv(cresponse.data);
@@ -48,7 +48,7 @@ const Profile = () => {
     try {
       const updatedField = { [field]: profile[field] };
       const response = await axios.patch(
-        `http://localhost:8800/profile/${user._id}`,
+        `https://appreciate-b.onrender.com/profile/${user._id}`,
         updatedField
       );
       setProfile(response.data);
@@ -76,7 +76,7 @@ const Profile = () => {
     try {
       const updatedField = { [field]: cv[field] };
       const response = await axios.patch(
-        `http://localhost:8800/cv/${user._id}`,
+        `https://appreciate-b.onrender.com/cv/${user._id}`,
         updatedField
       );
       setCv(response.data);

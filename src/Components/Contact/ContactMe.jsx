@@ -51,7 +51,7 @@ const ContactMe = () => {
     await sendEmail(e);
 
     try {
-      await axios.post("http://localhost:8800/contactus", newContact);
+      await axios.post("https://appreciate-b.onrender.com/contactus", newContact);
       setmyData({
         fullName: "",
         mail: "",

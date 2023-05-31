@@ -20,7 +20,7 @@ const Dashboard = () => {
     const fetchDashboardData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8800/api/users/getall`
+          `https://appreciate-b.onrender.com/api/users/getall`
         );
         setAll(response.data);
       } catch (error) {
@@ -40,7 +40,7 @@ const Dashboard = () => {
 
   const deleteUser = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/api/delete/${id}`);
+      await axios.delete(`https://appreciate-b.onrender.com/api/delete/${id}`);
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -54,7 +54,7 @@ const Dashboard = () => {
 
   const handleRoleUpdate = async (userId) => {
     try {
-      await axios.patch(`http://localhost:8800/api/user/${userId}`, {
+      await axios.patch(`https://appreciate-b.onrender.com/api/user/${userId}`, {
         role: editedRole,
       });
       console.log("User role updated successfully");
@@ -70,7 +70,7 @@ const Dashboard = () => {
 
   const handleAdminPromote = async (userId) => {
     try {
-      const response = await axios.patch(`http://localhost:8800/api/user/${userId}`, { role: 'admin' });
+      const response = await axios.patch(`https://appreciate-b.onrender.com/api/user/${userId}`, { role: 'admin' });
   
       if (response.status === 200) {
         console.log('User role updated successfully');

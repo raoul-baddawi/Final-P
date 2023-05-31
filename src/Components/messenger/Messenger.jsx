@@ -64,11 +64,11 @@ export default function Messenger() {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const res = await axios.get("http://localhost:8800/api/conversations/" + user._id);
+        const res = await axios.get("https://appreciate-b.onrender.com/api/conversations/" + user._id);
         setConversations(res.data);
       //  console.log("res.data----- ", res.data[0].members[0], res.data[0].members[1])
-        const minePhoto = await axios.get("http://localhost:8800/profile/" + res.data[0].members[0]);
-        const hisPhoto = await axios.get("http://localhost:8800/profile/" + res.data[0].members[1]);
+        const minePhoto = await axios.get("https://appreciate-b.onrender.com/profile/" + res.data[0].members[0]);
+        const hisPhoto = await axios.get("https://appreciate-b.onrender.com/profile/" + res.data[0].members[1]);
         setPhoto({minePhoto, hisPhoto})
       } catch (err) {
         console.log(err);
@@ -82,7 +82,7 @@ export default function Messenger() {
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const res = await axios.get(`http://localhost:8800/api/messages/${currentChat&&currentChat._id}`);
+        const res = await axios.get(`https://appreciate-b.onrender.com/api/messages/${currentChat&&currentChat._id}`);
         // console.log(res.data,user._id)
         setMessages(res.data);
         // console.log(res.data)
@@ -112,7 +112,7 @@ export default function Messenger() {
     });
 
     try {
-      const res = await axios.post("http://localhost:8800/api/messages", message);
+      const res = await axios.post("https://appreciate-b.onrender.com/api/messages", message);
       setMessages([...messages, res.data]);
       setNewMessage("");
     } catch (err) {
