@@ -13,13 +13,16 @@ function Carousel() {
   const carouselRef = useRef(null);
 
   useEffect(() => {
-    axios
+    setTimeout(() => {
+      axios
       .get("https://appreciate-b.onrender.com/profile")
       .then((res) => {
         const devData = res.data.filter((profile) => profile.user_type === 'dev');
         setData(devData);
       })
       .catch((err) => console.log(err));
+    }, 3000);
+   
   }, []);
 
   useEffect(() => {
@@ -72,7 +75,7 @@ function Carousel() {
                     <button className="v-cv" onClick={() => navigate("/cv", { state: { id: dev.user_id } })}>View Cv</button>
                     <div className="none none-wrapper">
                     <button className="v-cv none">View Cv</button>
-                    {console.log(dev.user_id)}
+                    {/* {console.log(dev.user_id)} */}
                       <button className="v-web none" onClick={() => window.open(dev.website_link, "_blank")}>Visit website</button>
                     </div>
                   </div>

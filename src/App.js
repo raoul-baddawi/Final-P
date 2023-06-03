@@ -4,10 +4,13 @@ import Layout from './Maintainer/Layout';
 import Home from './Pages/Home/Home';
 import OurTeam from './Pages/OurTeam/OurTeam';
 import Messenger from './Components/messenger/Messenger';
-import Auth from './Pages/auth/Auth';
+import  './Pages/auth/auth.css';
 import Profile from './Pages/Profile/Profile';
 import Cv from './Pages/Cv/Cv';
 import Dashboard from './Pages/Dashboard/Dashboard';
+import Aboutme from './Pages/Aboutme/Aboutme';
+
+import LoginUp from './Pages/popAuth/LoginUp'
 function App() {
   const useProfile = () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -47,9 +50,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/auth" element={<LoginUp />} />
           <Route element={<Layout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<Aboutme />} />
             <Route path="/ourteam" element={<OurTeam />} />
             <Route element={useProfile() ? <Outlet /> : <Navigate to="/" />}>
                 <Route path="/profile" element={<Profile />} />

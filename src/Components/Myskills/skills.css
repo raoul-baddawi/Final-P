@@ -45,10 +45,7 @@ border-radius: 10px;
 
 .skill_body{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 5px;
+ justify-content: flex-end;
 }
 
 .skill_body span {
@@ -57,19 +54,18 @@ border-radius: 10px;
 }
 
 .skill_body span svg{
-  width: 13%;
+  width: 33%;
   aspect-ratio: 1/1;
   font-size: clamp(0.0625rem, -0.5998rem + 1.8116vw, 1.625rem);
 }
 
-.skill span{
+/* .skill span{
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   width: 40%;
   margin-left: 10%;
   gap: 20px;
-}
+} */
 
 @media all and (max-width:1100px) {
   #skills{
@@ -112,7 +108,7 @@ border-radius: 10px;
 @media all and (max-width:750px) {
   .skill{
     width: 100%;
-    height: 35vh;
+    height: 40vh;
   }
 }
 
@@ -125,19 +121,38 @@ border-radius: 10px;
 
 
 @media all and (max-width:484px) {
-  .skill span {
+  /* .skill span {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     width: 60%;
     margin-left: 30%;
-}
+} */
 }
 
 
 
 @media all and (max-width:370px) {
-  .skill span {
+  /* .skill span {
     margin-left: 14%;
+} */
 }
+
+.tocenterthem{
+  display: flex;
+  width: 55%;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+
+.tocenterthem span{
+  text-align: left;
+  position: relative;
+}
+.tocenterthem span i,
+.tocenterthem span svg {
+  position: absolute;
+  left: -30px;
 }

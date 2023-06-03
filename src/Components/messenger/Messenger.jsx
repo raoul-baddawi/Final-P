@@ -16,12 +16,15 @@ export default function Messenger() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [refresh, setRefresh] = useState(false)
+  const [side, setSide] = useState(false)
   const socket = useRef()
+  const sendIt = useRef(null);
+  
   
   // const { user } = useContext(AuthContext);
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const scrollRef = useRef();
+  // const scrollRef = useRef();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -71,7 +74,7 @@ export default function Messenger() {
         const hisPhoto = await axios.get("https://appreciate-b.onrender.com/profile/" + res.data[0].members[1]);
         setPhoto({minePhoto, hisPhoto})
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     getConversations();
@@ -120,14 +123,34 @@ export default function Messenger() {
     }
   };
 
+  const chatBoxRef = useRef();
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      e.target.click();
+    }
+  };
+
+  
+
+  const handleKeySenDown = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      sendIt.current.click();  
+    }
+  };
+
+
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    chatBoxRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages]);
+
 
   return (
     <>
-      <div className="messenger">
-        <div className="chatMenu">
+      <div className={side ? "messenger-side messenger" : "messenger"}>
+        <div className={side ? "chatMenu paddingchat" : "chatMenu"}>
           <div className="chatMenuWrapper">
             <div className="chat-header">
               <h1>Chat</h1>
@@ -138,6 +161,8 @@ export default function Messenger() {
                 setActive(c._id);
               }}
               key={index}
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
               className={active === c._id ? 'nothing active' : 'nothing'} >
                 <div className="for-effect"></div>
                 <Conversation conversation={c} currentUser={user}  />
@@ -146,26 +171,33 @@ export default function Messenger() {
           </div>
         </div>
         <div className="chatBox">
+          <button className={side ? "side-bar-trigger toleft" : "side-bar-trigger toright"} onClick={()=>{
+            setSide(!side)
+          }}>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
           <div className="chatBoxWrapper">
             {currentChat ? (
               <>
                 <div className="chatBoxTop">
                   {messages.map((m ,index) => (
-                    <div ref={scrollRef}  key={index}>
+                    <div  key={index}>
                      
-                      <Message message={m} own={m.sender === user._id} photo={photo}/>
+                      <Message message={m} own={m.sender === user._id} photo={photo} scrollRef={chatBoxRef}/>
                     </div>
                   ))
                   }
+                    <div ref={chatBoxRef}></div>
                 </div>
                 <div className="chatBoxBottom">
                   <textarea
                     className="chatMessageInput"
+                    onKeyDown={handleKeySenDown}
                     placeholder="write something..."
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newMessage}
                   ></textarea>
-                  <button className="chatSubmitButton" onClick={handleSubmit}>
+                  <button className="chatSubmitButton" onClick={handleSubmit} ref={sendIt} >
                     Send
                   </button>
                 </div>
@@ -177,7 +209,7 @@ export default function Messenger() {
             )}
           </div>
         </div>
-        <div className="chatOnline">
+        <div className="chatOnline cht-online-resp">
           <div className="chatOnlineWrapper">
             <ChatOnline
               onlineUsers={onlineUsers}

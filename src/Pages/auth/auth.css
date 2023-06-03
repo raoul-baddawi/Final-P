@@ -1,187 +1,4 @@
-.main_auth-wrp{
-  position: relative;
-  grid-row: 1/3;
-}
-.J-popup-wrapper{
-  inset: 0;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
 
-.all-wrapper{
-  width: 800px;
-  height: 50vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-}
-
-.all-wrapper-child{
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(0 0 0 / 28%);
-  display: flex;
-  overflow: hidden;
-}
-
-
-.jiji{
-  flex-shrink: 0;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  font-size: 25px;
-  color: white;
-}
-
-.jiji button{
-  font-size: 17px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 120px;
-  padding: 7px 15px;
-  border: 1px solid rgb(255, 255, 255);
-}
-
-/* .ask-login{
-  background-color: rgb(55, 168, 2);
-}
-
-
-.ask-signup{
-  background-color: rgb(255, 0, 157);
-} */
-
-
-.main-f-wrapper{
-  height: 100%;
-  width: 93%;
-  position: absolute;
-  top: 100%;
-}
-
-
-
-.J-forms-wrapper{
-  width: 50%;
-  height: 120%;
-  background-color: white;
-  position: absolute;
-  top: -110%;
-  overflow: hidden;
-  transition: 0.6s all ease;
-  transform: translateX(0%);
-}
-
-.J-forms-wrapper-zih {
-  width: 50%;
-  height: 120%;
-  background-color: white;
-  position: absolute;
-  top: -110%;
-  z-index: 2;
-  overflow: hidden;
-  transition: 0.6s all ease;
-  transform: translateX(100%);
-}
-
-.left-right-wrapper{
-  height: 100%;
-  width: 200%;
-  margin: 0 auto;
-  display: flex;
-  overflow: hidden;
-  transition: 0.7s all cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transform: translate(0%);
-}
-
-.left-right-wrapper-zih{
-  transition: 0.7s all cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transform: translate(-50%);
-}
-.left-right-wrapper form {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10%;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-}
-
-
-.left-right-wrapper form input{
-  outline: none;
-  width: 80%;
-  border: 1px solid lightgray;
-  padding: 12px 5px;
-  font-size: 17px;
-}
-
-.ask-signup .jiji h3{
-  width: 60%;
-  text-align: center;
-}
-
-.left-right-wrapper form input:is(:focus){
-  border: 2px solid var(--accent-color);
-  color: var(--accent-color);
-}
-
-.left-right-wrapper form input:is(:focus)::placeholder{
-  color: var(--accent-color);
-}
-
-.buttonn {
-  position: relative;
-  overflow: hidden;
-  height: 2.5rem;
-  padding: 0 2rem;
-  font-size: 18px;
-  border-radius: 1.5rem;
-  background: #3d3a4e;
-  background-size: 400%;
-  color: #fff;
-  border: none;
-}
-
-.buttonn:hover::before {
-  transform: scaleX(1);
-}
-
-.button-content {
-  position: relative;
-}
-
-.buttonn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  width: 100%;
-  height: inherit;
-  border-radius: inherit;
-  background: linear-gradient(
-    82.3deg,
-    rgb(93, 98, 233) 10.8%,
-    rgb(88, 148, 238) 94.3%
-  );
-  transition: all 0.475s;
-}
 .svg-wrapper-1{
   width: 50%;  
   display: flex;
@@ -226,9 +43,10 @@
 
 
 .area{
-  background: #4e54c8;  
-  background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+  background: var(--primary-color);  
+  background: linear-gradient(to left, #5a62ff, #33388d);  
   width: 100%;
+  position: absolute;
   height:100vh;
   
  
@@ -346,5 +164,11 @@
       opacity: 0;
       border-radius: 50%;
   }
+
+}
+
+
+
+@media all and (max-width:700px){
 
 }

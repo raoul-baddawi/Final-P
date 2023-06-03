@@ -18,7 +18,7 @@ const Projects = () => {
     }
     getProjects()
   },[])
-  console.log(projects)
+  // console.log(projects)
   return (
     <Element name="projects" className="projects">
       <h1>My Projects</h1>

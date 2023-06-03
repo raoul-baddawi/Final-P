@@ -33,6 +33,7 @@
   grid-template-rows: 35% 65%;
   overflow: hidden;
   height: auto;
+  margin-right: auto;
 }
 
 .pr_card-head {

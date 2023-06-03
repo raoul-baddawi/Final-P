@@ -2,7 +2,7 @@ import React from "react";
 
 const Miro = () => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 520 520">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 600 600">
       <path
         fill="currentColor"
         fillRule="evenodd"

@@ -66,6 +66,28 @@ console.log(filteredTeam)
                 <div className="info-body">
                   <h1>{card.name}</h1>
                   <p>{card.position}</p>
+                  <ul className="sci">
+                            <li>
+                              <a href={card.facebook} target="_blank" rel="noopener noreferrer">
+                                <i className="fa-brands fa-facebook-f"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a href={card.github} target="_blank" rel="noopener noreferrer">
+                                <i className="fa-brands fa-github"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a href={card.instagram} target="_blank" rel="noopener noreferrer">
+                                <i className="fa-brands fa-instagram"></i>
+                              </a>
+                            </li>
+                            <li>
+                              <a href={card.linkedin} target="_blank" rel="noopener noreferrer">
+                                <i className="fa-brands fa-linkedin-in"></i>
+                              </a>
+                            </li>
+                          </ul>
                   <div className="buttons_wrp">
                   {card.user_type === 'mentor' ? (
                 <button className="personal_button btn-2" onClick={() => navigate("/cv", { state: { id: card.user_id } })}>View cv</button>

@@ -2,7 +2,6 @@ import "./message.css";
 import { formatDistanceToNow } from 'date-fns'
 
 export default function Message({ message, own, photo }) {
-  console.log(photo)
 
   return (
     <div className={own ? "message own" : "message"}>
@@ -10,7 +9,7 @@ export default function Message({ message, own, photo }) {
         <img
           className="messageImg"
           src={own ? photo.minePhoto.data.image : photo.hisPhoto.data.image}
-          alt=""
+          alt="user's pic"
         />
         <p className="messageText">{message.text}</p>
       </div>

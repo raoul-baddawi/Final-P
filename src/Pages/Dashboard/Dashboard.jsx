@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Element } from "react-scroll";
 import { Link } from "react-scroll";
+// import empty from '../../Assets/card.png'
 import "./dashboard.css";
 import noimage from "../../Assets/noimage.png";
 import axios from "axios";
@@ -13,9 +14,31 @@ const Dashboard = () => {
   const [all, setAll] = useState([]);
   const [users, setUsers] = useState([]);
   const [members, setMembers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [editedRole, setEditedRole] = useState("");
   const [editingUserId, setEditingUserId] = useState("");
+  const [load, setLoad] = useState(false);
+  const [loadd, setLoadd] = useState(false);
+  const [done, setDone] = useState(false);
+  const [donee, setDonee] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [showEducation, setShowEducation] = useState(false);
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+    position: "",
+    user_type: "",
+  });
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  // Filter members based on the search query or return all members if the search query is empty
+  const filteredMembers = members.filter((member) =>
+    member.profile.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
@@ -32,21 +55,47 @@ const Dashboard = () => {
   }, []);
 
   useEffect(() => {
-    const filteredMembers = all.filter((user) => user.role !== "user");
+    const filteredMembers = all.filter((user) => user.role === "admin");
     const filteredUsers = all.filter((user) => user.role === "user");
     setMembers(filteredMembers);
     setUsers(filteredUsers);
   }, [all]);
 
-  const deleteUser = async (id) => {
+  const handleInputChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     try {
-      await axios.delete(`https://appreciate-b.onrender.com/api/delete/${id}`);
+      const response = await axios.post("http://localhost:8800/api/admin", formData);
+      const data = response.data;
+      // console.log(data); // Process the result as needed
       window.location.reload();
     } catch (error) {
+      console.error(error); // Handle the error
+    }
+  };
+
+  const deleteUser = async (id) => {
+    setLoad(true);
+    try {
+      await axios.delete(`https://appreciate-b.onrender.com/api/delete/${id}`);
+      setLoad(false);
+      setDone(true);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      setLoad(false);
       console.log(error);
     }
   };
-  // console.log(users);
+
   function handleLogout() {
     localStorage.clear();
     navigate("/");
@@ -54,34 +103,42 @@ const Dashboard = () => {
 
   const handleRoleUpdate = async (userId) => {
     try {
-      await axios.patch(`https://appreciate-b.onrender.com/api/user/${userId}`, {
-        role: editedRole,
-      });
+      await axios.patch(
+        `https://appreciate-b.onrender.com/api/user/${userId}`,
+        {
+          role: editedRole,
+        }
+      );
       console.log("User role updated successfully");
-      // Update the state or perform any other necessary actions
       setEditingUserId("");
       setEditedRole("");
+      window.location.reload();
     } catch (error) {
       console.error("Error updating user role:", error);
-      // Handle the error if needed
     }
   };
-
+ 
 
   const handleAdminPromote = async (userId) => {
+    setLoadd(true);
     try {
-      const response = await axios.patch(`https://appreciate-b.onrender.com/api/user/${userId}`, { role: 'admin' });
-  
+      const response = await axios.patch(
+        `https://appreciate-b.onrender.com/api/user/${userId}`,
+        { role: "admin" }
+      );
+      setLoadd(false);
       if (response.status === 200) {
-        console.log('User role updated successfully');
-        // You can add any additional logic here after the role is updated
+        setDonee(true);
+        console.log("User role updated successfully");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
       }
     } catch (error) {
-      console.error('Error updating user role:', error);
-      // Handle the error state or display an error message to the user
+      setLoadd(false);
+      console.error("Error updating user role:", error);
     }
   };
-  
 
   const handleCancelEdit = () => {
     setEditingUserId("");
@@ -92,7 +149,7 @@ const Dashboard = () => {
     setEditingUserId(userId);
     setEditedRole(currentRole);
   };
-  console.log(members);
+  // console.log(members);
   return (
     <section id="dashboard">
       <div className="nav_wrapper">
@@ -150,7 +207,7 @@ const Dashboard = () => {
                 }}
               >
                 <li>
-                <i class="fa-regular fa-envelope"></i>
+                  <i className="fa-regular fa-envelope"></i>
                   Messages
                 </li>
               </Link>
@@ -191,7 +248,7 @@ const Dashboard = () => {
             </h1>
             <section id="usersdash">
               <div className="users_table">
-                {users &&
+                {users && users.length > 0 ? (
                   users.map((user, index) => (
                     <div className="user_row" key={index}>
                       <img
@@ -205,27 +262,214 @@ const Dashboard = () => {
                       <h3>{user.username}</h3>
                       <p>{user.email}</p>
                       <span>{user.role}</span>
-                      <button onClick={() => handleAdminPromote(user._id)}>
-                        <span>Promote</span>
-                        <span>Sure ?</span>
+                      <button
+                        className="promote"
+                        style={
+                          loadd && selectedUser === user._id
+                            ? { padding: 0, width: "80px" }
+                            : { width: "80px" }
+                        }
+                        onClick={() => {
+                          setSelectedUser(user._id);
+                          handleAdminPromote(user._id);
+                        }}
+                      >
+                        {loadd && selectedUser === user._id ? (
+                          <div className="loading">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        ) : (
+                          <>
+                            <span
+                              style={
+                                donee && selectedUser === user._id
+                                  ? { display: "none" }
+                                  : null
+                              }
+                            >
+                              Promote
+                            </span>
+                            <span
+                              style={
+                                donee && selectedUser === user._id
+                                  ? { display: "none" }
+                                  : null
+                              }
+                            >
+                              Sure ?
+                            </span>
+                          </>
+                        )}
+                        {donee && selectedUser === user._id ? (
+                          <span
+                            className="span"
+                            style={
+                              donee && selectedUser === user._id
+                                ? { zIndex: 10 }
+                                : { zIndex: -10 }
+                            }
+                          >
+                            Done
+                          </span>
+                        ) : null}
                       </button>
-                      <button onClick={() => deleteUser(user._id)}>
-                        <span>Delete</span>
-                        <span>Sure ?</span>
+                      <button
+                        style={
+                          load && selectedUser === user._id
+                            ? { padding: 0, width: "80px" }
+                            : { width: "80px" }
+                        }
+                        onClick={() => {
+                          deleteUser(user._id);
+                          setSelectedUser(user._id); // Set the selected user's ID
+                        }}
+                      >
+                        {load && selectedUser === user._id ? (
+                          <div className="loading">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                          </div>
+                        ) : (
+                          <>
+                            <span
+                              style={
+                                done && selectedUser === user._id
+                                  ? { display: "none" }
+                                  : null
+                              }
+                            >
+                              Delete
+                            </span>
+                            <span
+                              style={
+                                done && selectedUser === user._id
+                                  ? { display: "none" }
+                                  : null
+                              }
+                            >
+                              Sure ?
+                            </span>
+                          </>
+                        )}
+                        {done && selectedUser === user._id ? (
+                          <span
+                            className="span"
+                            style={
+                              done && selectedUser === user._id
+                                ? { zIndex: 10 }
+                                : { zIndex: -10 }
+                            }
+                          >
+                            Done
+                          </span>
+                        ) : null}
                       </button>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div className="no-users">
+                    <h1>Wow!, No users found!</h1>
+                    <div className="img-nusrs"></div>
+                    <p>
+                      Looks like there is no users with the type{" "}
+                      <span>"user"</span> at this time!
+                    </p>
+                  </div>
+                )}
               </div>
             </section>
           </Element>
         )}
 
         <Element name="members" className="cv_main members_main">
-          <h1>Members</h1>
+          <h1>
+            Members
+            <button
+              className="add_dash"
+              onClick={() => {
+                setShowEducation(true);
+              }}
+            >
+              <i className="fa-sharp fa-regular fa-plus"></i>
+              Add
+            </button>
+          </h1>
+          <input
+          className="search-input"
+        type="text"
+        placeholder="Search by name"
+        value={searchQuery}
+        onChange={handleSearchChange}
+      />
           <section id="members">
+            <div className={showEducation ? "animated_add showw" : "hide"}>
+              <form className="animated_form" onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="password">Password:</label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="position">Position:</label>
+                <input
+                  type="text"
+                  name="position"
+                  id="position"
+
+                  value={formData.position}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="user_type">User Type:</label>
+                <input
+                  type="text"
+                  name="user_type"
+                  id="user_type"
+                  value={formData.user_type}
+                  onChange={handleInputChange}
+                />
+                {/* <p>{message}</p> */}
+                <div className="edc-btn-main">
+                  <button type="submit" className="for_admin-btns">
+                    <i className="fa-solid fa-check"></i>
+                  </button>
+                  <button
+                  className="for_admin-btns"
+                    type="button"
+                    onClick={() => {
+                      setShowEducation(false);
+                    }}
+                  >
+                    <i className="fa-solid fa-xmark"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
             <div className="member_wrap">
-              {members &&
-                members.map((member, index) => (
+            {filteredMembers.length > 0 ? (
+        filteredMembers.map((member, index) => (
                   <div className="member_card" key={index}>
                     <div className="member_card-head">
                       <img src={noimage} alt="member img" />
@@ -269,7 +513,7 @@ const Dashboard = () => {
                             {member.profile.facebook > 4 ? (
                               <span style={{ "--clr": "#1877f2" }}>
                                 <a href={member.profile.facebook}>
-                                  <i class="fa-brands fa-facebook-f"></i>
+                                  <i className="fa-brands fa-facebook-f"></i>
                                 </a>
                               </span>
                             ) : null}
@@ -277,7 +521,7 @@ const Dashboard = () => {
                             {member.profile.instagram > 4 ? (
                               <span style={{ "--clr": "#c32aa3" }}>
                                 <a href={member.profile.instagram}>
-                                  <i class="fa-brands fa-instagram"></i>
+                                  <i className="fa-brands fa-instagram"></i>
                                 </a>
                               </span>
                             ) : null}
@@ -285,7 +529,7 @@ const Dashboard = () => {
                             {member.profile.linkedin > 4 ? (
                               <span style={{ "--clr": "#1da1f2" }}>
                                 <a href={member.profile.linkedin}>
-                                  <i class="fa-brands fa-linkedin-in"></i>
+                                  <i className="fa-brands fa-linkedin-in"></i>
                                 </a>
                               </span>
                             ) : null}
@@ -296,24 +540,35 @@ const Dashboard = () => {
                                 className="blacko"
                               >
                                 <a href={member.profile.github}>
-                                  <i class="fa-brands fa-github"></i>
+                                  <i className="fa-brands fa-github"></i>
                                 </a>
                               </span>
                             ) : null}
                           </div>
-                          <button
-                            className="edit_member"
-                            onClick={() =>
-                              handleEditClick(member._id, member.role)
-                            }
-                          >
-                            <span>Edit</span>
-                          </button>
+                          <div className="mmbr-wrp">
+                            <button
+                              className="edit_member"
+                              onClick={() =>
+                                handleEditClick(member._id, member.role)
+                              }
+                            >
+                              <span>Edit</span>
+                            </button>
+                            <button
+                              className="edit_member del"
+                              onClick={() => deleteUser(member._id)}
+                            >
+                              <span>Delete</span>
+                            </button>
+                          </div>
                         </>
                       )}
                     </div>
                   </div>
-                ))}
+               ))
+               ) : (
+                 <p>No members found.</p>
+               )}
             </div>
           </section>
         </Element>

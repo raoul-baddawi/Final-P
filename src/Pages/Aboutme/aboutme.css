@@ -1,0 +1,32 @@
+.for-zeinab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-row: 2;
+  min-height: 90dvh;
+}
+
+.for-zeinab svg {
+  width: 70vh;
+  height: fit-content;
+  transform: scaleX(0.1);
+  transition: .6s all ease;
+  transform-origin:left;
+}
+
+.header-zeinab{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.header-zeinab h1{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+}

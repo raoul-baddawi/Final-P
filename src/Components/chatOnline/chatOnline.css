@@ -6,9 +6,12 @@
   display: flex;
   align-items: center;
   font-weight: 500;
-  cursor: pointer;
   margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
 }
+
 
 .chatOnlineImgContainer {
   position: relative;
@@ -16,7 +19,7 @@
 }
 
 .chatOnlineImg {
-  width: 40px;
+  width: 39px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
@@ -31,4 +34,225 @@
   position: absolute;
   top: 2px;
   right: 2px;
+}
+
+
+.usr-name-wrp{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.usr-name-wrp button{
+  width: fit-content;
+  position: relative;
+  padding: 2px 4px;
+  border-radius: 5px;
+  background: var(--primary-color);
+}
+
+
+
+
+.usr-name-wrp .promote {
+  background: none;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  overflow: hidden;
+  height: 27px;
+}
+
+.usr-name-wrp .promote span {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all .4s ease;
+}
+
+.usr-name-wrp .promote span:nth-child(2) {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  color: #fff;
+}
+
+.usr-name-wrp .promote span:nth-child(2) {
+  background-color: var(--primary-color);
+}
+
+.usr-name-wrp .promote span:nth-child(2){
+  background-color: var(--primary-color);
+}
+.usr-name-wrp .promote:hover {
+  box-shadow: 0 10px 15px -3px #488aec4f, 0 4px 6px -2px #488aec17;
+}
+
+.usr-name-wrp .promote:hover span:nth-child(2), .btn:focus span:nth-child(3) {
+  top: 0;
+}
+
+.usr-name-wrp .promote:focus {
+  box-shadow: none;
+}
+
+
+
+
+.usr-name-wrp .loading{
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.usr-name-wrp .loading div{
+  box-sizing: border-box;
+			display: block;
+			position: absolute;
+			width: 15px;
+			height: 15px;
+			border: 2px solid var(--primary-color);
+			border-radius: 50%;
+			animation: loadz 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+			border-color: var(--primary-color) transparent transparent transparent;
+}
+
+.usr-name-wrp .loading div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+
+.usr-name-wrp.loading div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+
+.usr-name-wrp .loading div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+
+@keyframes loadz {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+.chatOnlineWrapper::-webkit-scrollbar {
+  height: 2px;
+  /* margin-bottom: 20px; */
+  width: 4px;
+}
+
+.chatOnlineWrapper::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+.chatOnlineWrapper::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 5px;
+}
+
+.chatOnlineWrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.side-bar-trigger{
+display: none;
+}
+
+
+
+@media all and (max-width:1000px){
+  /* .cht-online-resp{
+    display: none;
+  } */
+  
+  .messenger {
+    grid-template-rows: minmax(30vh, auto);
+    grid-template-columns: 1fr 2fr;
+}
+
+  .chatMenuWrapper{
+    padding-bottom: 20vh;
+  }
+
+  .chatBox{
+    position: sticky;
+    top: 10vh;
+    height: 89vh;
+    grid-column: 2;
+  }
+}
+
+@media all and (max-width:520px) {
+  .chatMenu,
+  .cht-online-resp{
+    overflow: hidden;
+  }
+
+  .chatMenu{
+    padding: 0;
+    overflow: hidden!important;
+  }
+
+  
+  .paddingchat{
+    overflow: visible;
+    padding: 10px!important;
+    /* transition: 1s all ease; */
+  }
+  
+
+  .messenger-side {
+    grid-template-rows: minmax(30vh, auto);
+    grid-template-columns: 1fr 1fr!important;
+}
+
+  .messenger {
+    grid-template-rows: minmax(30vh, auto);
+    grid-template-columns: 0px 1fr;
+}
+
+.side-bar-trigger{
+  position: absolute;
+  margin: 10px;
+  outline: none;
+  background: white;
+  z-index: 100;
+  border-radius: 50%;
+  padding: 10px;
+  border: none;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatOnlineFriend{
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chatOnlineImgContainer {
+  margin: 0 auto;
+}
+
+.usr-name-wrp{
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 }
