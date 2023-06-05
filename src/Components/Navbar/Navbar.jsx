@@ -159,19 +159,6 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <Link
-                  activeClass="active"
-                  to="Cvs"
-                  spy={true}
-                  smooth={true}
-                  offset={0}
-                  duration={500}
-                  tabIndex={0}
-                >
-                  About
-                </Link>
-              </li>
-              <li>
                 <Lol smooth to="/#footer">
                   Contact Me
                 </Lol>
@@ -261,9 +248,6 @@ const Navbar = () => {
                   <i className="fa-sharp fa-regular fa-address-card"></i>{" "}
                   Contact Me
                 </Lol>
-                <a href="/aboutme">
-                  <i className="fa-solid fa-address-card"></i> About me
-                </a>
               </div>
             </div>
           </nav>
