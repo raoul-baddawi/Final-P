@@ -194,7 +194,7 @@ const Navbar = () => {
 
             {token && token.length > 18 ? (
               <div className="lgd-in-dropdown">
-                <img src={drop === null ? noprofile : drop.image} alt="" />
+                <img src={drop === null || drop.image.length > 4 ? drop.image  : noprofile} alt="" />
                 <p
                   className="name_p"
                   onClick={() => {
@@ -252,7 +252,7 @@ const Navbar = () => {
                   </div>
                 ) : (
                   <a className="lg_in-phone" href="/auth">
-                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    <i className="fa-solid fa-arrow-right-to-bracket"></i>
                     Sign up?
                     
                   </a>
@@ -287,7 +287,7 @@ const Navbar = () => {
                   <i className="fa-solid fa-envelope"></i> Contact me
                 </Link> */}
                 <Lol to="/#footer">
-                <i class="fa-sharp fa-regular fa-address-card"></i>{" "}
+                <i className="fa-sharp fa-regular fa-address-card"></i>{" "}
                   Contact Me
                 </Lol>
 

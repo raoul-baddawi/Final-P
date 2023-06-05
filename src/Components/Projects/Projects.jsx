@@ -23,7 +23,7 @@ const Projects = () => {
       <h1>My Projects</h1>
       <section id="projects">
         {projects && projects.map((project, index)=>(
-           <div className="project_card">
+           <div className="project_card" key={index}>
            <div className="pr_card-head">
             <img src={project.image} alt={project.title} />
            </div>
