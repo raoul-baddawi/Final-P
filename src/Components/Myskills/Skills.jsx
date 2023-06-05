@@ -44,6 +44,7 @@ const Skills = () => {
             <h2>Front End</h2>
           </div>
           <div className="skill_body">
+            <div className="tocenterthem">
             <span>
               <i className="fa-brands fa-html5"></i> HTML
             </span>
@@ -65,6 +66,8 @@ const Skills = () => {
             <span>
               <i className="fa-brands fa-bootstrap"></i> Bootstrap
             </span>
+            </div>
+            
           </div>
         </div>
         <div className="skill">
@@ -96,6 +99,8 @@ const Skills = () => {
             <h2>Back End</h2>
           </div>
           <div className="skill_body">
+          <div className="tocenterthem">
+
             <span>
               <i className="fa-brands fa-node-js"></i>NodeJS
             </span>
@@ -117,6 +122,7 @@ const Skills = () => {
             <span>
               <i className="fa-brands fa-connectdevelop"></i>Restful APIs
             </span>
+            </div>
           </div>
         </div>
         <div className="skill">
@@ -146,6 +152,7 @@ const Skills = () => {
             <h2>Other</h2>
           </div>
           <div className="skill_body">
+          <div className="tocenterthem">
             <span>
               <i className="fa-brands fa-git-alt"></i>Git
             </span>
@@ -167,6 +174,7 @@ const Skills = () => {
             <span>
               <Agile />Agile Methodology
             </span>
+            </div>
           </div>
         </div>
       </section>

@@ -16,12 +16,15 @@ export default function Messenger() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [refresh, setRefresh] = useState(false)
+  const [side, setSide] = useState(false)
   const socket = useRef()
+  const sendIt = useRef(null);
+  
   
   // const { user } = useContext(AuthContext);
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const scrollRef = useRef();
+  // const scrollRef = useRef();
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -30,7 +33,7 @@ export default function Messenger() {
       let data={id:user._id}
       socket.current.emit("user",data)
       } 
-    socket.current = io("ws://localhost:8800");
+    socket.current = io("ws://appreciate-b.onrender.com");
     init()
 
     socket.current.on("getMessage", (data) => {
@@ -46,7 +49,6 @@ export default function Messenger() {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
       setMessages((prev) => [...prev, arrivalMessage]);
-      // console.log(arrivalMessage)
 
   }, [arrivalMessage, currentChat]);
   
@@ -54,7 +56,6 @@ export default function Messenger() {
   useEffect(() => { 
     socket.current.emit("addUser", user._id);
     socket.current.on("getUsers", (users) => {
-      // console.log(users)
       setOnlineUsers(
         users.filter((f) => users.some((u) => u.userId === f))
       );
@@ -66,7 +67,6 @@ export default function Messenger() {
       try {
         const res = await axios.get("https://appreciate-b.onrender.com/api/conversations/" + user._id);
         setConversations(res.data);
-      //  console.log("res.data----- ", res.data[0].members[0], res.data[0].members[1])
         const minePhoto = await axios.get("https://appreciate-b.onrender.com/profile/" + res.data[0].members[0]);
         const hisPhoto = await axios.get("https://appreciate-b.onrender.com/profile/" + res.data[0].members[1]);
         setPhoto({minePhoto, hisPhoto})
@@ -75,17 +75,13 @@ export default function Messenger() {
       }
     };
     getConversations();
-    // console.log("refreshed")
-    // console.log("aaaa",currentChat)
   }, [arrivalMessage, user._id,currentChat, refresh]);
 
   useEffect(() => {
     const getMessages = async () => {
       try {
         const res = await axios.get(`https://appreciate-b.onrender.com/api/messages/${currentChat&&currentChat._id}`);
-        // console.log(res.data,user._id)
         setMessages(res.data);
-        // console.log(res.data)
       } catch (err) {
         console.log(err);
       }
@@ -120,14 +116,34 @@ export default function Messenger() {
     }
   };
 
+  const chatBoxRef = useRef();
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      e.target.click();
+    }
+  };
+
+  
+
+  const handleKeySenDown = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      sendIt.current.click();  
+    }
+  };
+
+
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    chatBoxRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [messages]);
+
 
   return (
     <>
-      <div className="messenger">
-        <div className="chatMenu">
+      <div className={side ? "messenger-side messenger" : "messenger"}>
+        <div className={side ? "chatMenu paddingchat" : "chatMenu"}>
           <div className="chatMenuWrapper">
             <div className="chat-header">
               <h1>Chat</h1>
@@ -136,36 +152,46 @@ export default function Messenger() {
               <div  onClick={() => {
                 setCurrentChat(c);
                 setActive(c._id);
+                setSide(false);
               }}
               key={index}
+              tabIndex={0}
+              onKeyDown={handleKeyDown}
               className={active === c._id ? 'nothing active' : 'nothing'} >
                 <div className="for-effect"></div>
-                <Conversation conversation={c} currentUser={user}  />
+                <Conversation conversation={c} currentUser={user}  setSide={setSide}/>
               </div>
             ))}
           </div>
         </div>
         <div className="chatBox">
+          <button className={side ? "side-bar-trigger toleft" : "side-bar-trigger toright"} onClick={()=>{
+            setSide(!side)
+          }}>
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>
+          </button>
           <div className="chatBoxWrapper">
             {currentChat ? (
               <>
                 <div className="chatBoxTop">
                   {messages.map((m ,index) => (
-                    <div ref={scrollRef}  key={index}>
+                    <div  key={index}>
                      
-                      <Message message={m} own={m.sender === user._id} photo={photo}/>
+                      <Message message={m} own={m.sender === user._id} photo={photo} scrollRef={chatBoxRef}/>
                     </div>
                   ))
                   }
+                    <div ref={chatBoxRef}></div>
                 </div>
                 <div className="chatBoxBottom">
                   <textarea
                     className="chatMessageInput"
+                    onKeyDown={handleKeySenDown}
                     placeholder="write something..."
                     onChange={(e) => setNewMessage(e.target.value)}
                     value={newMessage}
                   ></textarea>
-                  <button className="chatSubmitButton" onClick={handleSubmit}>
+                  <button className="chatSubmitButton" onClick={handleSubmit} ref={sendIt} >
                     Send
                   </button>
                 </div>
@@ -177,7 +203,7 @@ export default function Messenger() {
             )}
           </div>
         </div>
-        <div className="chatOnline">
+        <div className="chatOnline cht-online-resp">
           <div className="chatOnlineWrapper">
             <ChatOnline
               onlineUsers={onlineUsers}

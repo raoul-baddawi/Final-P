@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Element } from "react-scroll";
 import { Link } from "react-scroll";
 import "./profile.css";
@@ -6,15 +6,87 @@ import axios from "axios";
 import Education from "../../Components/Education/Education";
 import Experience from "../../Components/Experience/Experience";
 import { useNavigate } from "react-router-dom";
+import noimage from "../../Assets/noimage.png";
 
 const Profile = () => {
   const [show, setShow] = useState(false);
+  const [selected, setSelected] = useState(false);
+  const [selectedCv, setSelectedCv] = useState(false);
+  const [loaded, setLoaded] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
   const [profile, setProfile] = useState(null);
   const [cv, setCv] = useState(null);
   const [isEditing, setIsEditing] = useState({});
   const [isCvEditing, setIsCvEditing] = useState({});
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState({ image: "" });
+  const fileInputRef = useRef(null);
+  const filecvInputRef = useRef(null);
+
+  const handleButtonClick = (e) => {
+    e.preventDefault();
+    fileInputRef.current.click();
+    setSelected(true);
+  };
+
+
+
+
+  const handleCvButtonClick = (e) => {
+    e.preventDefault();
+    filecvInputRef.current.click();
+    setSelectedCv(true);
+  };
+
+  const handleImageChange = (e) => {
+    const value = e.target.files[0];
+    setSelectedImage({ [e.target.name]: value });
+  };
+
+  const handleProfileSubmit = async (e) => {
+    e.preventDefault();
+    setLoaded(true);
+
+    if (selectedImage) {
+      const formData = new FormData();
+      formData.append("image", selectedImage.image);
+
+      try {
+        const response = await axios.patch(
+          `https://appreciate-b.onrender.com/profile/${user._id}`,
+          formData
+        );
+        console.log("Profile image updated:", response.data);
+        window.location.reload();
+        // Handle success or display a success message
+      } catch (error) {
+        console.log("Error updating profile image:", error);
+        // Handle error or display an error message
+      }
+    }
+  };
+
+  const handleCvSubmit = async (e) => {
+    e.preventDefault();
+    setLoaded(true);
+
+    if (selectedImage) {
+      const formData = new FormData();
+      formData.append("image", selectedImage.image);
+
+      try {
+        const response = await axios.patch(
+          `https://appreciate-b.onrender.com/cv/${user._id}`,
+          formData
+        );
+        console.log("Cv image updated:", response.data);
+        window.location.reload();
+      } catch (error) {
+        console.log("Error updating profile image:", error);
+      }
+    }
+  };
+
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
@@ -93,8 +165,19 @@ const Profile = () => {
 
   function handleLogout() {
     localStorage.clear();
-    navigate('/')
+    navigate("/");
   }
+
+  const handleKeyDown = (e, elementId) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
 
   return (
     <div className="profile_wrapper">
@@ -114,6 +197,7 @@ const Profile = () => {
                 offset={0}
                 duration={500}
                 tabIndex={0}
+                onKeyDown={(e) => handleKeyDown(e, "profile")}
                 onClick={() => {
                   setShow(false);
                 }}
@@ -132,6 +216,7 @@ const Profile = () => {
                 offset={0}
                 duration={500}
                 tabIndex={0}
+                onKeyDown={(e) => handleKeyDown(e, "cv")}
                 onClick={() => {
                   setShow(false);
                 }}
@@ -147,6 +232,7 @@ const Profile = () => {
                 spy={true}
                 smooth={true}
                 offset={0}
+                onKeyDown={(e) => handleKeyDown(e, "education")}
                 duration={500}
                 tabIndex={0}
                 onClick={() => {
@@ -154,7 +240,7 @@ const Profile = () => {
                 }}
               >
                 <li>
-                <i className="fa-solid fa-graduation-cap"></i>
+                  <i className="fa-solid fa-graduation-cap"></i>
                   Education
                 </li>
               </Link>
@@ -164,6 +250,7 @@ const Profile = () => {
                 spy={true}
                 smooth={true}
                 offset={0}
+                onKeyDown={(e) => handleKeyDown(e, "experience")}
                 duration={500}
                 tabIndex={0}
                 onClick={() => {
@@ -171,7 +258,7 @@ const Profile = () => {
                 }}
               >
                 <li>
-                <i className="fa-solid fa-briefcase"></i>
+                  <i className="fa-solid fa-briefcase"></i>
                   Experience
                 </li>
               </Link>
@@ -194,520 +281,647 @@ const Profile = () => {
         </nav>
       </div>
       <div className="main">
-        {profile && (
-          <Element name="profile" className="profile_main">
-            <h1>
-              My profile
-              <span
-                onClick={() => {
-                  setShow(!show);
-                }}
-              >
-                {!show ? (
-                  <i className="fa-solid fa-bars"></i>
-                ) : (
-                  <i className="fa-sharp fa-solid fa-xmark"></i>
-                )}
-              </span>
-            </h1>
-            <section id="profile">
-              <div className="input_wrapper">
-                <div className="field_header">
-                  <label>Name: </label>
-                  <i
-                    className="fa-regular fa-pen-to-square"
-                    onClick={() => handleEditClick("name")}
-                  ></i>
-                </div>
-                {isEditing.name ? (
-                  <div>
-                    <input
-                      type="text"
-                      value={profile.name}
-                      onChange={(e) => handleInputChange(e, "name")}
+        {!profile ? (
+          <div className="bestloading_ever">
+            <h1>Loading data, please wait...</h1>
+            <div className="loader-cart">
+              <div className="wrapper-loadin">
+                <div className="circle-cart"></div>
+                <div className="line-1"></div>
+                <div className="line-2"></div>
+                <div className="line-3"></div>
+                <div className="line-4"></div>
+                <div className="line-5"></div>
+                <div className="line-6"></div>
+                <div className="line-7"></div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <>
+            {profile && (
+              <Element name="profile" className="profile_main">
+                <h1>
+                  My profile
+                  <span
+                    onClick={() => {
+                      setShow(!show);
+                    }}
+                  >
+                    {!show ? (
+                      <i className="fa-solid fa-bars"></i>
+                    ) : (
+                      <i className="fa-sharp fa-solid fa-xmark"></i>
+                    )}
+                  </span>
+                </h1>
+                <section id="profile">
+                  <h3>Your Profile Image</h3>
+                  <div className="prfl-image">
+                    <img
+                      src={profile.image || noimage}
+                      alt="hllo"
                     />
-                    <div className="button">
-                      <button onClick={() => handleSaveClick("name")}>
-                        <i className="fa-solid fa-check"></i>
-                      </button>
+                    <form onSubmit={handleProfileSubmit}>
+                      <input
+                        type="file"
+                        onChange={handleImageChange}
+                        accept="uploads/*"
+                        name="image"
+                        className="hidden_input"
+                        ref={fileInputRef}
+                      />
+                      {selected && selectedImage.image.length !== 0 ? (
+                        <>
+                          <button className="form-sbmtt" type="submit">
+                            {!loaded ? (
+                              <>
+                                {profile.image.length > 4 ? (
+                                  <span>Update</span>
+                                ) : (
+                                  <span>Upload</span>
+                                )}
+                              </>
+                            ) : (
+                              <svg viewBox="25 25 50 50">
+                                <circle r="20" cy="50" cx="50"></circle>
+                              </svg>
+                            )}
+                          </button>
+                          <button
+                            className="form-sbmtt scnd"
+                            onClick={() => {
+                              setSelected(false);
+                              window.location.reload();
+                            }}
+                          >
+                            Cancel
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className="button_upld"
+                            onClick={handleButtonClick}
+                          >
+                            Upload
+                          </button>
+                        </>
+                      )}
+                    </form>
+                  </div>
+                  <div className="input_wrapper">
+                    <div className="field_header">
+                      <label>Name: </label>
+                      <i
+                        className="fa-regular fa-pen-to-square"
+                        onClick={() => handleEditClick("name")}
+                      ></i>
+                    </div>
+                    {isEditing.name ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={profile.name}
+                          onChange={(e) => handleInputChange(e, "name")}
+                        />
+                        <div className="button">
+                          <button onClick={() => handleSaveClick("name")}>
+                            <i className="fa-solid fa-check"></i>
+                          </button>
 
-                      <button onClick={() => handleCancelClick("name")}>
-                        <i className="fa-solid fa-xmark"></i>
-                      </button>
+                          <button onClick={() => handleCancelClick("name")}>
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <span>{profile.name}</span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="input_wrapper">
+                    <div className="field_header">
+                      <label>Position: </label>
+                      <i
+                        className="fa-regular fa-pen-to-square"
+                        onClick={() => handleEditClick("position")}
+                      ></i>
                     </div>
+                    {isEditing.position ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={profile.position}
+                          onChange={(e) => handleInputChange(e, "position")}
+                        />
+                        <div className="button">
+                          <button onClick={() => handleSaveClick("position")}>
+                            <i className="fa-solid fa-check"></i>
+                          </button>
+                          <button onClick={() => handleCancelClick("position")}>
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <span>{profile.position}</span>
+                        </p>
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <div>
-                    <p>
-                      <span>{profile.name}</span>
-                    </p>
+                  <div className="input_wrapper">
+                    <div className="field_header">
+                      <label>Description: </label>
+                      <i
+                        className="fa-regular fa-pen-to-square"
+                        onClick={() => handleEditClick("description")}
+                      ></i>
+                    </div>
+                    {isEditing.description ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={profile.description}
+                          onChange={(e) => handleInputChange(e, "description")}
+                        />
+                        <div className="button">
+                          <button
+                            onClick={() => handleSaveClick("description")}
+                          >
+                            <i className="fa-solid fa-check"></i>
+                          </button>
+                          <button
+                            onClick={() => handleCancelClick("description")}
+                          >
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <span>{profile.description}</span>
+                        </p>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-              <div className="input_wrapper">
-                <div className="field_header">
-                  <label>Position: </label>
-                  <i
-                    className="fa-regular fa-pen-to-square"
-                    onClick={() => handleEditClick("position")}
-                  ></i>
+                  {profile.user_type === "dev" ? (
+                    <div className="input_wrapper">
+                      <div className="field_header">
+                        <label>Website Link: </label>
+                        <i
+                          className="fa-regular fa-pen-to-square"
+                          onClick={() => handleEditClick("website_link")}
+                        ></i>
+                      </div>
+                      {isEditing.website_link ? (
+                        <div>
+                          <input
+                            type="text"
+                            value={profile.website_link}
+                            onChange={(e) =>
+                              handleInputChange(e, "website_link")
+                            }
+                          />
+                          <div className="button">
+                            <button
+                              onClick={() => handleSaveClick("website_link")}
+                            >
+                              <i className="fa-solid fa-check"></i>
+                            </button>
+                            <button
+                              onClick={() => handleCancelClick("website_link")}
+                            >
+                              <i className="fa-solid fa-xmark"></i>
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <p>
+                            <span>{profile.website_link}</span>
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  ) : null}
+                  <div className="input_wrapper">
+                    <div className="field_header">
+                      <label>Facebook: </label>
+                      <i
+                        className="fa-regular fa-pen-to-square"
+                        onClick={() => handleEditClick("facebook")}
+                      ></i>
+                    </div>
+                    {isEditing.facebook ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={profile.facebook}
+                          onChange={(e) => handleInputChange(e, "facebook")}
+                        />
+                        <div className="button">
+                          <button onClick={() => handleSaveClick("facebook")}>
+                            <i className="fa-solid fa-check"></i>
+                          </button>
+                          <button onClick={() => handleCancelClick("facebook")}>
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <span>{profile.facebook}</span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="input_wrapper">
+                    <div className="field_header">
+                      <label>Instagram: </label>
+                      <i
+                        className="fa-regular fa-pen-to-square"
+                        onClick={() => handleEditClick("instagram")}
+                      ></i>
+                    </div>
+                    {isEditing.instagram ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={profile.instagram}
+                          onChange={(e) => handleInputChange(e, "instagram")}
+                        />
+                        <div className="button">
+                          <button onClick={() => handleSaveClick("instagram")}>
+                            <i className="fa-solid fa-check"></i>
+                          </button>
+                          <button
+                            onClick={() => handleCancelClick("instagram")}
+                          >
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <span>{profile.instagram}</span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="input_wrapper">
+                    <div className="field_header">
+                      <label>Github: </label>
+                      <i
+                        className="fa-regular fa-pen-to-square"
+                        onClick={() => handleEditClick("github")}
+                      ></i>
+                    </div>
+                    {isEditing.github ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={profile.github}
+                          onChange={(e) => handleInputChange(e, "github")}
+                        />
+                        <div className="button">
+                          <button onClick={() => handleSaveClick("github")}>
+                            <i className="fa-solid fa-check"></i>
+                          </button>
+                          <button onClick={() => handleCancelClick("github")}>
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <span>{profile.github}</span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                  <div className="input_wrapper">
+                    <div className="field_header">
+                      <label>LinkedIn: </label>
+                      <i
+                        className="fa-regular fa-pen-to-square"
+                        onClick={() => handleEditClick("linkedin")}
+                      ></i>
+                    </div>
+                    {isEditing.linkedin ? (
+                      <div>
+                        <input
+                          type="text"
+                          value={profile.linkedin}
+                          onChange={(e) => handleInputChange(e, "linkedin")}
+                        />
+                        <div className="button">
+                          <button onClick={() => handleSaveClick("linkedin")}>
+                            <i className="fa-solid fa-check"></i>
+                          </button>
+                          <button onClick={() => handleCancelClick("linkedin")}>
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <span>{profile.linkedin}</span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </section>
+              </Element>
+            )}
+
+            <Element name="cv" className="cv_main">
+              <h1 className="h1">My Cv</h1>
+              <section id="cv">
+                <div className="cv_header-wrp">
+                  <h3>Your Cv Image</h3>
+                  <button
+                    className="cv_head-btn"
+                    onClick={() => navigate("/cv", { state: { id: user._id } })}
+                  >
+                    View cv
+                    <svg
+                      viewBox="0 0 16 16"
+                      className="bi bi-arrow-right"
+                      fill="currentColor"
+                      height="20"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
+                        fillRule="evenodd"
+                      ></path>
+                    </svg>
+                  </button>
                 </div>
-                {isEditing.position ? (
-                  <div>
+                <div className="prfl-image">
+                  <img
+                    src={cv.image || noimage}
+                    alt="hllo"
+                  />
+                  <form onSubmit={handleCvSubmit}>
                     <input
-                      type="text"
-                      value={profile.position}
-                      onChange={(e) => handleInputChange(e, "position")}
+                      type="file"
+                      onChange={handleImageChange}
+                      accept="uploads/*"
+                      name="image"
+                      className="hidden_input"
+                      ref={filecvInputRef}
                     />
-                    <div className="button">
-                      <button onClick={() => handleSaveClick("position")}>
-                        <i className="fa-solid fa-check"></i>
-                      </button>
-                      <button onClick={() => handleCancelClick("position")}>
-                        <i className="fa-solid fa-xmark"></i>
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p>
-                      <span>{profile.position}</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-              <div className="input_wrapper">
-                <div className="field_header">
-                  <label>Description: </label>
-                  <i
-                    className="fa-regular fa-pen-to-square"
-                    onClick={() => handleEditClick("description")}
-                  ></i>
+                    {selectedCv && selectedImage.image.length !== 0 ? (
+                      <>
+                        <button className="form-sbmtt" type="submit">
+                          {!loaded ? (
+                            <>
+                              {profile.image.length > 4 ? (
+                                <span>Update</span>
+                              ) : (
+                                <span>Upload</span>
+                              )}
+                            </>
+                          ) : (
+                            <svg viewBox="25 25 50 50">
+                              <circle r="20" cy="50" cx="50"></circle>
+                            </svg>
+                          )}
+                        </button>
+                        <button
+                          className="form-sbmtt scnd"
+                          onClick={() => {
+                            setSelectedCv(false);
+                            window.location.reload();
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="button_upld"
+                          onClick={handleCvButtonClick}
+                        >
+                          Upload
+                        </button>
+                      </>
+                    )}
+                  </form>
                 </div>
-                {isEditing.description ? (
-                  <div>
-                    <input
-                      type="text"
-                      value={profile.description}
-                      onChange={(e) => handleInputChange(e, "description")}
-                    />
-                    <div className="button">
-                      <button onClick={() => handleSaveClick("description")}>
-                        <i className="fa-solid fa-check"></i>
-                      </button>
-                      <button onClick={() => handleCancelClick("description")}>
-                        <i className="fa-solid fa-xmark"></i>
-                      </button>
+                <div className="input_wrapper">
+                  <div className="field_header">
+                    <label>Name: </label>
+                    <i
+                      className="fa-regular fa-pen-to-square"
+                      onClick={() => handleEditCvClick("name")}
+                    ></i>
+                  </div>
+                  {isCvEditing.name ? (
+                    <div>
+                      <input
+                        type="text"
+                        value={cv.name}
+                        onChange={(e) => handleInputCvChange(e, "name")}
+                      />
+                      <div className="button">
+                        <button onClick={() => handleSaveCvClick("name")}>
+                          <i className="fa-solid fa-check"></i>
+                        </button>
+
+                        <button onClick={() => handleCancelCvClick("name")}>
+                          <i className="fa-solid fa-xmark"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p>
-                      <span>{profile.description}</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-              {profile.user_type === "dev"
-              ?
-              <div className="input_wrapper">
-                <div className="field_header">
-                  <label>Website Link: </label>
-                  <i
-                    className="fa-regular fa-pen-to-square"
-                    onClick={() => handleEditClick("website_link")}
-                  ></i>
+                  ) : (
+                    <div>
+                      <p>
+                        <span>{cv?.name}</span>
+                      </p>
+                    </div>
+                  )}
                 </div>
-                {isEditing.website_link ? (
-                  <div>
-                    <input
-                      type="text"
-                      value={profile.website_link}
-                      onChange={(e) => handleInputChange(e, "website_link")}
-                    />
-                    <div className="button">
-                      <button onClick={() => handleSaveClick("website_link")}>
-                        <i className="fa-solid fa-check"></i>
-                      </button>
-                      <button onClick={() => handleCancelClick("website_link")}>
-                        <i className="fa-solid fa-xmark"></i>
-                      </button>
+                <div className="input_wrapper">
+                  <div className="field_header">
+                    <label>Email address: </label>
+                    <i
+                      className="fa-regular fa-pen-to-square"
+                      onClick={() => handleEditCvClick("email")}
+                    ></i>
+                  </div>
+                  {isCvEditing.email ? (
+                    <div>
+                      <input
+                        type="text"
+                        value={cv.email}
+                        onChange={(e) => handleInputCvChange(e, "email")}
+                      />
+                      <div className="button">
+                        <button onClick={() => handleSaveCvClick("email")}>
+                          <i className="fa-solid fa-check"></i>
+                        </button>
+                        <button onClick={() => handleCancelCvClick("email")}>
+                          <i className="fa-solid fa-xmark"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p>
-                      <span>{profile.website_link}</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-              : null
-              }
-              <div className="input_wrapper">
-                <div className="field_header">
-                  <label>Facebook: </label>
-                  <i
-                    className="fa-regular fa-pen-to-square"
-                    onClick={() => handleEditClick("facebook")}
-                  ></i>
+                  ) : (
+                    <div>
+                      <p>
+                        <span>{cv?.email}</span>
+                      </p>
+                    </div>
+                  )}
                 </div>
-                {isEditing.facebook ? (
-                  <div>
-                    <input
-                      type="text"
-                      value={profile.facebook}
-                      onChange={(e) => handleInputChange(e, "facebook")}
-                    />
-                    <div className="button">
-                      <button onClick={() => handleSaveClick("facebook")}>
-                        <i className="fa-solid fa-check"></i>
-                      </button>
-                      <button onClick={() => handleCancelClick("facebook")}>
-                        <i className="fa-solid fa-xmark"></i>
-                      </button>
+                <div className="input_wrapper">
+                  <div className="field_header">
+                    <label>About me: </label>
+                    <i
+                      className="fa-regular fa-pen-to-square"
+                      onClick={() => handleEditCvClick("about_me")}
+                    ></i>
+                  </div>
+                  {isCvEditing.about_me ? (
+                    <div>
+                      <input
+                        type="text"
+                        value={cv.about_me}
+                        onChange={(e) => handleInputCvChange(e, "about_me")}
+                      />
+                      <div className="button">
+                        <button onClick={() => handleSaveCvClick("about_me")}>
+                          <i className="fa-solid fa-check"></i>
+                        </button>
+                        <button onClick={() => handleCancelCvClick("about_me")}>
+                          <i className="fa-solid fa-xmark"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p>
-                      <span>{profile.facebook}</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-              <div className="input_wrapper">
-                <div className="field_header">
-                  <label>Instagram: </label>
-                  <i
-                    className="fa-regular fa-pen-to-square"
-                    onClick={() => handleEditClick("instagram")}
-                  ></i>
+                  ) : (
+                    <div>
+                      <p>
+                        <span>{cv?.about_me}</span>
+                      </p>
+                    </div>
+                  )}
                 </div>
-                {isEditing.instagram ? (
-                  <div>
-                    <input
-                      type="text"
-                      value={profile.instagram}
-                      onChange={(e) => handleInputChange(e, "instagram")}
-                    />
-                    <div className="button">
-                      <button onClick={() => handleSaveClick("instagram")}>
-                        <i className="fa-solid fa-check"></i>
-                      </button>
-                      <button onClick={() => handleCancelClick("instagram")}>
-                        <i className="fa-solid fa-xmark"></i>
-                      </button>
+                <div className="input_wrapper">
+                  <div className="field_header">
+                    <label>Phone Number: </label>
+                    <i
+                      className="fa-regular fa-pen-to-square"
+                      onClick={() => handleEditCvClick("phone")}
+                    ></i>
+                  </div>
+                  {isCvEditing.phone ? (
+                    <div>
+                      <input
+                        type="text"
+                        value={cv.phone}
+                        onChange={(e) => handleInputCvChange(e, "phone")}
+                      />
+                      <div className="button">
+                        <button onClick={() => handleSaveCvClick("phone")}>
+                          <i className="fa-solid fa-check"></i>
+                        </button>
+                        <button onClick={() => handleCancelCvClick("phone")}>
+                          <i className="fa-solid fa-xmark"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p>
-                      <span>{profile.instagram}</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-              <div className="input_wrapper">
-                <div className="field_header">
-                  <label>Github: </label>
-                  <i
-                    className="fa-regular fa-pen-to-square"
-                    onClick={() => handleEditClick("github")}
-                  ></i>
+                  ) : (
+                    <div>
+                      <p>
+                        <span>{cv?.phone}</span>
+                      </p>
+                    </div>
+                  )}
                 </div>
-                {isEditing.github ? (
-                  <div>
-                    <input
-                      type="text"
-                      value={profile.github}
-                      onChange={(e) => handleInputChange(e, "github")}
-                    />
-                    <div className="button">
-                      <button onClick={() => handleSaveClick("github")}>
-                        <i className="fa-solid fa-check"></i>
-                      </button>
-                      <button onClick={() => handleCancelClick("github")}>
-                        <i className="fa-solid fa-xmark"></i>
-                      </button>
+                <div className="input_wrapper">
+                  <div className="field_header">
+                    <label>Age: </label>
+                    <i
+                      className="fa-regular fa-pen-to-square"
+                      onClick={() => handleEditCvClick("age")}
+                    ></i>
+                  </div>
+                  {isCvEditing.age ? (
+                    <div>
+                      <input
+                        type="text"
+                        value={cv.age}
+                        onChange={(e) => handleInputCvChange(e, "age")}
+                      />
+                      <div className="button">
+                        <button onClick={() => handleSaveCvClick("age")}>
+                          <i className="fa-solid fa-check"></i>
+                        </button>
+                        <button onClick={() => handleCancelCvClick("age")}>
+                          <i className="fa-solid fa-xmark"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p>
-                      <span>{profile.github}</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-              <div className="input_wrapper">
-                <div className="field_header">
-                  <label>LinkedIn: </label>
-                  <i
-                    className="fa-regular fa-pen-to-square"
-                    onClick={() => handleEditClick("linkedin")}
-                  ></i>
+                  ) : (
+                    <div>
+                      <p>
+                        <span>{cv?.age}</span>
+                      </p>
+                    </div>
+                  )}
                 </div>
-                {isEditing.linkedin ? (
-                  <div>
-                    <input
-                      type="text"
-                      value={profile.linkedin}
-                      onChange={(e) => handleInputChange(e, "linkedin")}
-                    />
-                    <div className="button">
-                      <button onClick={() => handleSaveClick("linkedin")}>
-                        <i className="fa-solid fa-check"></i>
-                      </button>
-                      <button onClick={() => handleCancelClick("linkedin")}>
-                        <i className="fa-solid fa-xmark"></i>
-                      </button>
+                <div className="input_wrapper">
+                  <div className="field_header">
+                    <label>Position:</label>
+                    <i
+                      className="fa-regular fa-pen-to-square"
+                      onClick={() => handleEditCvClick("position")}
+                    ></i>
+                  </div>
+                  {isCvEditing.position ? (
+                    <div>
+                      <input
+                        type="text"
+                        value={cv.position}
+                        onChange={(e) => handleInputCvChange(e, "position")}
+                      />
+                      <div className="button">
+                        <button onClick={() => handleSaveCvClick("position")}>
+                          <i className="fa-solid fa-check"></i>
+                        </button>
+                        <button onClick={() => handleCancelCvClick("position")}>
+                          <i className="fa-solid fa-xmark"></i>
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div>
-                    <p>
-                      <span>{profile.linkedin}</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-            </section>
-          </Element>
+                  ) : (
+                    <div>
+                      <p>
+                        <span>{cv?.position}</span>
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </section>
+            </Element>
+            <Education />
+            <Experience />
+          </>
         )}
-
-        <Element name="cv" className="cv_main">
-          <h1 className="h1">My Cv</h1>
-          <section id="cv">
-            <div className="input_wrapper">
-              <div className="field_header">
-                <label>Name: </label>
-                <i
-                  className="fa-regular fa-pen-to-square"
-                  onClick={() => handleEditCvClick("name")}
-                ></i>
-              </div>
-              {isCvEditing.name ? (
-                <div>
-                  <input
-                    type="text"
-                    value={cv.name}
-                    onChange={(e) => handleInputCvChange(e, "name")}
-                  />
-                  <div className="button">
-                    <button onClick={() => handleSaveCvClick("name")}>
-                      <i className="fa-solid fa-check"></i>
-                    </button>
-
-                    <button onClick={() => handleCancelCvClick("name")}>
-                      <i className="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <p>
-                    <span>{cv?.name}</span>
-                  </p>
-                </div>
-              )}
-            </div>
-            <div className="input_wrapper">
-              <div className="field_header">
-                <label>Email address: </label>
-                <i
-                  className="fa-regular fa-pen-to-square"
-                  onClick={() => handleEditCvClick("email")}
-                ></i>
-              </div>
-              {isCvEditing.email ? (
-                <div>
-                  <input
-                    type="text"
-                    value={cv.email}
-                    onChange={(e) => handleInputCvChange(e, "email")}
-                  />
-                  <div className="button">
-                    <button onClick={() => handleSaveCvClick("email")}>
-                      <i className="fa-solid fa-check"></i>
-                    </button>
-                    <button onClick={() => handleCancelCvClick("email")}>
-                      <i className="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <p>
-                    <span>{cv?.email}</span>
-                  </p>
-                </div>
-              )}
-            </div>
-            <div className="input_wrapper">
-              <div className="field_header">
-                <label>About me: </label>
-                <i
-                  className="fa-regular fa-pen-to-square"
-                  onClick={() => handleEditCvClick("about_me")}
-                ></i>
-              </div>
-              {isCvEditing.about_me ? (
-                <div>
-                  <input
-                    type="text"
-                    value={cv.about_me}
-                    onChange={(e) => handleInputCvChange(e, "about_me")}
-                  />
-                  <div className="button">
-                    <button onClick={() => handleSaveCvClick("about_me")}>
-                      <i className="fa-solid fa-check"></i>
-                    </button>
-                    <button onClick={() => handleCancelCvClick("about_me")}>
-                      <i className="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <p>
-                    <span>{cv?.about_me}</span>
-                  </p>
-                </div>
-              )}
-            </div>
-            <div className="input_wrapper">
-              <div className="field_header">
-                <label>Phone Number: </label>
-                <i
-                  className="fa-regular fa-pen-to-square"
-                  onClick={() => handleEditCvClick("phone")}
-                ></i>
-              </div>
-              {isCvEditing.phone ? (
-                <div>
-                  <input
-                    type="text"
-                    value={cv.phone}
-                    onChange={(e) => handleInputCvChange(e, "phone")}
-                  />
-                  <div className="button">
-                    <button onClick={() => handleSaveCvClick("phone")}>
-                      <i className="fa-solid fa-check"></i>
-                    </button>
-                    <button onClick={() => handleCancelCvClick("phone")}>
-                      <i className="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <p>
-                    <span>{cv?.phone}</span>
-                  </p>
-                </div>
-              )}
-            </div>
-            <div className="input_wrapper">
-              <div className="field_header">
-                <label>Age: </label>
-                <i
-                  className="fa-regular fa-pen-to-square"
-                  onClick={() => handleEditCvClick("age")}
-                ></i>
-              </div>
-              {isCvEditing.age ? (
-                <div>
-                  <input
-                    type="text"
-                    value={cv.age}
-                    onChange={(e) => handleInputCvChange(e, "age")}
-                  />
-                  <div className="button">
-                    <button onClick={() => handleSaveCvClick("age")}>
-                      <i className="fa-solid fa-check"></i>
-                    </button>
-                    <button onClick={() => handleCancelCvClick("age")}>
-                      <i className="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <p>
-                    <span>{cv?.age}</span>
-                  </p>
-                </div>
-              )}
-            </div>
-            <div className="input_wrapper">
-              <div className="field_header">
-                <label>Position:</label>
-                <i
-                  className="fa-regular fa-pen-to-square"
-                  onClick={() => handleEditCvClick("position")}
-                ></i>
-              </div>
-              {isCvEditing.position ? (
-                <div>
-                  <input
-                    type="text"
-                    value={cv.position}
-                    onChange={(e) => handleInputCvChange(e, "position")}
-                  />
-                  <div className="button">
-                    <button onClick={() => handleSaveCvClick("position")}>
-                      <i className="fa-solid fa-check"></i>
-                    </button>
-                    <button onClick={() => handleCancelCvClick("position")}>
-                      <i className="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <p>
-                    <span>{cv?.position}</span>
-                  </p>
-                </div>
-              )}
-            </div>
-            <div className="input_wrapper">
-              <div className="field_header">
-                <label>Cv Image: </label>
-                <i
-                  className="fa-regular fa-pen-to-square"
-                  onClick={() => handleEditCvClick("image")}
-                ></i>
-              </div>
-              {isCvEditing.image ? (
-                <div>
-                  <input
-                    type="text"
-                    value={cv.image}
-                    onChange={(e) => handleInputCvChange(e, "image")}
-                  />
-                  <div className="button">
-                    <button onClick={() => handleSaveCvClick("image")}>
-                      <i className="fa-solid fa-check"></i>
-                    </button>
-                    <button onClick={() => handleCancelCvClick("image")}>
-                      <i className="fa-solid fa-xmark"></i>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <p>
-                    <span>{cv?.image}</span>
-                  </p>
-                </div>
-              )}
-            </div>
-          </section>
-        </Element>
-        <Education />
-        <Experience />
       </div>
     </div>
   );

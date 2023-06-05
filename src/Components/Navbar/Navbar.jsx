@@ -21,26 +21,32 @@ const Navbar = () => {
   const [down, setDown] = useState(false);
 
   useEffect(() => {
-    const getProfile = async () => {
-      const user = JSON.parse(localStorage.getItem("user"));
-      try {
-        const res = await axios.get(
-          `https://appreciate-b.onrender.com/profile/${user._id}`
-        );
-        if (res.data.message === "No") {
+    setTimeout(() => {
+      const getProfile = async () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        try {
+          const res = await axios.get(
+            `https://appreciate-b.onrender.com/profile/${user._id}`
+          );
+          if (res.data.message === "No") {
+            setDrop(null);
+          } else {
+            setDrop(res.data);
+          }
+        } catch (err) {
+          console.log("Error occurred while fetching profile:", err.message);
           setDrop(null);
-        } else {
-          setDrop(res.data);
         }
-      } catch (err) {
-        console.log("Error occurred while fetching profile:", err.message);
-        setDrop(null);
-      }
-    };
+      };
 
-    getProfile();
+      getProfile();
+
+    }, 3000);
+   
+
   }, []);
 
+  
   function changeColor() {
     if (window.scrollY >= 90) {
       setColor(true);
@@ -59,7 +65,6 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/");
   }
-  console.log(user);
 
   return (
     <>
@@ -181,7 +186,7 @@ const Navbar = () => {
                 >
                   Contact me
                 </Link> */}
-                <Lol to="/#footer">
+                <Lol smooth to="/#footer">
                   Contact Me
                 </Lol>
               </li>
@@ -189,7 +194,7 @@ const Navbar = () => {
 
             {token && token.length > 18 ? (
               <div className="lgd-in-dropdown">
-                <img src={drop == null ? noprofile : drop.image} alt="" />
+                <img src={drop === null ? noprofile : drop.image} alt="" />
                 <p
                   className="name_p"
                   onClick={() => {
@@ -210,7 +215,7 @@ const Navbar = () => {
                     ) : null}
                     {user.role === "superAdmin" ? (
                       <a href="/dashboard" id="for_backgound">
-                        <i class="fa-sharp fa-solid fa-gears"></i> Dashboard
+                        <i className="fa-sharp fa-solid fa-gears"></i> Dashboard
                       </a>
                     ) : null}
                     <p onClick={handleLogout}>

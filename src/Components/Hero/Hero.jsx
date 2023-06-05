@@ -5,6 +5,15 @@ import HeroSvg from '../svg-comp/HeroSvg';
 import raoul from '../../Assets/raoul(3).jpeg'
 
 const Hero = () => {
+  const handleKeyDown = (e, elementId) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
   return (
     <Element name="home">
       <section id="hero">
@@ -19,12 +28,13 @@ const Hero = () => {
             </p>
             <p>See more about this website</p>
             <Link
-            to="developers"
+            to="about"
             spy={true}
             smooth={true}
             offset={0}
             duration={500}
             tabIndex={0}
+            onKeyDown={(e) => handleKeyDown(e, "about")}
             >
               See more
             </Link>

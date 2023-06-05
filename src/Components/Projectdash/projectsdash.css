@@ -1,0 +1,136 @@
+.projects-dash .showw{
+  height: 78dvh!important;
+}
+
+
+
+#msgs-incomes{
+  padding: 0;
+  max-width: 75%;
+}
+
+.members_main h1 {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+}
+
+
+.projects-dash{
+  padding: 40px;
+}
+
+
+.projects-dash .msgs-incomes{
+  max-width: 90%;
+}
+@media all and (max-width:500px) {
+  #msgs-incomes{
+    width: 100%;
+    max-width: 100%;
+  }
+
+/* .profile_nav {
+  width: 100%!important;
+} */
+
+.members_main h1{
+  margin: 0 auto;
+  width: 90%;
+}
+
+.search-input{
+  width: 75%;
+}
+}
+
+
+
+
+.dsh-pr-card{
+  width: 400px;
+  min-height: 50vh;
+  background-color: white;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+
+.head_dash-crd img{
+  padding: 2px;
+  max-height: 170px;
+  width: 100%;
+  box-shadow: 0px 0px 6px rgba(2, 8, 124, 0.25);
+  object-fit: cover;
+  background-color: var(--primary-color);
+}
+
+
+.body_dash-crd{
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 10px;
+}
+
+
+
+.prjct_edit-trg{
+  position: relative;
+  padding: 6px 15px;
+  width: fit-content;
+  outline: none!important;
+  border: 1px solid rgb(255, 0, 0);
+  border-radius: 5px;
+  background-color: none!important;
+  background: none!important;
+  color: rgb(255, 0, 0);
+  cursor: pointer;
+  transition: .2s all ease;
+}
+
+
+.edit_prjct-frm{
+  background-color: #fff;
+  width: 300px;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  padding: 30px;
+  min-height: 300px;
+  position: absolute;
+  bottom: 0vh;
+  cursor: default;
+  left: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.edc-btn-main_prjct{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+} 
+
+.for_admin-btns_prjct{
+  padding: 10px;
+  background-color: white;
+  background: white;
+  outline: none;
+  cursor: pointer;
+
+  border: none;
+}
+
+
+@media all and (max-width:700px) {
+  .head_dash-crd img{
+    max-height: 110px;
+  }
+
+  .body_dash-crd h2{
+    font-size: 17px;
+  }
+
+
+}

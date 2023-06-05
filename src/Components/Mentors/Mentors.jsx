@@ -9,7 +9,8 @@ function Mentors() {
   const [activeItem, setActiveItem] = useState(1);
 
   useEffect(() => {
-    axios
+    setTimeout(() => {
+      axios
       .get("https://appreciate-b.onrender.com/profile")
       .then((res) => {
         const mentorData = res.data.filter(
@@ -18,14 +19,14 @@ function Mentors() {
         setMentor(mentorData);
       })
       .catch((err) => console.log(err));
+    }, 3000);
   }, []);
 
   const handleItemClick = (index) => {
     setActiveItem(index);
   };
-  console.log(mentor);
   return (
-    <Element name="mentors">
+    <Element name="mentors" className="fix-top">
       <section id="mentors">
         <h1>Codi Team</h1>
         <div className="mentors_left">
@@ -41,7 +42,7 @@ function Mentors() {
                       style={{ "--i": index + 1 }}
                       onClick={() => handleItemClick(index)}
                     >
-                      <img src={item.image.length > 4 ? item.image : noimage} alt={`${item.name}'s pic`} />
+                      <img src={item.image || noimage} alt={`${item.name}'s pic`} />
                     </div>
 
                     <div
@@ -52,7 +53,7 @@ function Mentors() {
                     >
                       <div className="card">
                         <div className="imgBox">
-                          <img src={item.image.length > 4 ? item.image : noimage} alt={`${item.name}'s pic`} />
+                          <img src={item.image || noimage} alt={`${item.name}'s pic`} />
                         </div>
                         <div className="textBx">
                           <h2>
@@ -65,22 +66,22 @@ function Mentors() {
                           </h3>
                           <ul className="sci">
                             <li>
-                              <a href={item.facebook}>
+                              <a href={item.facebook} target="_blank" rel="noopener noreferrer">
                                 <i className="fa-brands fa-facebook-f"></i>
                               </a>
                             </li>
                             <li>
-                              <a href={item.github}>
+                              <a href={item.github} target="_blank" rel="noopener noreferrer">
                                 <i className="fa-brands fa-github"></i>
                               </a>
                             </li>
                             <li>
-                              <a href={item.instagram}>
+                              <a href={item.instagram} target="_blank" rel="noopener noreferrer">
                                 <i className="fa-brands fa-instagram"></i>
                               </a>
                             </li>
                             <li>
-                              <a href={item.linkedin}>
+                              <a href={item.linkedin} target="_blank" rel="noopener noreferrer">
                                 <i className="fa-brands fa-linkedin-in"></i>
                               </a>
                             </li>

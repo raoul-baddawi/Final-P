@@ -5,8 +5,9 @@
   grid-template-columns: 1fr 2fr 1fr;
   grid-row: 2;
   margin: 0 auto;
-  background-color:rgb(7 63 255 / 12%);
+  background-color:rgb(239 243 255);
 }
+
 
 .chatMenuInput {
   width: 90%;
@@ -28,7 +29,7 @@
   height: 100%;
   overflow-y: scroll;
   padding-right: 10px;
-  max-height: 67vh;
+  max-height: 72vh;
   /* border-bottom: 4px solid white; */
 }
 
@@ -39,6 +40,7 @@
   background-color: white;
   padding: 10px;
   border-radius: 13px;
+  gap: 5px;
 }
 
 .chatMessageInput {
@@ -68,6 +70,8 @@
 }
 
 .chatOnlineWrapper {
+  overflow-y: scroll;
+  height: 89vh;
   border-radius: 20px;
   background-color: white;
 }
@@ -85,7 +89,7 @@
   top: 50%;
   transform: translate(-50%, -50%);
   left: 50%;
-  font-size: 50px;
+  font-size: clamp(0.4375rem, -0.0408rem + 2.3913vw, 2.5rem);
   color: rgb(108, 140, 248);
   cursor: default;
   text-align: center;
@@ -105,10 +109,14 @@
 }
 
 .nothing.active{
-  background-color: rgb(7 63 255 / 12%);
+  background-color: rgb(239 243 255);
 }
 
 
+.nothing:is( :hover){
+  outline: none;
+}
+.nothing:is( :hover) .conversation::before,
 .nothing.active .conversation::before{
   content: '';
   display: block;
@@ -125,11 +133,12 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  z-index: 9;
+  z-index: 0;
   width: 70px;
   height: 100%;
 } 
 
+/*tzakkar*/
 .nothing.active .for-effect::before{
   content: '';
   display: block;
@@ -152,7 +161,7 @@
   height: 100%;
   z-index: 7;
   width: 50px;
-  background-color: rgb(7 63 255 / 12%);
+  background-color: rgb(239 243 255);
 }
 
 .nothing.active::after{
@@ -177,7 +186,7 @@
   height: 100%;
   z-index: 9;
   width: 50px;
-  background-color: rgb(7 63 255 / 12%);
+  background-color: rgb(239 243 255);
 }
 .nothing.active:first-of-type::after{
   content: '';
@@ -196,6 +205,7 @@
 .chatBoxTop::-webkit-scrollbar {
   height: 2px;
   margin-bottom: 20px;
+  width: 8px;
 }
 
 .chatBoxTop::-webkit-scrollbar-track {
@@ -217,4 +227,71 @@
 .chat-header{
   height: 100px;
   padding: 20px;
+}
+
+.chat-header h1{
+position: relative;
+z-index: 9;
+}
+
+.toleft{
+  transform: rotate(180deg);
+  animation: rotleft .2s linear;
+}
+
+@keyframes rotleft {
+  0%{
+    transform: rotate(0deg);
+
+  }
+  100%{
+    transform: rotate(180deg);
+  }
+}
+
+
+.toright{
+  transform: rotate(0deg);
+  animation: rotright .2s linear;
+}
+
+@keyframes rotright {
+  0%{
+    transform: rotate(180deg);
+
+
+  }
+  100%{
+    transform: rotate(0deg);
+
+  }
+}
+
+@media all and (max-width:1000px) {
+  .noConversationText {
+    font-size: clamp(1.3rem, 0.2rem + 2.3913vw, 2.5rem);
+  }
+}
+
+
+@media all and (max-width:350px) {
+  .nothing.active::after,
+  .nothing.active::before {
+    top: -80%;
+    height: 80%;
+}
+
+.conversationImg{
+  margin: 0 auto;
+}
+
+.conversationName {
+  font-size: 11px;
+}
+
+
+
+.chat-header h1{
+  font-size: 22px;
+  }
 }

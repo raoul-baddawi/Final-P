@@ -85,9 +85,8 @@ header a:is(:hover){
   font-size: 18px;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
   padding: 5px;
-  /* border-radius: 100px; */
-  /* border-top-right-radius: 20px; */
   border-radius: 5px;
+  min-width: 150px;
 }
 
 .drop_div {
@@ -215,6 +214,7 @@ header a:is(:hover){
     object-fit: cover;
     border-radius: 50%;
     border: 1px solid black;
+    flex-shrink: 0;
   }
   .nav-menu.active{
     left: 0;
@@ -325,8 +325,108 @@ header a:is(:hover){
   }
 }
 
+
+
+@media (max-width: 300px){
+
+
+  .name_img-wrp{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  /* .logo{
+   
+  } */
+
+  .logo img{
+    width: 40px;
+    object-fit: contain;
+    height: 40px;
+  }
+  .logo h1{
+    font-size: 13px;
+  }
+}
+
+
+@media all and (max-width:200px) {
+  .header{
+    height: 23px;
+  }
+
+  #root{
+    grid-template-rows: 23px minmax(90dvh, auto);
+  }
+
+  .burger-menu{
+    padding-right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .burger-menu svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .chatMessageInput{
+    font-size: 5px;
+    height: 30px!important;
+    padding: 4px;
+  }
+
+  .chatMessageInput::placeholder{
+    font-size: 5px;
+  }
+  .chatSubmitButton{
+    height: 20px!important;
+  }
+
+  .nav-menu{
+    top: 1.4rem;
+    max-width: 56vh;
+    gap: 0;
+  }
+
+  .drp_dwn_phone .name_img-wrp p{
+    font-size: 8px;
+    padding: 3px;
+  }
+
+  .name_img-wrp img{
+    width: 17px;
+    height: 17px;
+  }
+
+  .name_img-wrp{
+    padding: 0px;
+    padding-inline: 5px;
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .drp_dwn_phone a,
+  .drp_dwn_phone p{
+    padding: 4px;
+    padding-inline: 5px;
+    font-size: 8px;
+  }
+
+
+  .nav-menu_body a{
+
+    padding: 4px;
+    padding-inline: 5px;
+    font-size: 5px;
+    text-align: center;
+  }
+}
+
+
 .drop a{
   gap: 2px;
   display: flex;
   align-items: center;
 }
+
