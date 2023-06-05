@@ -84,6 +84,13 @@ border-radius: 10px;
 }
 
 
+
+@media all and (max-width:970px) {
+.skill_body span {
+  font-size: clamp(0.625rem, 0.19rem + 1.1594vw, 1.625rem);
+}
+}
+
 @media all and (max-width:800px) {
   #skills{
     flex-wrap: nowrap;
@@ -101,7 +108,7 @@ border-radius: 10px;
 
   
   .skill_body span {
-    font-size: clamp(0.9375rem, 0.7781rem + 0.7971vw, 1.625rem);
+    font-size: clamp(0.9375rem, 0.4781rem + 0.7971vw, 1.625rem);
   }
 }
 
