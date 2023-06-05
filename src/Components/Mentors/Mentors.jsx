@@ -8,6 +8,7 @@ function Mentors() {
   const [mentor, setMentor] = useState([]);
   const [activeItem, setActiveItem] = useState(1);
 
+  console.log(mentor)
   useEffect(() => {
     setTimeout(() => {
       axios
@@ -60,8 +61,8 @@ function Mentors() {
                             {item.user_type}
                             <br></br>
                           </h2>
-                          <h3>
-                            {item.name}
+                          <h3 className="overflowing_h3">
+                            {item.position}
                             <br></br>
                           </h3>
                           <ul className="sci">

@@ -48,7 +48,7 @@
   transition: 0.5s;
   border: 1px solid #fff;
   box-shadow: 0 0 0 4px #222, 0 0 0 6px #fff;
-  transform: rotate(calc(413deg / 8 * var(--i)));
+  transform: rotate(calc(360deg / 11 * var(--i)));
   transform-origin: 315px;
   z-index: 100;
   overflow: hidden;
@@ -66,13 +66,13 @@
   width: 99%;
   height: 100%;
   object-fit: cover;
-  transform: rotate(calc(-335deg / 7 * var(--i)));
+  transform: rotate(calc(-335deg / 11 * var(--i)));
   transition: 0.5s;
   filter: grayscale(1);
 }
 
 .container .icon .imgBx:first-of-type img{
-  transform: rotate(calc(-234deg / 7 * var(--i)));
+  transform: rotate(calc(-234deg / 10 * var(--i)));
 }
 
 .container .icon .active img {
@@ -168,10 +168,10 @@
   height: 180px;
   border-radius: 30px;
   overflow: hidden;
-  image-resolution: from-image;
-image-resolution: 300dpi;
-image-resolution: from-image 300dpi;
-image-resolution: 300dpi snap;
+  image-resolution: from-image!important;
+image-resolution: 300dpi!important;
+image-resolution: from-image 300dpi!important;
+image-resolution: 300dpi snap!important;
 }
 
 
@@ -278,6 +278,10 @@ image-rendering: -webkit-optimize-contrast;
   transform: rotate(15deg) translate(600px, -40%) scale(1);
 }
 
+
+.overflowing_h3{
+  text-align: center;
+}
 @media all and (max-width: 1580px) {
   .desc_activated {
     width: calc(240px * 3);
@@ -350,6 +354,10 @@ image-rendering: -webkit-optimize-contrast;
   #mentors .description h1 {
     font-style: italic;
     font-size: calc(var(--medium-heading) - 7px);
+  }
+
+  .overflowing_h3{
+    font-size: 13px;
   }
 }
 
@@ -433,6 +441,14 @@ image-rendering: -webkit-optimize-contrast;
 
   .description p {
     align-self: center;
+  }
+
+  .overflowing_h3{
+    width: 70%;
+  }
+
+  .contentBx .card .textBx h2{
+    font-size: 1rem;
   }
 }
 
