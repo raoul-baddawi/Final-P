@@ -6,7 +6,6 @@ import axios from "axios";
 const DashMsgs = () => {
   const [messages, setMessages] = useState([])
 
-// console.log(messages)
   useEffect(() => {
     const fetchDashboardMessages = async () => {
       try {
@@ -24,7 +23,7 @@ const DashMsgs = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:8800/contactus/${id}`);
+      await axios.delete(`https://appreciate-b.onrender.com/contactus/${id}`);
       window.location.reload();
     } catch (error) {
       console.log(error);

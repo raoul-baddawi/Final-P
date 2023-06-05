@@ -75,7 +75,6 @@ function Carousel() {
                     <button className="v-cv" onClick={() => navigate("/cv", { state: { id: dev.user_id } })}>View Cv</button>
                     <div className="none none-wrapper">
                     <button className="v-cv none">View Cv</button>
-                    {/* {console.log(dev.user_id)} */}
                       <button className="v-web none" onClick={() => window.open(dev.website_link, "_blank")}>Visit website</button>
                     </div>
                   </div>

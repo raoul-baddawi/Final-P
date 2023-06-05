@@ -59,7 +59,6 @@ const Dashboard = () => {
     fetchDashboardData();
   }, []);
 
-  // console.log(all)
 
   useEffect(() => {
     const filteredMembers = all.filter((user) => user.role === "admin");
@@ -79,9 +78,8 @@ const Dashboard = () => {
     // event.preventDefault();
 
     try {
-      const resp=  await axios.post("http://localhost:8800/api/admin", formData);
+      await axios.post("https://appreciate-b.onrender.com/api/admin", formData);
       window.location.reload();
-      console.log(resp)
     } catch (error) {
       console.error(error); // Handle the error
     }
@@ -90,7 +88,7 @@ const Dashboard = () => {
   const deleteUser = async (id) => {
     setLoad(true);
     try {
-      await axios.delete(`http://localhost:8800/api/delete/${id}`);
+      await axios.delete(`https://appreciate-b.onrender.com/api/delete/${id}`);
       setLoad(false);
       setDone(true);
       setTimeout(() => {
@@ -155,7 +153,6 @@ const Dashboard = () => {
     setEditingUserId(userId);
     setEditedRole(currentRole);
   };
-  // console.log(members);
   return (
     <section id="dashboard">
       <div className="nav_wrapper">

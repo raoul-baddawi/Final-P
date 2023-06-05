@@ -58,7 +58,7 @@ const ContactMe = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8800/contactus",
+        "https://appreciate-b.onrender.com/contactus",
         newContact
       );
       setInfo(response.data);
@@ -141,7 +141,6 @@ const ContactMe = () => {
               <p className="done-email">
                 Thank you for your message <i>{info.fullName}</i>,<br></br> I
                 will reply back soon!
-                {console.log(info)}
               </p>
             ) : null}
           </div>

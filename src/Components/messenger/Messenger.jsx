@@ -20,7 +20,6 @@ export default function Messenger() {
   const socket = useRef()
   const sendIt = useRef(null);
   
-  console.log(side)
   
   // const { user } = useContext(AuthContext);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -50,7 +49,6 @@ export default function Messenger() {
     arrivalMessage &&
       currentChat?.members.includes(arrivalMessage.sender) &&
       setMessages((prev) => [...prev, arrivalMessage]);
-      // console.log(arrivalMessage)
 
   }, [arrivalMessage, currentChat]);
   
@@ -58,7 +56,6 @@ export default function Messenger() {
   useEffect(() => { 
     socket.current.emit("addUser", user._id);
     socket.current.on("getUsers", (users) => {
-      // console.log(users)
       setOnlineUsers(
         users.filter((f) => users.some((u) => u.userId === f))
       );
@@ -70,26 +67,21 @@ export default function Messenger() {
       try {
         const res = await axios.get("https://appreciate-b.onrender.com/api/conversations/" + user._id);
         setConversations(res.data);
-      //  console.log("res.data----- ", res.data[0].members[0], res.data[0].members[1])
         const minePhoto = await axios.get("https://appreciate-b.onrender.com/profile/" + res.data[0].members[0]);
         const hisPhoto = await axios.get("https://appreciate-b.onrender.com/profile/" + res.data[0].members[1]);
         setPhoto({minePhoto, hisPhoto})
       } catch (err) {
-        // console.log(err);
+        console.log(err);
       }
     };
     getConversations();
-    // console.log("refreshed")
-    // console.log("aaaa",currentChat)
   }, [arrivalMessage, user._id,currentChat, refresh]);
 
   useEffect(() => {
     const getMessages = async () => {
       try {
         const res = await axios.get(`https://appreciate-b.onrender.com/api/messages/${currentChat&&currentChat._id}`);
-        // console.log(res.data,user._id)
         setMessages(res.data);
-        // console.log(res.data)
       } catch (err) {
         console.log(err);
       }

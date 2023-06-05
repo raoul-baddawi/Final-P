@@ -53,7 +53,7 @@ const Profile = () => {
 
       try {
         const response = await axios.patch(
-          `http://localhost:8800/profile/${user._id}`,
+          `https://appreciate-b.onrender.com/profile/${user._id}`,
           formData
         );
         console.log("Profile image updated:", response.data);
@@ -76,7 +76,7 @@ const Profile = () => {
 
       try {
         const response = await axios.patch(
-          `http://localhost:8800/cv/${user._id}`,
+          `https://appreciate-b.onrender.com/cv/${user._id}`,
           formData
         );
         console.log("Cv image updated:", response.data);
@@ -178,7 +178,6 @@ const Profile = () => {
     }
   };
 
-  console.log(selectedImage);
 
   return (
     <div className="profile_wrapper">

@@ -41,25 +41,6 @@ export default function ChatOnline({ currentId, setCurrentChat, setRefresh, refr
     getUsers();
   }, [user._id, refresh, reload]);
   
-
-  // useEffect(() => {
-  //   setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
-  // }, [friends, onlineUsers]);
-
-  // const handleClick = async (user) => {
-  //   try {
-  //     const res = await axios.get(
-  //       `https://appreciate-b.onrender.com/api/conversations/find/${currentId}/${user._id}`
-  //     );
-  //     setCurrentChat(res.data);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  // onClick={() => handleClick(user)}
-
-
-  // console.log(users)
   return (
     <div className="chatOnline cht-online-resp">
 

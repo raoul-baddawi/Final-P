@@ -20,7 +20,6 @@ const Navbar = () => {
   const [drop, setDrop] = useState([]);
   const [down, setDown] = useState(false);
 
-  // console.log(drop)
   useEffect(() => {
     setTimeout(() => {
       const getProfile = async () => {
@@ -66,7 +65,6 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/");
   }
-  // console.log(drop);
 
   return (
     <>

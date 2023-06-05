@@ -26,11 +26,10 @@ const DashProject = () => {
     });
   };
 
-  // console.log(projects)
   useEffect(() => {
     const fetchDashboardProjects = async () => {
       try {
-        const response = await axios.get(`http://localhost:8800/project`);
+        const response = await axios.get(`https://appreciate-b.onrender.com/project`);
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
@@ -41,7 +40,6 @@ const DashProject = () => {
   }, []);
 
   const handleSubmit = async (event) => {
-    console.log("clicked");
     event.preventDefault();
 
     const form = new FormData();
@@ -55,7 +53,7 @@ const DashProject = () => {
     form.append("website_link", formData.website_link);
     form.append("repository", formData.repository);
     try {
-     await axios.post("http://localhost:8800/project", form).then((res) => {
+     await axios.post("https://appreciate-b.onrender.com/project", form).then((res) => {
         if(res.status === 201){
           window.location.reload()
         }else{
@@ -77,7 +75,7 @@ const DashProject = () => {
 
   const handleDeleteProject = async(id)=>{
     try {
-       await axios.delete(`http://localhost:8800/project/${id}`).then((res) => {
+       await axios.delete(`https://appreciate-b.onrender.com/project/${id}`).then((res) => {
       });
       
     } catch (error) {
@@ -85,7 +83,6 @@ const DashProject = () => {
     }
   }
 
-  // console.log(projects)
   
   return (
     <Element name="project" className="members_main">

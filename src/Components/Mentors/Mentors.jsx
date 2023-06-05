@@ -25,7 +25,6 @@ function Mentors() {
   const handleItemClick = (index) => {
     setActiveItem(index);
   };
-  // console.log(mentor);
   return (
     <Element name="mentors" className="fix-top">
       <section id="mentors">

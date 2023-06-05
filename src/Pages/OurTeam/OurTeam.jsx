@@ -40,7 +40,6 @@ const OurTeam = () => {
       setFilteredTeam(team);
     }
   };
-console.log(filteredTeam)
   if (isLoading) {
     return <Loader />;
   } else {

@@ -62,9 +62,7 @@ const Cv = () => {
       pdf.save("cv.pdf");
     });
   };
-  // console.log(cv)
 
-  console.log(cv)
   if (!cv) {
     return <Loader />;
   }
