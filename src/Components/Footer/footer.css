@@ -242,6 +242,10 @@ transform: translate(45px, 60px);
       grid-template-rows: 47% 47.5%;
       padding: 1px;
     }
+
+    .social_phone-links a{
+      color: white;
+    }
     
     
     .link-child{
