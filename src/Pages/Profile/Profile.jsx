@@ -30,8 +30,6 @@ const Profile = () => {
   };
 
 
-
-
   const handleCvButtonClick = (e) => {
     e.preventDefault();
     filecvInputRef.current.click();
@@ -319,7 +317,7 @@ const Profile = () => {
                   <h3>Your Profile Image</h3>
                   <div className="prfl-image">
                     <img
-                      src={profile && profile.image.length > 3 ?  profile.image : noimage}
+                      src={profile && profile.image?.length > 3 ?  profile.image : noimage}
                       alt="hllo"
                     />
                     <form onSubmit={handleProfileSubmit}>

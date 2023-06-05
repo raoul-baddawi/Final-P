@@ -31,6 +31,7 @@ const Dashboard = () => {
     password: "",
     position: "",
     user_type: "",
+    role: "",
   });
 
   const handleSearchChange = (event) => {
@@ -74,8 +75,9 @@ const Dashboard = () => {
     });
   };
 
-  const handleSubmit = async () => {
-    // event.preventDefault();
+  const handleSubmit = async (event) => {
+    console.log("helloooo")
+    event.preventDefault();
 
     try {
       await axios.post("https://appreciate-b.onrender.com/api/admin", formData);
@@ -451,6 +453,14 @@ const Dashboard = () => {
                   name="password"
                   id="password"
                   value={formData.password}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="position">Role:</label>
+                <input
+                  type="text"
+                  name="role"
+                  id="role"
+                  value={formData.role}
                   onChange={handleInputChange}
                 />
                 <label htmlFor="position">Position:</label>

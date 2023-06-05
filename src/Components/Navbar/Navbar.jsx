@@ -3,14 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import { FaBars, FaTimes, FaAngleDown } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HashLink as Lol } from 'react-router-hash-link';
+import { HashLink as Lol } from "react-router-hash-link";
 
 import logo from "../../Assets/Slice 1.png";
 import axios from "axios";
 import noprofile from "../../Assets/noimage.png";
 const Navbar = () => {
-
-
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const token = user ? user.token : null;
@@ -28,6 +26,8 @@ const Navbar = () => {
           const res = await axios.get(
             `https://appreciate-b.onrender.com/profile/${user._id}`
           );
+
+          console.log(res);
           if (res.data.message === "No") {
             setDrop(null);
           } else {
@@ -40,13 +40,9 @@ const Navbar = () => {
       };
 
       getProfile();
-
     }, 3000);
-   
-
   }, []);
 
-  
   function changeColor() {
     if (window.scrollY >= 90) {
       setColor(true);
@@ -63,6 +59,7 @@ const Navbar = () => {
 
   function handleLogout() {
     localStorage.clear();
+    setClick(false);
     navigate("/");
   }
 
@@ -175,17 +172,6 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                {/* <Link
-                  activeClass="active"
-                  to="footer"
-                  spy={true}
-                  smooth={true}
-                  offset={0}
-                  duration={500}
-                  tabIndex={0}
-                >
-                  Contact me
-                </Link> */}
                 <Lol smooth to="/#footer">
                   Contact Me
                 </Lol>
@@ -194,7 +180,7 @@ const Navbar = () => {
 
             {token && token.length > 18 ? (
               <div className="lgd-in-dropdown">
-                <img src={drop === null || drop?.image?.length > 4 ? drop.image  : noprofile} alt="" />
+                <img src={drop === null ? noprofile : drop.image} alt="" />
                 <p
                   className="name_p"
                   onClick={() => {
@@ -206,9 +192,7 @@ const Navbar = () => {
                 </p>
                 {down && (
                   <div className="drop_div">
-                    {drop !== null &&
-                    user.role !== "superAdmin" &&
-                    user.role !== "user" ? (
+                    {user.role === "admin" ? (
                       <a href="/profile" id="for_backgound">
                         <i className="fa-solid fa-user"></i> Profile
                       </a>
@@ -241,11 +225,16 @@ const Navbar = () => {
                       <img src={drop == null ? noprofile : drop.image} alt="" />
                       <p className="user_phn_name">{user.username}</p>
                     </div>
-                    {drop !== null ? (
+                    {user.role === "admin" && (
                       <a href="/profile" id="for_backgound">
                         <i className="fa-solid fa-user"></i> Profile
                       </a>
-                    ) : null}
+                    )}
+                    {user.role === "superAdmin" && (
+                      <a href="/dashboard" id="for_backgound">
+                        <i className="fa-sharp fa-solid fa-gears"></i> Dashboard
+                      </a>
+                    )}
                     <p onClick={handleLogout}>
                       <i className="fa-solid fa-right-from-bracket"></i> Logout
                     </p>
@@ -254,7 +243,6 @@ const Navbar = () => {
                   <a className="lg_in-phone" href="/auth">
                     <i className="fa-solid fa-arrow-right-to-bracket"></i>
                     Sign up?
-                    
                   </a>
                 )}
               </div>
@@ -269,28 +257,10 @@ const Navbar = () => {
                 <a href="/community">
                   <i className="fa-sharp fa-solid fa-comments"></i> Community
                 </a>
-                <a href="/aboutme">
-                  <i className="fa-solid fa-address-card"></i> About me
-                </a>
-                {/* <Link
-                  activeClass="active"
-                  to="footer"
-                  spy={true}
-                  smooth={true}
-                  offset={0}
-                  duration={500}
-                  tabIndex={0}
-                  onClick={() => {
-                    setClick(false);
-                  }}
-                >
-                  <i className="fa-solid fa-envelope"></i> Contact me
-                </Link> */}
                 <Lol to="/#footer">
-                <i className="fa-sharp fa-regular fa-address-card"></i>{" "}
+                  <i className="fa-sharp fa-regular fa-address-card"></i>{" "}
                   Contact Me
                 </Lol>
-
                 <a href="/aboutme">
                   <i className="fa-solid fa-address-card"></i> About me
                 </a>
