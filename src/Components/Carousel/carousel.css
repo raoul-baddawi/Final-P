@@ -133,6 +133,7 @@
   height: 200px;
   align-self: center;
   padding: 25px;
+  object-fit: cover;
   flex-shrink: 0;
   image-resolution: from-image;
 }
@@ -349,9 +350,21 @@
   }
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 570px) {
   .dev-info-wrapper img {
     width: 160px;
     height: 160px;
+  }
+
+  .carousel-slide{
+    max-height: 60vh;
+  }
+}
+
+
+@media all and (max-width: 370px) {
+  .carousel-slide{
+    max-height: 55vh;
+    min-height: 55vh;
   }
 }

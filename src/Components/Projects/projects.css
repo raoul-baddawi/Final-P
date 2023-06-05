@@ -187,6 +187,7 @@
   .project_card {
     aspect-ratio: 1/1.7;
   }
+
 }
 
 @media all and (max-width: 350px) {

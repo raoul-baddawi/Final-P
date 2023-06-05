@@ -120,7 +120,7 @@
     font-size: var(--small-heading);
   }
   .finals-header p {
-    font-size: calc(var(--large) - 4px);
+    font-size: calc(var(--large) - 10px);
     letter-spacing: 1px;
   }
 
