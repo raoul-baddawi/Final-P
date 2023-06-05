@@ -107,7 +107,7 @@ const Cv = () => {
       <div id="wrapper">
         <div id="intro">
           <img
-            src={cv && cv.image.length > 4 ? cv.image : noprofile}
+            src={cv.image || noprofile}
             alt="Good lookin Person"
             width="100px"
             height="100px"

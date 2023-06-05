@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import NoImage from "../../Assets/noimage.png";
 import "./conversation.css";
 
-export default function Conversation({ conversation, currentUser }) {
+export default function Conversation({ conversation, currentUser , setSide}) {
   const [user, setUser] = useState([])
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Conversation({ conversation, currentUser }) {
 
   return (
     <div className="conversation">
-      <img src={user.profile?.image.length > 3 ? user.profile?.image : NoImage} className="conversationImg" alt="hello" />
+      <img src={user.profile || NoImage} className="conversationImg" alt="hello" />
       <span className="conversationName">{user?.username}</span>
     </div>
   );

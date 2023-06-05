@@ -20,7 +20,7 @@ const Navbar = () => {
   const [drop, setDrop] = useState([]);
   const [down, setDown] = useState(false);
 
-  console.log(drop)
+  // console.log(drop)
   useEffect(() => {
     setTimeout(() => {
       const getProfile = async () => {

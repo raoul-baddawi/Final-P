@@ -63,7 +63,7 @@
   transition: .2s all ease;
 }
 
-.form-sbmt:hover{
+.form-sbmt:is(:focus, :hover){
   background-color: var(--primary-color);
 }
 

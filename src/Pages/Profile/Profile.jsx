@@ -320,7 +320,7 @@ const Profile = () => {
                   <h3>Your Profile Image</h3>
                   <div className="prfl-image">
                     <img
-                      src={profile.image.length > 3 ? profile.image : noimage}
+                      src={profile.image || noimage}
                       alt="hllo"
                     />
                     <form onSubmit={handleProfileSubmit}>
@@ -673,7 +673,7 @@ const Profile = () => {
                 </div>
                 <div className="prfl-image">
                   <img
-                    src={cv && cv.image.length > 3 ? cv.image : noimage}
+                    src={cv.image || noimage}
                     alt="hllo"
                   />
                   <form onSubmit={handleCvSubmit}>

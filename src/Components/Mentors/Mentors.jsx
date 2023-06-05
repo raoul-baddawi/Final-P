@@ -43,7 +43,7 @@ function Mentors() {
                       style={{ "--i": index + 1 }}
                       onClick={() => handleItemClick(index)}
                     >
-                      <img src={item.image.length > 4 ? item.image : noimage} alt={`${item.name}'s pic`} />
+                      <img src={item.image || noimage} alt={`${item.name}'s pic`} />
                     </div>
 
                     <div
@@ -54,7 +54,7 @@ function Mentors() {
                     >
                       <div className="card">
                         <div className="imgBox">
-                          <img src={item.image.length > 4 ? item.image : noimage} alt={`${item.name}'s pic`} />
+                          <img src={item.image || noimage} alt={`${item.name}'s pic`} />
                         </div>
                         <div className="textBx">
                           <h2>

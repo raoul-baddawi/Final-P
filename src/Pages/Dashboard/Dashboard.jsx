@@ -6,6 +6,8 @@ import "./dashboard.css";
 import noimage from "../../Assets/noimage.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import DashMsgs from "../../Components/DashMessages/DashMsgs";
+import DashProject from "../../Components/Projectdash/ProjectsDash";
 
 const Dashboard = () => {
   const [show, setShow] = useState(false);
@@ -36,9 +38,12 @@ const Dashboard = () => {
   };
 
   // Filter members based on the search query or return all members if the search query is empty
-  const filteredMembers = members.filter((member) =>
-    member.profile.name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredMembers = members.filter((member) => {
+    const memberName = member.username;
+    return memberName && memberName.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
+
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
@@ -54,6 +59,8 @@ const Dashboard = () => {
     fetchDashboardData();
   }, []);
 
+  // console.log(all)
+
   useEffect(() => {
     const filteredMembers = all.filter((user) => user.role === "admin");
     const filteredUsers = all.filter((user) => user.role === "user");
@@ -68,14 +75,13 @@ const Dashboard = () => {
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async () => {
+    // event.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8800/api/admin", formData);
-      const data = response.data;
-      // console.log(data); // Process the result as needed
+      const resp=  await axios.post("http://localhost:8800/api/admin", formData);
       window.location.reload();
+      console.log(resp)
     } catch (error) {
       console.error(error); // Handle the error
     }
@@ -84,7 +90,7 @@ const Dashboard = () => {
   const deleteUser = async (id) => {
     setLoad(true);
     try {
-      await axios.delete(`https://appreciate-b.onrender.com/api/delete/${id}`);
+      await axios.delete(`http://localhost:8800/api/delete/${id}`);
       setLoad(false);
       setDone(true);
       setTimeout(() => {
@@ -196,7 +202,7 @@ const Dashboard = () => {
               </Link>
               <Link
                 activeClass="active"
-                to="messages"
+                to="msgs-dash"
                 spy={true}
                 smooth={true}
                 offset={0}
@@ -209,6 +215,23 @@ const Dashboard = () => {
                 <li>
                   <i className="fa-regular fa-envelope"></i>
                   Messages
+                </li>
+              </Link>
+              <Link
+                activeClass="active"
+                to="project"
+                spy={true}
+                smooth={true}
+                offset={0}
+                duration={500}
+                tabIndex={0}
+                onClick={() => {
+                  setShow(false);
+                }}
+              >
+                <li>
+                <i className="fa-sharp fa-solid fa-globe"></i>
+                  Projects
                 </li>
               </Link>
               <a href="/">
@@ -475,7 +498,7 @@ const Dashboard = () => {
                       <img src={noimage} alt="member img" />
                     </div>
                     <div className="member_card-body">
-                      <h2>{member.profile.name}</h2>
+                      <h2>{member.username}</h2>
                       {editingUserId === member._id ? (
                         <>
                           <input
@@ -572,6 +595,8 @@ const Dashboard = () => {
             </div>
           </section>
         </Element>
+        <DashMsgs />
+        <DashProject />
       </div>
     </section>
   );

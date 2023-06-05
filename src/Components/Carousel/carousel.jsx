@@ -54,7 +54,7 @@ function Carousel() {
                 <div className="finals-header">
                   <div className="dev-info-wrapper">
                     <img
-                      src={dev.image.length > 10 ? dev.image : NoImage}
+                      src={dev.image || NoImage}
                       alt={dev.name}
                       width="200"
                       height="200"

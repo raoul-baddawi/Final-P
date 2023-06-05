@@ -14,10 +14,10 @@ const ContactMe = () => {
 
   const [myData, setmyData] = useState({
     fullName: "",
-    mail: "",
+    email: "",
     Message: "",
   });
-  const { fullName, mail, Message } = myData;
+  const { fullName, email, Message } = myData;
 
   const onChange = (e) => {
     setmyData({ ...myData, [e.target.name]: e.target.value });
@@ -42,7 +42,7 @@ const ContactMe = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (!mail || !fullName || !Message) {
+    if (!email || !fullName || !Message) {
       setError("Plz fill in all fields");
       return;
     }
@@ -51,14 +51,14 @@ const ContactMe = () => {
     setError(null);
     const newContact = {
       fullName: fullName,
-      mail: mail,
+      email: email,
       Message: Message,
     };
     await sendEmail(e);
 
     try {
       const response = await axios.post(
-        "https://appreciate-b.onrender.com/contactus",
+        "http://localhost:8800/contactus",
         newContact
       );
       setInfo(response.data);
@@ -67,13 +67,14 @@ const ContactMe = () => {
       setTimeout(() => {
         setmyData({
           fullName: "",
-          mail: "",
+          email: "",
           Message: "",
         });
         setMessage(false);
         setInfo(null);
       }, 3000);
     } catch (err) {
+      setLoaded(false);
       console.log("error", err.response.data);
     }
   };
@@ -109,8 +110,8 @@ const ContactMe = () => {
           />
           <input
             type="text"
-            name="mail"
-            value={mail}
+            name="email"
+            value={email}
             placeholder="Enter your email "
             onChange={onChange}
             required

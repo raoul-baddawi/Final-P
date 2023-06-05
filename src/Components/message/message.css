@@ -23,6 +23,7 @@
   background-color: #1877f2;
   color: white;
   max-width: 300px;
+  word-break: break-all;
 }
 
 .messageBottom {
@@ -37,4 +38,37 @@
 .message.own .messageText {
   background-color: rgb(255, 255, 255);
   color: black;
+}
+
+
+@media all and (max-width:590px){
+  .messageText{
+    max-width: 230px;
+  }
+}
+
+
+@media all and (max-width:200px) {
+  .messageText{
+    font-size: 6px;
+    padding: 4px;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 60px;
+    text-align: center;
+    border-radius: 10px;
+  }
+  
+  .messageImg{
+    width: 16px;
+    margin-right: 3px;
+    height: 16px;
+  }
+  
+  .messageBottom{
+    font-size: 4px;
+    margin-top: 3px;
+  }
 }

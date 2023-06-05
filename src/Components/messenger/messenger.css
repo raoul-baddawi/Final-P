@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 2fr 1fr;
   grid-row: 2;
   margin: 0 auto;
-  background-color:rgb(7 63 255 / 12%);
+  background-color:rgb(239 243 255);
 }
 
 
@@ -109,7 +109,7 @@
 }
 
 .nothing.active{
-  background-color: rgb(7 63 255 / 12%);
+  background-color: rgb(239 243 255);
 }
 
 
@@ -161,7 +161,7 @@
   height: 100%;
   z-index: 7;
   width: 50px;
-  background-color: rgb(7 63 255 / 12%);
+  background-color: rgb(239 243 255);
 }
 
 .nothing.active::after{
@@ -186,7 +186,7 @@
   height: 100%;
   z-index: 9;
   width: 50px;
-  background-color: rgb(7 63 255 / 12%);
+  background-color: rgb(239 243 255);
 }
 .nothing.active:first-of-type::after{
   content: '';
@@ -231,7 +231,7 @@
 
 .chat-header h1{
 position: relative;
-z-index: 100;
+z-index: 9;
 }
 
 .toleft{

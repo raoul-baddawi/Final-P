@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import NoImage from "../../Assets/noimage.png";
 import "./chatOnline.css";
 
+import Loader from '../Loader/Loader'
 export default function ChatOnline({ currentId, setCurrentChat, setRefresh, refresh, reload}) {
   const [done, setDone] = useState(false);
   const [load, setLoad] = useState(false);
@@ -61,7 +62,9 @@ export default function ChatOnline({ currentId, setCurrentChat, setRefresh, refr
   // console.log(users)
   return (
     <div className="chatOnline cht-online-resp">
-      {users.map((user) => (
+
+
+      {users.length < 1 ? <Loader /> : users.map((user) => (
         <div className="chatOnlineFriend" key={user._id}>
           <div className="chatOnlineImgContainer">
             <img

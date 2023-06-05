@@ -20,6 +20,7 @@ export default function Messenger() {
   const socket = useRef()
   const sendIt = useRef(null);
   
+  console.log(side)
   
   // const { user } = useContext(AuthContext);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -33,7 +34,7 @@ export default function Messenger() {
       let data={id:user._id}
       socket.current.emit("user",data)
       } 
-    socket.current = io("ws://localhost:8800");
+    socket.current = io("ws://appreciate-b.onrender.com");
     init()
 
     socket.current.on("getMessage", (data) => {
@@ -159,13 +160,14 @@ export default function Messenger() {
               <div  onClick={() => {
                 setCurrentChat(c);
                 setActive(c._id);
+                setSide(false);
               }}
               key={index}
               tabIndex={0}
               onKeyDown={handleKeyDown}
               className={active === c._id ? 'nothing active' : 'nothing'} >
                 <div className="for-effect"></div>
-                <Conversation conversation={c} currentUser={user}  />
+                <Conversation conversation={c} currentUser={user}  setSide={setSide}/>
               </div>
             ))}
           </div>
@@ -174,7 +176,7 @@ export default function Messenger() {
           <button className={side ? "side-bar-trigger toleft" : "side-bar-trigger toright"} onClick={()=>{
             setSide(!side)
           }}>
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>
           </button>
           <div className="chatBoxWrapper">
             {currentChat ? (

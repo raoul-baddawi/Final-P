@@ -36,9 +36,6 @@
   margin-right: auto;
 }
 
-.pr_card-head {
-  background-color: yellow;
-}
 
 .pr_card-body {
   display: flex;
@@ -91,6 +88,13 @@
   border-radius: 5px;
 }
 
+
+.btns-project a:first-of-type:is(:hover, :focus){
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  outline-color: var(--primary-color);
+  font-weight: 410;
+}
 .btns-project a:first-of-type {
   background-color: white;
   border: 1px solid gray;

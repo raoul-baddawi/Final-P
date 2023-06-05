@@ -608,23 +608,29 @@ transform: translate(-50%, -50%);
     grid-template-columns: 30vh auto;
 }
 
-#dashboard .profile_nav {
+/* #dashboard .profile_nav {
   width: 30vh;
-}
+} */
 }
 
 
 
 @media (max-width: 700px){
-  #dashboard{
-    grid-template-columns: 20vh auto;
+  #dashboard,
+  .profile_wrapper{
+    grid-template-columns: 20% auto;
+}
+
+
+.search-input{
+  width: 75%;
 }
 }
 
 
 @media (max-width: 500px){
   #dashboard {
-    grid-template-columns: 1fr;
+    grid-template-columns: 98%;
     overflow: hidden;
 }
 .main {
