@@ -61,7 +61,7 @@ const OurTeam = () => {
             <div className="personal_card" key={index}>
               <div className="card-head"></div>
               <div className="card-body">
-                <img src={card.image || NoImage} alt="hello world" />
+                <img src={card && card.image.length > 3  ? card.image : NoImage} alt="hello world" />
                 <div className="info-body">
                   <h1>{card.name}</h1>
                   <p>{card.position}</p>

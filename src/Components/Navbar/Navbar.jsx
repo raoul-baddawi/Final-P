@@ -251,9 +251,10 @@ const Navbar = () => {
                     </p>
                   </div>
                 ) : (
-                  <a className="lgn" href="/auth">
-                    <i className="fa-regular fa-person-to-portal"></i>
-                    Login
+                  <a className="lg_in-phone" href="/auth">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i>
+                    Sign up?
+                    
                   </a>
                 )}
               </div>
@@ -286,11 +287,13 @@ const Navbar = () => {
                   <i className="fa-solid fa-envelope"></i> Contact me
                 </Link> */}
                 <Lol to="/#footer">
+                <i class="fa-sharp fa-regular fa-address-card"></i>{" "}
                   Contact Me
                 </Lol>
-                {/* <a href="/contactus">
-             
-                Contact me</a> */}
+
+                <a href="/aboutme">
+                  <i className="fa-solid fa-address-card"></i> About me
+                </a>
               </div>
             </div>
           </nav>

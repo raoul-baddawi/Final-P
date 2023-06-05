@@ -22,75 +22,27 @@ const Projects = () => {
     <Element name="projects" className="projects">
       <h1>My Projects</h1>
       <section id="projects">
-        <div className="project_card">
-          <div className="pr_card-head"></div>
-          <div className="pr_card-body">
-            <h2>Financo | Financial app</h2>
-            <p>Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim optio dolore numquam corrupti debitis porro dicta iste repudiandaet.</p>
-            <p className="technologies"><span>Teck used: </span>Html, Css, React, Mongoose, mongodb, expressjs, javascript</p>
-            <div className="demo_wrapper">
-            <p className="technologies">Demo account:</p>
-            <p><span>demo@gmail.com</span></p>
-            <p><span>demo1234</span></p>
-            </div>
-            <div className="btns-project">
-              <a href="/">See live</a>
-              <a href="/">Repository</a>
-            </div>
-          </div>
-        </div>
-        <div className="project_card">
-          <div className="pr_card-head"></div>
-          <div className="pr_card-body">
-            <h2>Financo | Financial app</h2>
-            <p>Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim optio dolore numquam corrupti debitis porro dicta iste repudiandaet.</p>
-            <p className="technologies"><span>Teck used: </span>Html, Css, React, Mongoose, mongodb, expressjs, javascript</p>
-            <div className="demo_wrapper">
-            <p className="technologies">Demo account:</p>
-            <p><span>demo@gmail.com</span></p>
-            <p><span>demo1234</span></p>
-            </div>
-            <div className="btns-project">
-              <a href="/">See live</a>
-              <a href="/">Repository</a>
-            </div>
-          </div>
-        </div>
-        <div className="project_card">
-          <div className="pr_card-head"></div>
-          <div className="pr_card-body">
-            <h2>Financo | Financial app</h2>
-            <p>Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim optio dolore numquam corrupti debitis porro dicta iste repudiandaet.</p>
-            <p className="technologies"><span>Teck used: </span>Html, Css, React, Mongoose, mongodb, expressjs, javascript</p>
-            <div className="demo_wrapper">
-            <p className="technologies">Demo account:</p>
-            <p><span>demo@gmail.com</span></p>
-            <p><span>demo1234</span></p>
-            </div>
-            <div className="btns-project">
-              <a href="/">See live</a>
-              <a href="/">Repository</a>
-            </div>
-          </div>
-        </div>
-        <div className="project_card">
-          <div className="pr_card-head"></div>
-          <div className="pr_card-body">
-            <h2>Financo | Financial app</h2>
-            <p>Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim optio dolore numquam corrupti debitis porro dicta iste repudiandaet.</p>
-            <p className="technologies"><span>Teck used: </span>Html, Css, React, Mongoose, mongodb, expressjs, javascript</p>
-            <div className="demo_wrapper">
-            <p className="technologies">Demo account:</p>
-            <p><span>demo@gmail.com</span></p>
-            <p><span>demo1234</span></p>
-            </div>
-            <div className="btns-project">
-              <a href="/">See live</a>
-              <a href="/">Repository</a>
-            </div>
-          </div>
-        </div>
-        
+        {projects && projects.map((project, index)=>(
+           <div className="project_card">
+           <div className="pr_card-head">
+            <img src={project.image} alt={project.title} />
+           </div>
+           <div className="pr_card-body">
+             <h2>{project.title} | {project.subtitle}</h2>
+             <p>{project.desc}</p>
+             <p className="technologies"><span>Teck used: </span>{project.technologies}</p>
+             <div className="demo_wrapper">
+             <p className="technologies">Demo account:</p>
+             <p><span>{project.email}</span></p>
+             <p><span>{project.password}</span></p>
+             </div>
+             <div className="btns-project">
+               <a href={project.website_link}>See live</a>
+               <a href={project.repository}>Repository</a>
+             </div>
+           </div>
+         </div>
+        ))}      
       </section>
     </Element>
   );

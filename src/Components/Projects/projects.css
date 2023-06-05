@@ -106,6 +106,12 @@
   background-color: var(--primary-color);
 }
 
+
+.pr_card-head img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 @media all and (max-width: 1330px) {
   .project_card {
     aspect-ratio: 1/1.7;

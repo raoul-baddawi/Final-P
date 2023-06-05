@@ -390,3 +390,10 @@ select:-webkit-autofill {
    stroke-dashoffset: -125px;
   }
  }
+
+
+ @media all and (max-width:610px) {
+  .forms-wrapper{
+    max-width: 90%;
+  }
+ }

@@ -134,6 +134,7 @@
   align-self: center;
   padding: 25px;
   flex-shrink: 0;
+  image-resolution: from-image;
 }
 
 .part1-wrapper,

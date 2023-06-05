@@ -141,6 +141,17 @@ header a:is(:hover){
 }
 
 
+.lg_in-phone{
+  display: flex;
+  gap: 10px;
+  padding: 20px 35px;
+  width: 300px;
+}
+
+.lg_in-phone i {
+    font-size: 21px;
+    height: 30px;
+}
 @media all and (max-width:1000px) {
   .logo {
     width: 100%;
@@ -232,6 +243,7 @@ header a:is(:hover){
 
 .nav-menu_head{
   color: black;
+  margin-top: 30px;
 }
 .drop{
   position: relative;

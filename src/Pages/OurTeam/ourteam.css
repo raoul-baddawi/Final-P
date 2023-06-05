@@ -69,6 +69,7 @@ background: linear-gradient(90deg, rgba(14,0,255,1) 0%, rgba(54,125,255,1) 37%, 
   object-fit: cover;
   top: -5.5vw;
   border-radius: 50%;
+  image-resolution: from-image;
 }
 
 .info-body{
