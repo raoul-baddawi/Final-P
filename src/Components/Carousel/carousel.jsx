@@ -70,7 +70,7 @@ function Carousel() {
                   <div className="dev-desc-wrapper">
                     <div className="part2-wrapper">
                     <h2>Description:</h2>
-                      <p>{dev.description}this website is blablabla, nananou, nanai, lolal</p>
+                      <p>{dev.description}</p>
                     </div>
                     <button className="v-cv" onClick={() => navigate("/cv", { state: { id: dev.user_id } })}>View Cv</button>
                     <div className="none none-wrapper">
