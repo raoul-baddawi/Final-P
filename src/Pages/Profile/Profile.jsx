@@ -177,6 +177,10 @@ const Profile = () => {
   };
 
 
+  const navigateToCV = (itemId) => {
+    window.location.href=`/cv/${itemId}`;
+  };
+
   return (
     <div className="profile_wrapper">
       <div className="nav_wrapper">
@@ -650,7 +654,7 @@ const Profile = () => {
                   <h3>Your Cv Image</h3>
                   <button
                     className="cv_head-btn"
-                    onClick={() => navigate("/cv", { state: { id: user._id } })}
+                    onClick={() => navigateToCV(user._id)}
                   >
                     View cv
                     <svg

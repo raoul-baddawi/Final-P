@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader";
 import noprofile from "../../Assets/noimage.png";
 import fb from "../../Assets/facebook.png";
@@ -12,29 +12,31 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
 const Cv = () => {
+  let params = useParams();
+  let id = params.id;
   let navigate = useNavigate();
   const [cv, setCv] = useState(null);
   const [profile, setProfile] = useState([]);
   const [educations, setEducations] = useState([]);
   const [experiences, setExperiences] = useState([]);
-  const location = useLocation();
+  // const location = useLocation();
   const captureRef = useRef(null);
 
   useEffect(() => {
     const getItem = async () => {
       try {
-        if (location.state && location.state.id) {
+        if (id) {
           const prData = await axios.get(
-            `https://appreciate-b.onrender.com/profile/${location.state.id}`
+            `https://appreciate-b.onrender.com/profile/${id}`
           );
           const cvData = await axios.get(
-            `https://appreciate-b.onrender.com/cv/${location.state.id}`
+            `https://appreciate-b.onrender.com/cv/${id}`
           );
           const exData = await axios.get(
-            `https://appreciate-b.onrender.com/experience/${location.state.id}`
+            `https://appreciate-b.onrender.com/experience/${id}`
           );
           const edData = await axios.get(
-            `https://appreciate-b.onrender.com/education/${location.state.id}`
+            `https://appreciate-b.onrender.com/education/${id}`
           );
           setProfile(prData.data);
           setCv(cvData.data);
@@ -48,7 +50,7 @@ const Cv = () => {
       }
     };
     getItem();
-  }, [location.state, navigate]);
+  }, [navigate, id]);
 
   const downloadPDF = () => {
     const capture = captureRef.current;

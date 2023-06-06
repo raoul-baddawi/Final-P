@@ -4,10 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import RightIcon from "../icons/iconRight";
 import LeftIcon from "../icons/iconLeft";
 import NoImage from "../../Assets/noimage.png";
-import { useNavigate } from "react-router-dom";
 
 function Carousel() {
-  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef(null);
@@ -41,7 +39,7 @@ function Carousel() {
   };
 
   const navigateToCV = (itemId) => {
-    navigate("/cv", { state: { id: itemId } });
+    window.location.href=`/cv/${itemId}`;
   };
   return (
     <div className="carousel-wrap">

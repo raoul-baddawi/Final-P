@@ -205,6 +205,12 @@
 .finals-header p {
   font-size: var(--large);
   letter-spacing: 1px;
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.finals-header p::-webkit-scrollbar{
+  display: none;
 }
 
 .dev-desc-wrapper {

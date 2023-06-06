@@ -67,7 +67,7 @@ function App() {
           </Route>
 
          
-          <Route path="/cv" element={<Cv />} />
+          <Route path="/cv/:id" element={<Cv />} />
         </Routes>
       </BrowserRouter>
     </>
