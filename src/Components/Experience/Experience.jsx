@@ -50,7 +50,7 @@ const Experience = () => {
   useEffect(() => {
     const fetchExperienceData = async () => {
       try {
-        const exresponse = await axios.get(`https://appreciate-b.onrender.com/experience/`);
+        const exresponse = await axios.get(`https://appreciate-b.onrender.com/experience/${user._id}`);
         setExperiences(exresponse.data);
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -58,7 +58,7 @@ const Experience = () => {
     };
 
     fetchExperienceData();
-  }, []);
+  }, [user._id]);
 
 
   const handleEditField = (field, value) => {

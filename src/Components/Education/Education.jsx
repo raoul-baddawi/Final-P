@@ -50,7 +50,7 @@ const Education = () => {
   useEffect(() => {
     const fetchEducationData = async () => {
       try {
-        const edresponse = await axios.get(`https://appreciate-b.onrender.com/education/`);
+        const edresponse = await axios.get(`https://appreciate-b.onrender.com/education/${user._id}`);
         setEducations(edresponse.data);
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -58,7 +58,7 @@ const Education = () => {
     };
 
     fetchEducationData();
-  }, []);
+  }, [user._id]);
 
 
   const handleEditField = (field, value) => {
