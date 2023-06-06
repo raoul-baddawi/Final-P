@@ -39,6 +39,10 @@ function Carousel() {
   const nextSlide = () => {
     setCurrentIndex(currentIndex === data.length - 1 ? 0 : currentIndex + 1);
   };
+
+  const navigateToCV = (itemId) => {
+    navigate("/cv", { state: { id: itemId } });
+  };
   return (
     <div className="carousel-wrap">
       <h1>FINALS</h1>
@@ -72,7 +76,7 @@ function Carousel() {
                     <h2>Description:</h2>
                       <p>{dev.description}</p>
                     </div>
-                    <button className="v-cv" onClick={() => navigate("/cv", { state: { id: dev.user_id } })}>View Cv</button>
+                    <button className="v-cv" onClick={() => navigateToCV(dev.user_id)}>View CV</button>
                     <div className="none none-wrapper">
                     <button className="v-cv none">View Cv</button>
                       <button className="v-web none" onClick={() => window.open(dev.website_link, "_blank")}>Visit website</button>
