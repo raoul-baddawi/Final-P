@@ -58,7 +58,7 @@
   width: 100%;
   height: 215px;
   grid-template-columns: 1fr 2fr;
-  background-color: #4a89dc;
+  background-color: var(--primary-color);
   color: white;
 }
 
@@ -138,13 +138,18 @@
     justify-content: space-between;
     gap: 10px;
 }
+
+#wrapper #About div p {
+  font-size: 16px;
+  word-break: break-all;
+}
 #About div,
 #About ul {
   padding: 25px;
 }
 #About ul {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 100%;
   grid-column-start: 2;
   gap: 5px;
 }
@@ -153,11 +158,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 30px;
+  gap: 15px;
 }
 
 #About ul section li{
   word-break: break-all;
+  display: grid;
+  grid-template-columns: 75px auto;
 }
 #pro-skills {
   width: 90%;
@@ -611,7 +618,6 @@ textarea {
   #About {
     display: flex;
     flex-direction: column;
-    align-items: center;
     font-size: 18px;
   }
 
@@ -619,6 +625,7 @@ textarea {
     display: flex;
     flex-direction: column;
   }
+
 
   #About div, #About ul {
     padding: 30px;

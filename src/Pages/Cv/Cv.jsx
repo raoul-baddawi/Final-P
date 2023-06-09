@@ -132,15 +132,11 @@ const Cv = () => {
           </div>
           <ul>
             <section>
-              <li>Age:</li>
-              <li>Email:</li>
-              <li>Phone:</li>
+              <li>Age:<span> {cv.age}</span></li>
+              <li>Email:<span> {cv.email}</span></li>
+              <li>Phone:<span> {cv.phone}</span></li>
             </section>
-            <section>
-              <li>{cv.age}</li>
-              <li>{cv.email}</li>
-              <li>{cv.phone}</li>
-            </section>
+           
           </ul>
         </div>
 
