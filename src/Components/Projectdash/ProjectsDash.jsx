@@ -29,7 +29,9 @@ const DashProject = () => {
   useEffect(() => {
     const fetchDashboardProjects = async () => {
       try {
-        const response = await axios.get(`https://appreciate-b.onrender.com/project`);
+        const response = await axios.get(
+          `https://appreciate-b.onrender.com/project`
+        );
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching dashboard data:", error);
@@ -53,37 +55,36 @@ const DashProject = () => {
     form.append("website_link", formData.website_link);
     form.append("repository", formData.repository);
     try {
-     await axios.post("https://appreciate-b.onrender.com/project", form).then((res) => {
-        if(res.status === 201){
-          window.location.reload()
-        }else{
-          console.log(res.status)
-        }
-      });
-      
+      await axios
+        .post("https://appreciate-b.onrender.com/project", form)
+        .then((res) => {
+          if (res.status === 201) {
+            window.location.reload();
+          } else {
+            console.log(res.status);
+          }
+        });
     } catch (error) {
       console.error(error); // Handle the error
     }
   };
-
 
   const handleImageChange = (e) => {
     const value = e.target.files[0];
     setSelectedImage({ [e.target.name]: value });
   };
 
-
-  const handleDeleteProject = async(id)=>{
+  const handleDeleteProject = async (id) => {
     try {
-       await axios.delete(`https://appreciate-b.onrender.com/project/${id}`).then((res) => {
-      });
-      
+      await axios
+        .delete(`https://appreciate-b.onrender.com/project/${id}`)
+        .then((res) => {});
+      window.location.reload();
     } catch (error) {
       console.error(error); // Handle the error
     }
-  }
+  };
 
-  
   return (
     <Element name="project" className="members_main">
       <h1>
@@ -216,19 +217,32 @@ const DashProject = () => {
                       </p>
                     </div>
                     <div className="btns-project">
-                      <a href={project.website_link}>See live</a>
-                      <a href={project.repository}>Repository</a>
+                      <a
+                        href={project.website_link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        See live
+                      </a>
+                      <a
+                        href={project.repository}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Repository
+                      </a>
                     </div>
                     <button
                       className="prjct_edit-trg"
-                      onClick={()=>{handleDeleteProject(project._id)}}
+                      onClick={() => {
+                        handleDeleteProject(project._id);
+                      }}
                     >
                       Delete
                     </button>
                   </div>
                 </div>
               ))}
-              
           </div>
         </section>
       </div>

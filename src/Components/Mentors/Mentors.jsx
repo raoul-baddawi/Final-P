@@ -67,22 +67,22 @@ function Mentors() {
                           </h3>
                           <ul className="sci">
                             <li>
-                              <a href={item.facebook} target="_blank" rel="noopener noreferrer">
+                              <a href={item.facebook} style={{ "--clr": "#1877f2" }} target="_blank" rel="noopener noreferrer">
                                 <i className="fa-brands fa-facebook-f"></i>
                               </a>
                             </li>
                             <li>
-                              <a href={item.github} target="_blank" rel="noopener noreferrer">
+                              <a href={item.github}  style={{ "--clr": "#000000" }} target="_blank" rel="noopener noreferrer">
                                 <i className="fa-brands fa-github"></i>
                               </a>
                             </li>
                             <li>
-                              <a href={item.instagram} target="_blank" rel="noopener noreferrer">
+                              <a href={item.instagram} style={{ "--clr": "#c32aa3" }} target="_blank" rel="noopener noreferrer">
                                 <i className="fa-brands fa-instagram"></i>
                               </a>
                             </li>
                             <li>
-                              <a href={item.linkedin} target="_blank" rel="noopener noreferrer">
+                              <a href={item.linkedin} style={{ "--clr": "#1da1f2" }} target="_blank" rel="noopener noreferrer">
                                 <i className="fa-brands fa-linkedin-in"></i>
                               </a>
                             </li>

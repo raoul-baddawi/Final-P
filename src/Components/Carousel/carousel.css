@@ -140,7 +140,6 @@
 
 .part1-wrapper,
 .part2-wrapper {
-  height: 50%;
   display: flex;
   flex-direction: column;
 }
@@ -154,8 +153,32 @@
 }
 
 .part2-wrapper p {
-  height: auto;
+  max-height: 70px;
+  overflow-y: scroll;
 }
+
+
+
+.part2-wrapper p::-webkit-scrollbar {
+  height: 10px;
+  width: 5px;
+  margin-bottom: 20px;
+  display: block!important;
+}
+
+.part2-wrapper p::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+.part2-wrapper p::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 5px;
+}
+
+.part2-wrapper p::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 
 .finals-header button {
   width: fit-content;
@@ -205,8 +228,6 @@
 .finals-header p {
   font-size: var(--large);
   letter-spacing: 1px;
-  max-height: 200px;
-  overflow: scroll;
 }
 
 .finals-header p::-webkit-scrollbar{

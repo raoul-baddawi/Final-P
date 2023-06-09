@@ -270,7 +270,7 @@ transform: translate(45px, 60px);
       margin-top: 20px;
     }
     
-    .link-child:nth-of-type(2):hover{
+    .link-child:nth-of-type(2):is(:hover, :focus) a{
       color: black;
     }
     .link-child:nth-of-type(2) i{

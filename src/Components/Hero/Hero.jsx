@@ -31,7 +31,7 @@ const Hero = () => {
             to="about"
             spy={true}
             smooth={true}
-            offset={0}
+            offset={-40}
             duration={500}
             tabIndex={0}
             onKeyDown={(e) => handleKeyDown(e, "about")}

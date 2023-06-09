@@ -243,7 +243,7 @@ image-rendering: -webkit-optimize-contrast;
 }
 
 .contentBx .card .textBx .sci li a:hover {
-  background: #ff1d50;
+  background: var(--clr);
   color: white;
 }
 
@@ -548,6 +548,6 @@ image-rendering: -webkit-optimize-contrast;
 }
 
 
-/* .fix-top{
-  margin-top: 10vh;
-} */
+.fix-top{
+  margin-top: 7vh;
+}

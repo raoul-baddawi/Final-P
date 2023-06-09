@@ -167,7 +167,8 @@ const Navbar = () => {
 
             {token && token.length > 18 ? (
               <div className="lgd-in-dropdown">
-                <img src={drop === null ? noprofile : drop.image} alt="" />
+                <img src={drop && drop?.image?.length > 3 ? drop?.image : noprofile} alt={drop && drop?.name} />
+                {console.log(drop)}
                 <p
                   className="name_p"
                   onClick={() => {

@@ -60,7 +60,7 @@ function LoginUp() {
       const response = await axios.post(
         "https://appreciate-b.onrender.com/api/auth/register",
         {
-          name: event.target.name.value,
+          username: event.target.name.value,
           email: event.target.Email.value,
           password: event.target.Password.value,
         }

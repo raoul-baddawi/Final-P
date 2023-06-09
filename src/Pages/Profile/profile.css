@@ -43,6 +43,7 @@
   flex-direction: column;
   gap: 6dvh;
   width: 40vh;
+  z-index: 999;
 }
 
 .profile_nav ul li{
@@ -588,7 +589,6 @@ animation: bounce 1s infinite both;
     gap: 6dvh;
     background-color: var(--primary-color);
     width: 100%;
-    z-index: 2;
 }
 
 .profile_nav h1{
@@ -842,9 +842,11 @@ animation: bounce 1s infinite both;
 
 
 
+
 .bestloading_ever h1{
   color: black;
   animation: coloring 1s infinite;
+  text-align: center;
 }
 
 @keyframes coloring {
