@@ -197,10 +197,12 @@
   border-radius: 100px;
 }
 
-.v-web:hover {
+.v-web:is(:hover, :focus) {
   border: 3px solid var(--accent-color);
   color: var(--accent-color);
+  outline: none;
 }
+
 
 .v-cv {
   border: 3px solid var(--accent-color);
@@ -209,10 +211,11 @@
   transition: 0.2s all ease;
 }
 
-.v-cv:hover {
+.v-cv:is(:hover, :focus) {
   background-color: white;
   border: 3px solid var(--accent-color);
   color: var(--accent-color);
+  outline: none;
 }
 
 .finals-header h2 {

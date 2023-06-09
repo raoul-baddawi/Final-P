@@ -180,13 +180,28 @@ transform: translate(45px, 60px);
   text-decoration: none;
   transition: .3s all ease;
   color: #999;
+  position: relative;
+  width: fit-content;
+}
+
+.pages-links_container a::before{
+  display: block;
+  content: '';
+  position: absolute;
+  transition: .2s all ease;
+  bottom: -4px;
+  height: 1px;
+  width: 0px;
+  background-color: white;
+}
+
+.pages-links_container a:is(:hover, :focus)::before{
+  width: 100%;
 }
 
 .pages-links_container a:is(:hover, :focus){
   color: white;
-  line-height: 20px;
-  width: fit-content;
-  border-bottom: 1px solid white;
+ outline: none;
 }
 
 .copy_right{

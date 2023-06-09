@@ -525,9 +525,9 @@ transform: translate(-50%, -50%);
 #members{
   display: block;
 }
-#members .animated_form{
+/* #members .animated_form{
   max-width: 70%;
-}
+} */
 
 .for_admin-btns{
   background: none;

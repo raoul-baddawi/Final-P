@@ -2,6 +2,7 @@ import React from "react";
 import "./footer.css";
 import { Element } from "react-scroll";
 import ContactMe from "../Contact/ContactMe";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -117,9 +118,9 @@ const Footer = () => {
 
           <div className="pages-links_container">
             <h1>Check out this website</h1>
-            <a href="/ourteam">Our Team</a>
-            <a href="/community">Community</a>
-            <a href="/about">About us</a>
+            <Link to="/ourteam">Our Team</Link>
+            <Link to="/community">Community</Link>
+            <Link to="/about">About us</Link>
           </div>
         </div>
         <p className="copy_right">

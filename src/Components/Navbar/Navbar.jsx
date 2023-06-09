@@ -245,7 +245,7 @@ const Navbar = () => {
                 <a href="/community">
                   <i className="fa-sharp fa-solid fa-comments"></i> Community
                 </a>
-                <Lol to="/#footer">
+                <Lol to="/#footer" onClick={()=>{setClick(false)}}>
                   <i className="fa-sharp fa-regular fa-address-card"></i>{" "}
                   Contact Me
                 </Lol>
