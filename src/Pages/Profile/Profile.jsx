@@ -674,7 +674,7 @@ const Profile = () => {
                 </div>
                 <div className="prfl-image">
                   <img
-                    src={cv && cv.image.length > 3 ?  cv.image : noimage}
+                    src={cv && cv?.image?.length > 3 ?  cv.image : noimage}
                     alt="hllo"
                   />
                   <form onSubmit={handleCvSubmit}>
