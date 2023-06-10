@@ -48,7 +48,7 @@
 }
 
 
-#experience textarea{
+.education_element textarea{
   color: var(--primary-color);
   resize: none;
   background-color: white;

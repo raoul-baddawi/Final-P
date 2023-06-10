@@ -130,7 +130,7 @@ const Experience = () => {
             required
           />
           <label>Description:</label>
-          <input
+          <textarea
             type="text"
             name="description"
             value={experienceData.description}
@@ -278,7 +278,7 @@ const Experience = () => {
                       <h3>Description:</h3>
                       {editedField === `description_${experience._id}` ? (
                         <div className="rendered-wrapper">
-                          <input
+                          <textarea
                             type="text"
                             value={editedValue}
                             onChange={(e) => setEditedValue(e.target.value)}
