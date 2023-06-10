@@ -33,7 +33,7 @@ export default function Messenger() {
       let data={id:user._id}
       socket.current.emit("user",data)
       } 
-    socket.current = io("ws://appreciate-b.onrender.com");
+    socket.current = io("wss://appreciate-b.onrender.com");
     init()
 
     socket.current.on("getMessage", (data) => {
