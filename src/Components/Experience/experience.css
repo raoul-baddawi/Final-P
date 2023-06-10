@@ -46,6 +46,17 @@
   padding: 7px 14px;
   
 }
+
+
+#experience textarea{
+  color: var(--primary-color);
+  resize: none;
+  background-color: white;
+  outline: none;
+  width: 65%;
+  height: 200px;
+  border: 1px solid lightgray;
+}
 @media (max-width: 1155px){
 
 .exp_main section {

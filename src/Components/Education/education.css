@@ -54,6 +54,15 @@
 }
 
 
+#education textarea{
+  color: var(--primary-color);
+  resize: none;
+  background-color: white;
+  outline: none;
+  width: 65%;
+  height: 200px;
+  border: 1px solid lightgray;
+}
 @media all and (max-width:910px){
 .exp_main section{
   width: 90%;
