@@ -327,7 +327,6 @@
 .works p,
 .hobs p {
   margin: auto;
-  margin-left: 25px;
   width: 90%;
   padding-top: 20px;
   color: rgb(96, 90, 90);
@@ -469,6 +468,7 @@ textarea {
   cursor: pointer;
   position: fixed;
   bottom: 50px;
+  z-index: 10;
   left: 50px;
   grid-row: 2;
   overflow: hidden;
@@ -486,12 +486,12 @@ textarea {
   justify-content: center;
 }
 
-.sign svg {
-  width: 17px;
+.sign i {
+  font-size: 27px;
 }
 
-.sign svg path {
-  fill: var(--primary-color);
+.sign i{
+  color: var(--primary-color);
 }
 /* text */
 .text {
@@ -729,7 +729,7 @@ textarea {
     justify-content: center;
     align-items: center;
     width: 89%;
-    min-height: 180px;
+    min-height: 100px;
     padding-bottom: 20px;
   }
   
@@ -744,6 +744,13 @@ textarea {
     align-items: center;
     gap: 10px;
   }
+}
+
+@media all and (max-width:600px) {
+  .works p,
+.hobs p{
+  font-size: 13px;
+}
 }
 
 
