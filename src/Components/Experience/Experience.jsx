@@ -135,7 +135,7 @@ const Experience = () => {
             name="description"
             value={experienceData.description}
             onChange={handleExChange}
-            placeholder="Enter description"
+            placeholder="Enter description, add (-) to start on a new line"
             required
           />
           <p>{message}</p>

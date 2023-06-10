@@ -70,132 +70,186 @@ const Cv = () => {
   }
   return (
     <>
-     <button className="Btn-cv" onClick={()=>{navigate(-1)}}>
-              <div className="sign">
-              <i className="fa-solid fa-person-running"></i>
-              </div>
-              <div className="text">Back</div>
-            </button>
-    <div className="cv-mainer" ref={captureRef}>
-      <div id="cv_header">
-        <p>{cv.name.length > 1 ? cv.name : "User Name"}</p>
-        <ul className="list-1">
-          <li className="left facebook">
-            <a href={profile.facebook} target="_blank" rel="noopener noreferrer">
-              <img src={fb} alt="fb" />
-            </a>
-          </li>
-          <li className="left instagram">
-            <a href={profile.instagram} target="_blank" rel="noopener noreferrer">
-              <img src={ig} alt="insta" />
-            </a>
-          </li>
-          <li className="left linkedin">
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-              <img src={lnkin} alt="in" />
-            </a>
-          </li>
-          <li className="left github">
-            <a href={profile.github} target="_blank" rel="noopener noreferrer">
-              <img src={gh} alt="gh" />
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div id="wrapper">
-        <div id="intro">
-          <img
-            src={cv.image || noprofile}
-            alt="Good lookin Person"
-            width="100px"
-            height="100px"
-          />
-          <div className="two">
-            <h1 className="Rb">{cv.name.length > 1 ? cv.name : "Cv data is not filled yet by the owner"}</h1>
-            <p className="RBP">{cv.position}</p>
-            <div className="btn_cvhead">
-              <button className="btn-1" onClick={downloadPDF}>
-                Download CV
-              </button>
-              <a href={`mailto:${cv.email}`} className="btn-2">
-                Hire Me
-              </a>
-            </div>
-          </div>
+      <button
+        className="Btn-cv"
+        onClick={() => {
+          navigate(-1);
+        }}
+      >
+        <div className="sign">
+          <i className="fa-solid fa-person-running"></i>
         </div>
-        <div id="About">
-          <div>
-            <h2>About Me</h2>
-            <p>{cv.about_me}</p>
-          </div>
-          <ul>
-            <section>
-              <li>Age:<span> {cv.age}</span></li>
-              <li>Email:<span> {cv.email}</span></li>
-              <li>Phone:<span> {cv.phone}</span></li>
-            </section>
-           
+        <div className="text">Back</div>
+      </button>
+      <div className="cv-mainer" ref={captureRef}>
+        <div id="cv_header">
+          <p>{cv.name.length > 1 ? cv.name : "User Name"}</p>
+          <ul className="list-1">
+            <li className="left facebook">
+              <a
+                href={profile.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={fb} alt="fb" />
+              </a>
+            </li>
+            <li className="left instagram">
+              <a
+                href={profile.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={ig} alt="insta" />
+              </a>
+            </li>
+            <li className="left linkedin">
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={lnkin} alt="in" />
+              </a>
+            </li>
+            <li className="left github">
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={gh} alt="gh" />
+              </a>
+            </li>
           </ul>
         </div>
-
-        <hr className="hr2"></hr>
-        <div id="workxp">
-          <h2>Education</h2>
-          {educations &&
-            educations.map((education, index) => (
-              <div className="sec-1 works" key={index}>
-                <p>
-                  <span>{education.title}</span> | {education.start} -{" "}
-                  {education.end}
-                </p>
-                <p>{education.description}</p>
+        <div id="wrapper">
+          <div id="intro">
+            <img
+              src={cv.image || noprofile}
+              alt="Good lookin Person"
+              width="100px"
+              height="100px"
+            />
+            <div className="two">
+              <h1 className="Rb">
+                {cv.name.length > 1
+                  ? cv.name
+                  : "Cv data is not filled yet by the owner"}
+              </h1>
+              <p className="RBP">{cv.position}</p>
+              <div className="btn_cvhead">
+                <button className="btn-1" onClick={downloadPDF}>
+                  Download CV
+                </button>
+                <a href={`mailto:${cv.email}`} className="btn-2">
+                  Hire Me
+                </a>
               </div>
-            ))}
-        </div>
+            </div>
+          </div>
+          <div id="About">
+            <div>
+              <h2>About Me</h2>
+              <p>{cv.about_me}</p>
+            </div>
+            <ul>
+              <section>
+                <li>
+                  Age:<span> {cv.age}</span>
+                </li>
+                <li>
+                  Email:<span> {cv.email}</span>
+                </li>
+                <li>
+                  Phone:<span> {cv.phone}</span>
+                </li>
+              </section>
+            </ul>
+          </div>
 
-        <hr className="break"></hr>
+          <hr className="hr2"></hr>
+          <div id="workxp">
+            <h2>Education</h2>
+            {educations &&
+              educations.map((education, index) => (
+                <div className="sec-1 works" key={index}>
+                  <p>
+                    <span>{education.title}</span> | {education.start} -{" "}
+                    {education.end}
+                  </p>
+                  {education.description.split("-").map((item, idx) => (
+                    <p key={idx}>
+                      {item.trim().length > 0 && "-"} {item.trim()}
+                    </p>
+                  ))}
+                </div>
+              ))}
+          </div>
 
-        <div id="Hobbies">
-          <h2>Work Experiences</h2>
-          {experiences &&
-            experiences.map((experience, index) => (
-              <div className="hobs" key={index}>
-                <p>
-                  <span>{experience.title}</span> | {experience.start} -{" "}
-                  {experience.end}
-                </p>
-                <p>{experience.description}</p>
-              </div>
-            ))}
+          <hr className="break"></hr>
+
+          <div id="Hobbies">
+            <h2>Work Experiences</h2>
+            {experiences &&
+              experiences.map((experience, index) => (
+                <div className="hobs" key={index}>
+                  <p>
+                    <span>{experience.title}</span> | {experience.start} -{" "}
+                    {experience.end}
+                  </p>
+                  {experience.description.split("-").map((item, idx) => (
+                    <p key={idx}>
+                      {item.trim().length > 0 && "-"} {item.trim()}
+                    </p>
+                  ))}
+                </div>
+              ))}
+          </div>
         </div>
+        <footer id="footerr">
+          <h2>{cv.name}</h2>
+          <ul className="list-1" id="footerul">
+            <li className="facebook">
+              <a
+                href={profile.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={fb} alt="fb" />
+              </a>
+            </li>
+            <li className="instagram">
+              <a
+                href={profile.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={ig} alt="insta" />
+              </a>
+            </li>
+            <li className="linkedin">
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={lnkin} alt="in" />
+              </a>
+            </li>
+            <li className="github">
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={gh} alt="gh" />
+              </a>
+            </li>
+          </ul>
+          <p>You've reached the end!</p>
+        </footer>
       </div>
-      <footer id="footerr">
-        <h2>{cv.name}</h2>
-        <ul className="list-1" id="footerul">
-          <li className="facebook">
-            <a href={profile.facebook} target="_blank" rel="noopener noreferrer">
-              <img src={fb} alt="fb" />
-            </a>
-          </li>
-          <li className="instagram">
-            <a href={profile.instagram} target="_blank" rel="noopener noreferrer">
-              <img src={ig} alt="insta" />
-            </a>
-          </li>
-          <li className="linkedin">
-            <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">
-              <img src={lnkin} alt="in" />
-            </a>
-          </li>
-          <li className="github">
-            <a href={profile.github} target="_blank" rel="noopener noreferrer">
-              <img src={gh} alt="gh" />
-            </a>
-          </li>
-        </ul>
-        <p>You've reached the end!</p>
-      </footer>
-    </div>
     </>
   );
 };

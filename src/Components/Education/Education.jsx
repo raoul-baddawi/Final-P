@@ -135,7 +135,7 @@ const Education = () => {
             name="description"
             value={educationData.description}
             onChange={handleEdChange}
-            placeholder="Enter description"
+            placeholder="Enter description, add (-) to start on a new line"
             required
           />
           <p>{message}</p>
