@@ -27,7 +27,6 @@ const Navbar = () => {
             `https://appreciate-b.onrender.com/profile/${user._id}`
           );
 
-          console.log(res);
           if (res.data.message === "No") {
             setDrop(null);
           } else {
@@ -168,7 +167,6 @@ const Navbar = () => {
             {token && token.length > 18 ? (
               <div className="lgd-in-dropdown">
                 <img src={drop && drop?.image?.length > 3 ? drop?.image : noprofile} alt={drop && drop?.name} />
-                {console.log(drop)}
                 <p
                   className="name_p"
                   onClick={() => {

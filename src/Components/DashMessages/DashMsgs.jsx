@@ -42,7 +42,7 @@ const DashMsgs = () => {
           {messages && messages.map((message, index)=>(
             <div className="msg" key={index}>
             <p>{message.fullName}</p>
-            <span>raoulbaddawi1@gmail.com</span>
+            <span>{message.email}</span>
             <p>
             {message.Message}
             </p>

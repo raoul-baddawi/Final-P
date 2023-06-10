@@ -148,6 +148,7 @@ export default function Messenger() {
             <div className="chat-header">
               <h1>Chat</h1>
             </div>
+            {conversations < 1 ? (<p className="small_scrn">Scroll down to open a chat</p>) : null}
             {conversations.map((c,index) => (
               <div  onClick={() => {
                 setCurrentChat(c);
