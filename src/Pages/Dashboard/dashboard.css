@@ -603,6 +603,9 @@ transform: translate(-50%, -50%);
     width: 95%;
   }
 }
+
+
+
 @media (max-width: 990px){
   #dashboard {
     grid-template-columns: 30vh auto;
@@ -611,6 +614,23 @@ transform: translate(-50%, -50%);
 /* #dashboard .profile_nav {
   width: 30vh;
 } */
+}
+
+@media all and (max-width: 1000px) and (orientation: landscape) {
+  .member_card{
+    height: 95vh;
+  }
+
+  #dashboard{
+    grid-template-columns: 50vh auto;
+    
+  }
+
+  .profile_nav.hidden{
+    width: 50vh;
+    overflow: scroll;
+    height: 90vh;
+  }
 }
 
 

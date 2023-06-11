@@ -108,6 +108,12 @@
 
 
 
+@media all and (max-width: 880px) and (orientation: landscape) {
+  .about-badge{
+    width: 70vh;
+    height: 70vh;
+  }
+}
 @media all and (max-width: 730px) {
   #about {
     flex-direction: column-reverse;

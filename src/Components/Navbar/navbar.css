@@ -241,6 +241,13 @@ header a:is(:hover){
   }
 }
 
+@media all and (max-width: 1000px) and (orientation: landscape) {
+  .nav-menu{
+    overflow: scroll;
+    height: 80vh;
+  }
+}
+
 .nav-menu_head{
   color: black;
   margin-top: 30px;

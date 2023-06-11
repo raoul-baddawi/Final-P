@@ -452,6 +452,11 @@ image-rendering: -webkit-optimize-contrast;
   }
 }
 
+@media all and (max-width: 880px) and (orientation: landscape) {
+  #mentors{
+    height: 210vh;
+  }
+}
 @media all and (max-width: 730px) {
   .desc_activated {
     top: 50%;

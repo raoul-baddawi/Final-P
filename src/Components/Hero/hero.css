@@ -210,6 +210,31 @@
   }
 }
 
+@media all and (max-width: 1000px) and (orientation: landscape) {
+  .hero-left{
+    margin-top: 0;
+  }
+
+  #hero {
+    height: 140vh;
+  }
+
+
+  .about-left{
+    width: 45%;
+  }
+  .about-right{
+    width: 55%;
+  }
+  .about-right p{
+    font-size: 1rem;
+  }
+
+  #about{
+    height: 130dvh;
+  }
+}
+
 @media (max-width: 600px) {
   .left-container {
     width: 80%;
@@ -239,4 +264,12 @@
     background-position: -330px;
   }
 
+}
+
+
+@media all and (max-width: 880px) and (orientation: landscape) {
+  .about-badge{
+    width: 70vh;
+    height: 70vh;
+  }
 }

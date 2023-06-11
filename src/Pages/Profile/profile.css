@@ -505,6 +505,22 @@ animation: bounce 1s infinite both;
 }
 }
 
+
+@media all and (max-width: 1000px) and (orientation: landscape) {
+ .profile_nav ul{
+  display: block;
+  height: auto;
+ }
+
+ .showw {
+  transition: .4s all ease;
+  height: 130vh;
+}
+
+.projects-dash .showw {
+  height: 178dvh!important;
+}
+}
 @media all and (max-width:990px){
   .profile_wrapper{
     grid-template-columns: 30vh auto;
