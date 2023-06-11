@@ -30,7 +30,7 @@ const Projects = () => {
            <div className="pr_card-body">
              <h2>{project.title} | {project.subtitle}</h2>
              <p>{project.desc}</p>
-             <p className="technologies"><span>Teck used: </span>{project.technologies}</p>
+             <p className="technologies"><span>Tech used: </span>{project.technologies}</p>
              <div className="demo_wrapper">
              <p className="technologies">Demo account:</p>
              <p><span>{project.email}</span></p>
