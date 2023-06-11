@@ -148,3 +148,10 @@
     height: 30vh;
 }
 }
+
+@media all and (max-width:350px) {
+  
+  #about{
+    margin-top: 3vh;
+  }
+}
