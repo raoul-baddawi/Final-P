@@ -15,7 +15,12 @@ function Carousel() {
       axios
       .get("https://appreciate-b.onrender.com/profile")
       .then((res) => {
-        const devData = res.data.filter((profile) => profile.user_type === 'dev');
+        const devData = res.data.filter(
+          (profile) =>
+            profile.user_type === 'dev' &&
+            profile.name !== 'Mouhamad Moughnie' &&
+            profile.name !== 'Mgo Yeghiaian'
+        );
         setData(devData);
       })
       .catch((err) => console.log(err));

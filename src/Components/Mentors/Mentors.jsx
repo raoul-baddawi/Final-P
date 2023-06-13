@@ -8,7 +8,6 @@ function Mentors() {
   const [mentor, setMentor] = useState([]);
   const [activeItem, setActiveItem] = useState(1);
 
-  console.log(mentor)
   useEffect(() => {
     setTimeout(() => {
       axios
