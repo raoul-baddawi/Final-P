@@ -80,7 +80,7 @@ function Carousel() {
                         <button
                           className="v-web"
                           onClick={() =>
-                            window.open(dev.website_link, "_blank")
+                            window.open(formattedLink, "_blank")
                           }
                         >
                           Visit website
