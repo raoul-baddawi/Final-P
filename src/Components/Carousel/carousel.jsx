@@ -13,19 +13,20 @@ function Carousel() {
   useEffect(() => {
     setTimeout(() => {
       axios
-      .get("https://appreciate-b.onrender.com/profile")
-      .then((res) => {
-        const devData = res.data.filter(
-          (profile) =>
-            profile.user_type === 'dev' &&
-            profile.name !== 'Mouhamad Moughnie' &&
-            profile.name !== 'Mgo Yeghiaian'
-        );
-        setData(devData);
-      })
-      .catch((err) => console.log(err));
+        .get("https://appreciate-b.onrender.com/profile")
+        .then((res) => {
+          const devData = res.data.filter(
+            (profile) =>
+              profile.user_type === "dev" &&
+              profile.name !== "Mouhamad Moughnie" &&
+              profile.name !== "Mgo Yeghiaian" &&
+              profile.website_link !== " "
+          );
+          console.log(devData);
+          setData(devData);
+        })
+        .catch((err) => console.log(err));
     }, 3000);
-   
   }, []);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ function Carousel() {
   };
 
   const navigateToCV = (itemId) => {
-    window.location.href=`/cv/${itemId}`;
+    window.location.href = `/cv/${itemId}`;
   };
   return (
     <div className="carousel-wrap">
@@ -54,49 +55,77 @@ function Carousel() {
           <button onClick={prevSlide} className="button">
             <LeftIcon />
           </button>
-          {data && data.map((dev, index) => {
-            const active = index === currentIndex ? "active" : "";
-            return (
-              <div key={index} className={`carousel-slide ${active}`}>
-                <div className="finals-header">
-                  <div className="dev-info-wrapper">
-                    <img
-                      src={dev && dev.image.length > 3 ? dev.image  : NoImage}
-                      alt={dev.name}
-                      width="200"
-                      height="200"
-                    />
-                    <div className="name-position">
-                      <div className="part1-wrapper">
-                        <h2>{dev.name}</h2>
-                        <p>{dev.position}</p>
+          {data &&
+            data.map((dev, index) => {
+              const active = index === currentIndex ? "active" : "";
+              const websiteLink = dev.website_link.trim();
+              const formattedLink = websiteLink.startsWith("https://")
+                ? websiteLink
+                : `https://${websiteLink}`;
+              return (
+                <div key={index} className={`carousel-slide ${active}`}>
+                  <div className="finals-header">
+                    <div className="dev-info-wrapper">
+                      <img
+                        src={dev && dev.image.length > 3 ? dev.image : NoImage}
+                        alt={dev.name}
+                        width="200"
+                        height="200"
+                      />
+                      <div className="name-position">
+                        <div className="part1-wrapper">
+                          <h2>{dev.name}</h2>
+                          <p>{dev.position}</p>
+                        </div>
+                        <button
+                          className="v-web"
+                          onClick={() =>
+                            window.open(dev.website_link, "_blank")
+                          }
+                        >
+                          Visit website
+                        </button>
                       </div>
-                      <button className="v-web" onClick={() => window.open(dev.website_link, "_blank")}>Visit website</button>
+                    </div>
+                    <div className="dev-desc-wrapper">
+                      <div className="part2-wrapper">
+                        <h2>Description:</h2>
+                        <p>{dev.description}</p>
+                      </div>
+                      <button
+                        className="v-cv"
+                        onClick={() => navigateToCV(dev.user_id)}
+                      >
+                        View CV
+                      </button>
+                      <div className="none none-wrapper">
+                        <button
+                          className="v-cv none"
+                          onClick={() => navigateToCV(dev.user_id)}
+                        >
+                          View Cv
+                        </button>
+                        <button
+                          className="v-web none"
+                          onClick={() =>
+                            window.open(dev.website_link, "_blank")
+                          }
+                        >
+                          Visit website
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div className="dev-desc-wrapper">
-                    <div className="part2-wrapper">
-                    <h2>Description:</h2>
-                      <p>{dev.description}</p>
-                    </div>
-                    <button className="v-cv" onClick={() => navigateToCV(dev.user_id)}>View CV</button>
-                    <div className="none none-wrapper">
-                    <button className="v-cv none" onClick={() => navigateToCV(dev.user_id)}>View Cv</button>
-                      <button className="v-web none" onClick={() => window.open(dev.website_link, "_blank")}>Visit website</button>
-                    </div>
-                  </div>
-                </div>
-                <div className="totry">
-                  <iframe
-                    src={dev.website_link}
-                    title={`${dev.name}'s website`}
-                  >
-                  </iframe>
+                  <div className="totry">
+                    <iframe
+                      src={formattedLink}
+                      title={`${dev.name}'s website`}
+                    ></iframe>
                     <div className="before"></div>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
           <button onClick={nextSlide} className="button">
             <RightIcon />
           </button>
