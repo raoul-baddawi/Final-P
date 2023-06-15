@@ -89,13 +89,21 @@ const Profile = () => {
     const fetchProfileData = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
-        const presponse = await axios.get(
-          `https://appreciate-b.onrender.com/profile/${user._id}`
-        );
+        if (user){
+          const presponse = await axios.get(
+            `https://appreciate-b.onrender.com/profile/${user._id}`
+          );
+
+        setProfile(presponse.data);
+
+        }
+        else{
+          console.log("loginfor profile data")
+        }
+       
         const cresponse = await axios.get(
           `https://appreciate-b.onrender.com/cv/${user._id}`
         );
-        setProfile(presponse.data);
         setCv(cresponse.data);
       } catch (error) {
         console.error("Error fetching profile data:", error);

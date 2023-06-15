@@ -4,10 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import RightIcon from "../icons/iconRight";
 import LeftIcon from "../icons/iconLeft";
 import NoImage from "../../Assets/noimage.png";
+import Loader from "../Loader/Loader";
 
 function Carousel() {
   const [data, setData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [shouldRenderIframe, setShouldRenderIframe] = useState(false);
   const carouselRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +24,6 @@ function Carousel() {
               profile.name !== "Mgo Yeghiaian" &&
               profile.website_link !== " "
           );
-          console.log(devData);
           setData(devData);
         })
         .catch((err) => console.log(err));
@@ -35,6 +36,13 @@ function Carousel() {
       behavior: "smooth",
     });
   }, [currentIndex]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShouldRenderIframe(true);
+    }, 8000);
+  }, []);
+
 
   const prevSlide = () => {
     setCurrentIndex(currentIndex === 0 ? data.length - 1 : currentIndex - 1);
@@ -79,9 +87,7 @@ function Carousel() {
                         </div>
                         <button
                           className="v-web"
-                          onClick={() =>
-                            window.open(formattedLink, "_blank")
-                          }
+                          onClick={() => window.open(formattedLink, "_blank")}
                         >
                           Visit website
                         </button>
@@ -117,10 +123,15 @@ function Carousel() {
                     </div>
                   </div>
                   <div className="totry">
-                    <iframe
-                      src={formattedLink}
-                      title={`${dev.name}'s website`}
-                    ></iframe>
+                    {shouldRenderIframe ? (
+                      <>
+                        <iframe
+                          src={formattedLink}
+                          title={`${dev.name}'s website`}
+                        ></iframe>
+                        <div className="before"></div>
+                      </>
+                    ) : <div className="loading-ifrm"><Loader /></div>}
                     <div className="before"></div>
                   </div>
                 </div>

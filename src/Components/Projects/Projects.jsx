@@ -7,18 +7,21 @@ const Projects = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    const getProjects = async () => {
-      try {
-        const projectsData = await axios.get(
-          "https://appreciate-b.onrender.com/project"
-        );
-        setProjects(projectsData.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getProjects();
+    setTimeout(() => {
+      const getProjects = async () => {
+        try {
+          const projectsData = await axios.get(
+            "https://appreciate-b.onrender.com/project"
+          );
+          setProjects(projectsData.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      getProjects();
+    }, 3000);
   }, []);
+  
   return (
     <Element name="projects" className="projects">
       <h1>My Projects</h1>

@@ -245,6 +245,10 @@
 .none {
   display: none;
 }
+
+.loading-ifrm .loader-main{
+  min-height: 70vh;
+}
 @media all and (max-width: 1250px) {
   .finals-header h2 {
     font-size: var(--small-heading);
