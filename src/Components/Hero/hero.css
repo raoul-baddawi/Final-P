@@ -156,6 +156,7 @@
     background: url(../../Assets/raoul\(3\).jpeg);
     background-repeat: no-repeat;
     background-position: -130px;
+    background-size: cover;
     margin: 0;
   }
 
