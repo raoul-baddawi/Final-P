@@ -497,6 +497,10 @@ animation: bounce 1s infinite both;
 .rendered-wrapper .button button{
   padding: 3px;
 }
+
+.pswrd-span{
+  color: rgb(125, 125, 125);
+}
 @media all and (max-width:1155px){
   .cv_main section,
 .profile_main section{

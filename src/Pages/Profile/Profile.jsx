@@ -22,13 +22,32 @@ const Profile = () => {
   const [selectedImage, setSelectedImage] = useState({ image: "" });
   const fileInputRef = useRef(null);
   const filecvInputRef = useRef(null);
+  const [password, setPassword] = useState("");
+  const [passMessage, setPassMessage] = useState("Click on the pen icon to edit")
+
+  const handlePasswordChange = async () => {
+    try {
+      const response = await axios.put(`https://appreciate-b.onrender.com/api/user/${user._id}/password`, {
+        password: password,
+      });
+      if(response.status === 200){
+        window.location.reload()
+      }
+      else{
+        handleCancelPassClick("password")
+        setPassMessage("Could not update password")
+      }
+      console.log("Password updated successfully");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleButtonClick = (e) => {
     e.preventDefault();
     fileInputRef.current.click();
     setSelected(true);
   };
-
 
   const handleCvButtonClick = (e) => {
     e.preventDefault();
@@ -89,18 +108,16 @@ const Profile = () => {
     const fetchProfileData = async () => {
       try {
         const user = JSON.parse(localStorage.getItem("user"));
-        if (user){
+        if (user) {
           const presponse = await axios.get(
             `https://appreciate-b.onrender.com/profile/${user._id}`
           );
 
-        setProfile(presponse.data);
+          setProfile(presponse.data);
+        } else {
+          console.log("loginfor profile data");
+        }
 
-        }
-        else{
-          console.log("loginfor profile data")
-        }
-       
         const cresponse = await axios.get(
           `https://appreciate-b.onrender.com/cv/${user._id}`
         );
@@ -139,6 +156,10 @@ const Profile = () => {
   const handleCancelClick = (field) => {
     setIsEditing((prevEditing) => ({ ...prevEditing, [field]: false }));
     window.location.reload();
+  };
+
+  const handleCancelPassClick = (field) => {
+    setIsEditing((prevEditing) => ({ ...prevEditing, [field]: false }));
   };
 
   const handleEditCvClick = (field) => {
@@ -184,9 +205,8 @@ const Profile = () => {
     }
   };
 
-
   const navigateToCV = (itemId) => {
-    window.location.href=`/cv/${itemId}`;
+    window.location.href = `/cv/${itemId}`;
   };
 
   return (
@@ -329,7 +349,11 @@ const Profile = () => {
                   <h3>Your Profile Image</h3>
                   <div className="prfl-image">
                     <img
-                      src={profile && profile.image?.length > 3 ?  profile.image : noimage}
+                      src={
+                        profile && profile.image?.length > 3
+                          ? profile.image
+                          : noimage
+                      }
                       alt="hllo"
                     />
                     <form onSubmit={handleProfileSubmit}>
@@ -651,6 +675,39 @@ const Profile = () => {
                       </div>
                     )}
                   </div>
+                  <div className="input_wrapper">
+                    <div className="field_header">
+                      <label>Password: </label>
+                      <i
+                        className="fa-regular fa-pen-to-square"
+                        onClick={() => handleEditClick("password")}
+                      ></i>
+                    </div>
+                    {isEditing.password ? (
+                      <div>
+                        <input
+                          type="password"
+                          placeholder="New Password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                        />
+                        <div className="button">
+                          <button onClick={handlePasswordChange}>
+                            <i className="fa-solid fa-check"></i>
+                          </button>
+                          <button onClick={() => handleCancelClick("password")}>
+                            <i className="fa-solid fa-xmark"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <p>
+                          <span className="pswrd-span">{passMessage}</span>
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </section>
               </Element>
             )}
@@ -682,7 +739,7 @@ const Profile = () => {
                 </div>
                 <div className="prfl-image">
                   <img
-                    src={cv && cv?.image?.length > 3 ?  cv.image : noimage}
+                    src={cv && cv?.image?.length > 3 ? cv.image : noimage}
                     alt="hllo"
                   />
                   <form onSubmit={handleCvSubmit}>
