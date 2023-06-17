@@ -40,7 +40,7 @@ function Carousel() {
   useEffect(() => {
     setTimeout(() => {
       setShouldRenderIframe(true);
-    }, 8000);
+    }, 12000);
   }, []);
 
 
